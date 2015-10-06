@@ -9,6 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <TextBlock x:Name="textBlock" Margin="124,259,143,302" TextWrapping="Wrap" Text="HELLO MEDITATION TIMER"/>
 
     </Grid>
 </Page>
