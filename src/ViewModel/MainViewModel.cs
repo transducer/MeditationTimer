@@ -36,17 +36,18 @@ namespace Rooijakkers.MeditationTimer.ViewModel
                 // Code runs "for real"
                 StartTimerCommand = new RelayCommand(StartTimer, () => true);
                 StopTimerCommand = new RelayCommand(StopTimer, () => true);
-                Timer = new DispatcherTimer
+                DispatcherTimer = new DispatcherTimer
                 {
                     Interval = new TimeSpan(0, 0, 1) // One second
                 };
+                DispatcherTimer.Tick += TimerTick;
                 CountdownTimerValue = InitialValue;
             }
         }
 
         public ICommand StartTimerCommand { get; private set; }
         public ICommand StopTimerCommand { get; private set; }
-        public DispatcherTimer Timer { get; }
+        public DispatcherTimer DispatcherTimer { get; }
         public TimeSpan InitialValue => new TimeSpan(0, 15, 0); // 15 minutes
 
         private TimeSpan _countdownTimerValue;
@@ -67,14 +68,13 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
         private void StartTimer()
         {
-            Timer.Tick += TimerTick;
-            Timer.Start();
+            DispatcherTimer.Start();
         }
 
         private void StopTimer()
         {
             CountdownTimerValue = InitialValue;
-            Timer.Stop();
+            DispatcherTimer.Stop();
         }
 
         private void TimerTick(object sender, object e)
