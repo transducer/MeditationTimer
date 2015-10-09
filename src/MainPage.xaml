@@ -10,11 +10,26 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Canvas.Top="10" Height="657" Canvas.Left="-59" Margin="0,0.333,0,-17.333" d:LayoutOverrides="LeftMargin, RightMargin">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <TextBlock x:Name="TimerTextBlock" Margin="67,250,68,291" TextWrapping="Wrap" Text="15:00" FontSize="96" HorizontalAlignment="Center" Width="265" VerticalAlignment="Center" TextAlignment="Center" d:LayoutOverrides="TopMargin, BottomMargin"/>
-        <Button Command="{Binding StartTimerCommand}" Content="Start" HorizontalAlignment="Left" Margin="67,0,0,179" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment, TopMargin, BottomMargin" Width="129" />
-        <Button Command="{Binding StopTimerCommand}" Content="Stop" HorizontalAlignment="Right" Margin="0,0,68,178" VerticalAlignment="Bottom" Height="47" d:LayoutOverrides="TopMargin, BottomMargin" Width="131" />
+        <TextBlock Text="{Binding TimerText}" 
+                   Margin="67,234,68,307" 
+                   TextWrapping="Wrap" 
+                   FontSize="96" 
+                   TextAlignment="Center" 
+                   d:LayoutOverrides="Height, LeftPosition, RightPosition, TopPosition, BottomPosition"/>
+        <Button Command="{Binding StartTimerCommand}" 
+                Content="Start" 
+                HorizontalAlignment="Left" 
+                Margin="67,0,0,179" 
+                VerticalAlignment="Bottom" 
+                d:LayoutOverrides="HorizontalAlignment, TopMargin, BottomMargin" 
+                Width="130" />
+        <Button Command="{Binding StopTimerCommand}" 
+                Content="Stop" 
+                HorizontalAlignment="Right" 
+                Margin="0,0,68,178" 
+                VerticalAlignment="Bottom" 
+                Height="47" 
+                d:LayoutOverrides="TopMargin, BottomMargin" 
+                Width="130" />
     </Grid>
 </Page>

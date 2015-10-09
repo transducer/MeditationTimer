@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Windows.Input;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -35,25 +36,51 @@ namespace Rooijakkers.MeditationTimer.ViewModel
                 // Code runs "for real"
                 StartTimerCommand = new RelayCommand(StartTimer, () => true);
                 StopTimerCommand = new RelayCommand(StopTimer, () => true);
+                Timer = new DispatcherTimer
+                {
+                    Interval = new TimeSpan(0, 0, 1) // One second
+                };
+                CountdownTimerValue = InitialValue;
             }
         }
 
         public ICommand StartTimerCommand { get; private set; }
         public ICommand StopTimerCommand { get; private set; }
+        public DispatcherTimer Timer { get; }
+        public TimeSpan InitialValue => new TimeSpan(0, 15, 0); // 15 minutes
 
-        private async void StartTimer()
+        private TimeSpan _countdownTimerValue;
+        public TimeSpan CountdownTimerValue
         {
-            var timer = new DispatcherTimer();
+            get
+            {
+                RaisePropertyChanged(nameof(TimerText));
+                return _countdownTimerValue;
+            }
+            set
+            {
+                _countdownTimerValue = value; 
+                RaisePropertyChanged(nameof(TimerText));
+            }
+        }
+        public string TimerText => CountdownTimerValue.ToString(@"mm\:ss");
 
-            timer.Interval = new TimeSpan(0, 0, 1);
-            timer.Tick += timer_Tick;
-            timer.Start();
+        private void StartTimer()
+        {
+            Timer.Tick += TimerTick;
+            Timer.Start();
         }
 
-        private async void StopTimer()
+        private void StopTimer()
         {
-            var dialog = new MessageDialog("HELLO 2");
-            await dialog.ShowAsync();
+            CountdownTimerValue = InitialValue;
+            Timer.Stop();
+        }
+
+        private void TimerTick(object sender, object e)
+        {
+            var oneSecond = new TimeSpan(0, 0, 1);
+            CountdownTimerValue = CountdownTimerValue.Subtract(oneSecond);
         }
     }
 }
