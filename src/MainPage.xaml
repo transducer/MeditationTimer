@@ -6,9 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    DataContext="{Binding Main, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
+        <Button Command="{Binding ShowPopUp}" Content="Show Pop Up" HorizontalAlignment="Stretch" Margin="122,279,143,304" VerticalAlignment="Stretch" d:LayoutOverrides="Width, Height, LeftPosition, RightPosition, TopPosition, BottomPosition" />
     </Grid>
 </Page>

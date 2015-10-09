@@ -1,4 +1,8 @@
+using System;
+using System.Windows.Input;
+using Windows.UI.Popups;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 
 namespace Rooijakkers.MeditationTimer.ViewModel
 {
@@ -21,14 +25,23 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         /// </summary>
         public MainViewModel()
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+            if (IsInDesignMode)
+            {
+                // Code runs in Blend --> create design time data.
+            }
+            else
+            {
+                // Code runs "for real"
+                ShowPopUp = new RelayCommand(ShowPopUpExecute, () => true);
+            }
+        }
+
+        public ICommand ShowPopUp { get; private set; }
+
+        private async void ShowPopUpExecute()
+        {
+            var dialog = new MessageDialog("HELLO MEDITATION TIMER");
+            await dialog.ShowAsync();
         }
     }
 }
