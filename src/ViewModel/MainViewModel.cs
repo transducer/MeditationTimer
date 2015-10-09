@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Input;
 using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
@@ -42,8 +43,11 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
         private async void StartTimer()
         {
-            var dialog = new MessageDialog("HELLO 1");
-            await dialog.ShowAsync();
+            var timer = new DispatcherTimer();
+
+            timer.Interval = new TimeSpan(0, 0, 1);
+            timer.Tick += timer_Tick;
+            timer.Start();
         }
 
         private async void StopTimer()
