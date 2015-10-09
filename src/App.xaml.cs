@@ -59,13 +59,13 @@ namespace Rooijakkers.MeditationTimer
             if (rootFrame == null)
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
-                rootFrame = new Frame
-                {
-                    // TODO: change this value to a cache size that is appropriate for your application
-                    CacheSize = 1,
-                    // Set the default language
-                    Language = Windows.Globalization.ApplicationLanguages.Languages[0]
-                };
+                rootFrame = new Frame();
+
+                // TODO: change this value to a cache size that is appropriate for your application
+                rootFrame.CacheSize = 1;
+
+                // Set the default language
+                rootFrame.Language = Windows.Globalization.ApplicationLanguages.Languages[0];
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
@@ -112,11 +112,6 @@ namespace Rooijakkers.MeditationTimer
         private void RootFrame_FirstNavigated(object sender, NavigationEventArgs e)
         {
             var rootFrame = sender as Frame;
-            if (rootFrame == null)
-            {
-                return;
-            }
-
             rootFrame.ContentTransitions = this.transitions ?? new TransitionCollection() { new NavigationThemeTransition() };
             rootFrame.Navigated -= this.RootFrame_FirstNavigated;
         }
