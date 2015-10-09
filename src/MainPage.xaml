@@ -9,7 +9,9 @@
     DataContext="{Binding Main, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <Button Command="{Binding ShowPopUp}" Content="Show Pop Up" HorizontalAlignment="Stretch" Margin="122,279,143,304" VerticalAlignment="Stretch" d:LayoutOverrides="Width, Height, LeftPosition, RightPosition, TopPosition, BottomPosition" />
+    <Grid Canvas.Top="10" Height="657" Canvas.Left="-59" Margin="0,0.333,0,-17.333" d:LayoutOverrides="LeftMargin, RightMargin">
+        <TextBlock x:Name="TimerTextBlock" Margin="67,254,0,296" TextWrapping="Wrap" Text="15:00" FontSize="96" HorizontalAlignment="Left" Width="265" d:LayoutOverrides="TopPosition, BottomPosition"/>
+        <Button Command="{Binding StartTimerCommand}" Content="Start" HorizontalAlignment="Left" Margin="67,0,0,179" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment, TopMargin, BottomMargin" Width="129" />
+        <Button Command="{Binding StopTimerCommand}" Content="Stop" HorizontalAlignment="Right" Margin="0,0,68,178" VerticalAlignment="Bottom" Height="47" Width="131" d:LayoutOverrides="TopMargin, BottomMargin" />
     </Grid>
 </Page>

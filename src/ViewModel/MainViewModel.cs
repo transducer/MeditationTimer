@@ -32,15 +32,23 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             else
             {
                 // Code runs "for real"
-                ShowPopUp = new RelayCommand(ShowPopUpExecute, () => true);
+                StartTimerCommand = new RelayCommand(StartTimer, () => true);
+                StopTimerCommand = new RelayCommand(StopTimer, () => true);
             }
         }
 
-        public ICommand ShowPopUp { get; private set; }
+        public ICommand StartTimerCommand { get; private set; }
+        public ICommand StopTimerCommand { get; private set; }
 
-        private async void ShowPopUpExecute()
+        private async void StartTimer()
         {
-            var dialog = new MessageDialog("HELLO MEDITATION TIMER");
+            var dialog = new MessageDialog("HELLO 1");
+            await dialog.ShowAsync();
+        }
+
+        private async void StopTimer()
+        {
+            var dialog = new MessageDialog("HELLO 2");
             await dialog.ShowAsync();
         }
     }
