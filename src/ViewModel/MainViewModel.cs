@@ -62,6 +62,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         public ICommand StopTimerCommand { get; private set; }
         public ICommand AddFiveMinutesCommand { get; private set; }
         public DispatcherTimer DispatcherTimer { get; }
+
         private MeditationDiary _meditationDiary;
         public MeditationDiary MeditationDiary
         {
@@ -78,7 +79,6 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         }
 
         private TimeSpan _initialMeditationTime;
-
         public TimeSpan InitialMeditationTime
         {
             get
@@ -158,8 +158,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
         private void TimerTick(object sender, object e)
         {
-            var oneSecond = new TimeSpan(0, 0, 1);
-            CountdownTimerValue = CountdownTimerValue.Subtract(oneSecond);
+            CountdownTimerValue = CountdownTimerValue.Subtract(OneSecond);
         }
 
         private void RingBellMoments(params TimeSpan[] moments)
