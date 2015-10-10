@@ -1,10 +1,12 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Rooijakkers.MeditationTimer.Data.Contracts;
 using Rooijakkers.MeditationTimer.Model;
+using Rooijakkers.MeditationTimer.Utilities;
 
 namespace Rooijakkers.MeditationTimer.Data
 {
@@ -14,14 +16,31 @@ namespace Rooijakkers.MeditationTimer.Data
 
         public void AddEntryAsync(MeditationEntry entry)
         {
+            EnsureJsonFileExists();
             AddEntryIntoJsonAsync(entry);
         }
 
         public async Task<MeditationDiary> GetAsync()
         {
+            EnsureJsonFileExists();
+
             var meditationDiaryJson = await ReadJsonAsync();
 
             return ConvertToMeditationDiary(meditationDiaryJson);
+        }
+
+        private void EnsureJsonFileExists()
+        {
+            var task = Task.Run(async () =>
+            {
+                var file = await ApplicationData.Current.LocalFolder.TryGetItemAsync(JSON_FILENAME) as StorageFile;
+                if (file == null)
+                {
+                    await ApplicationData.Current.LocalFolder.CreateFileAsync(JSON_FILENAME);
+                }
+            });
+
+            task.Wait();
         }
 
         /// <summary>
@@ -58,15 +77,9 @@ namespace Rooijakkers.MeditationTimer.Data
 
         private async void AddEntryIntoJsonAsync(MeditationEntry entry)
         {
-            string content;
-
-            var readStream = await ApplicationData.Current.LocalFolder.OpenStreamForReadAsync(JSON_FILENAME);
-            using (var reader = new StreamReader(readStream))
-            {
-                content = await reader.ReadToEndAsync();
-            }
-
+            var content = await ReadJsonAsync();
             var diary = ConvertToMeditationDiary(content);
+
             diary.Add(entry);
 
             WriteJsonAsync(diary);
@@ -82,7 +95,7 @@ namespace Rooijakkers.MeditationTimer.Data
                 diary = serializer.ReadObject(memoryStream) as MeditationDiary;
             }
 
-            return diary;
+            return diary ?? new MeditationDiary();
         }
     }
 }
