@@ -80,7 +80,7 @@ namespace Rooijakkers.MeditationTimer.Data
             var content = await ReadJsonAsync();
             var diary = ConvertToMeditationDiary(content);
 
-            diary.Add(entry);
+            diary.Insert(0, entry);
 
             WriteJsonAsync(diary);
         }
