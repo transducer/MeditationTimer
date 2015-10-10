@@ -9,25 +9,23 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock x:Name="textBlock" 
-                   HorizontalAlignment="Left" 
-                   Margin="10,41,0,0" 
-                   TextWrapping="Wrap" 
-                   VerticalAlignment="Top" 
-                   Height="33" 
-                   Width="109">
-        	<Run FontSize="21.333" 
-                 Text="Start time"/>
-        </TextBlock>
-        <TextBlock x:Name="textBlock_Copy"
-                   Margin="183,41,25,0" 
-                   TextWrapping="Wrap" 
-                   VerticalAlignment="Top" 
-                   Height="33" 
-                   d:LayoutOverrides="LeftPosition, RightPosition" 
-                   Text="Time meditated" 
-                   FontSize="21.333"/>
-        <ListBox Name="MeditationDiaryListBox" Margin="8,77,0,93" Background="{x:Null}">
+        <TextBlock 
+            HorizontalAlignment="Left" 
+            Margin="64,53,0,0" 
+            TextWrapping="Wrap" 
+            Text="Start time" 
+            VerticalAlignment="Top" 
+            FontSize="16" 
+            Width="99"/>
+        <TextBlock 
+            HorizontalAlignment="Right" 
+            Margin="0,53,25,0" 
+            TextWrapping="Wrap" 
+            Text="Time meditated" 
+            VerticalAlignment="Top" 
+            FontSize="16" 
+            Width="161" Foreground="White"/>
+        <ListBox Name="MeditationDiaryListBox" Margin="8,77,0,93" Foreground="White" Background="#FF311FE0">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="HorizontalContentAlignment" 
