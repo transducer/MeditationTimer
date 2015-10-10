@@ -49,6 +49,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
                 DispatcherTimer.Tick += TimerTick;
                 DispatcherTimer.Tick += (s, e) => RingBellMoments(InitialValue, TimeSpan.Zero.Add(FiveMinutes), TimeSpan.Zero);
                 DispatcherTimer.Tick += StopTimerOnEnd;
+
                 CountdownTimerValue = InitialValue;
             }
         }

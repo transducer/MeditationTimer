@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using GalaSoft.MvvmLight.Messaging;
 using Rooijakkers.MeditationTimer.ViewModel;
@@ -40,6 +41,18 @@ namespace Rooijakkers.MeditationTimer
             // Windows.Phone.UI.Input.HardwareButtons.BackPressed event.
             // If you are using the NavigationHelper provided by some templates,
             // this event is handled for you.
+        }
+
+        private void StartTimerButton_Click(object sender, RoutedEventArgs e)
+        {
+            StartTimerButton.Visibility = Visibility.Collapsed;
+            StopTimerButton.Visibility = Visibility.Visible;
+        }
+
+        private void StopTimerButton_Click(object sender, RoutedEventArgs e)
+        {
+            StartTimerButton.Visibility = Visibility.Visible;
+            StopTimerButton.Visibility = Visibility.Collapsed;
         }
     }
 }
