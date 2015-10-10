@@ -1,11 +1,10 @@
 using System;
-using System.Diagnostics;
 using System.Windows.Input;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using Rooijakkers.MeditationTimer.Model;
 
 namespace Rooijakkers.MeditationTimer.ViewModel
 {
@@ -88,6 +87,12 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             CountdownTimerValue = CountdownTimerValue.Subtract(oneSecond);
 
             // TODO: Move to a code to a better place (event?)
+            var fiveMinutes = new TimeSpan(0, 5, 0);
+            if (CountdownTimerValue == TimeSpan.Zero.Add(fiveMinutes))
+            {
+                RingBell();
+            }
+
             if (CountdownTimerValue == TimeSpan.Zero)
             {
                 RingBell();
