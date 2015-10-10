@@ -41,6 +41,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
                 // Code runs "for real"
                 StartTimerCommand = new RelayCommand(StartTimer, () => true);
                 StopTimerCommand = new RelayCommand(StopTimer, () => true);
+                AddFiveMinutesCommand = new RelayCommand(AddFiveMinutes, () => true);
 
                 DispatcherTimer = new DispatcherTimer
                 {
@@ -56,8 +57,28 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
         public ICommand StartTimerCommand { get; private set; }
         public ICommand StopTimerCommand { get; private set; }
+        public ICommand AddFiveMinutesCommand { get; private set; }
         public DispatcherTimer DispatcherTimer { get; }
-        public TimeSpan InitialValue => FifteenMinutes;
+
+        private TimeSpan _initialValue;
+
+        public TimeSpan InitialValue
+        {
+            get
+            {
+                if (_initialValue == default(TimeSpan))
+                {
+                    _initialValue = FifteenMinutes;
+                }
+
+                return _initialValue;
+            }
+            set
+            {
+                _initialValue = value;
+                CountdownTimerValue = InitialValue;
+            }
+        }
 
         private TimeSpan _countdownTimerValue;
         public TimeSpan CountdownTimerValue
@@ -85,6 +106,11 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         {
             CountdownTimerValue = InitialValue;
             DispatcherTimer.Stop();
+        }
+
+        private void AddFiveMinutes()
+        {
+            InitialValue += FiveMinutes;
         }
 
         private void TimerTick(object sender, object e)
