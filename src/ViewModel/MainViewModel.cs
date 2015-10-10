@@ -21,6 +21,11 @@ namespace Rooijakkers.MeditationTimer.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
+        private static readonly TimeSpan OneSecond = new TimeSpan(0, 0, 1);
+        private static readonly TimeSpan TenSeconds = new TimeSpan(0, 10, 0);
+        private static readonly TimeSpan FiveMinutes = new TimeSpan(0, 5, 0);
+        private static readonly TimeSpan FifteenMinutes = new TimeSpan(0, 15, 0);
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
@@ -38,7 +43,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
                 DispatcherTimer = new DispatcherTimer
                 {
-                    Interval = new TimeSpan(0, 0, 1) // One second
+                    Interval = OneSecond
                 };
                 DispatcherTimer.Tick += TimerTick;
                 CountdownTimerValue = InitialValue;
@@ -48,7 +53,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         public ICommand StartTimerCommand { get; private set; }
         public ICommand StopTimerCommand { get; private set; }
         public DispatcherTimer DispatcherTimer { get; }
-        public TimeSpan InitialValue => new TimeSpan(0, 15, 0); // 15 minutes
+        public TimeSpan InitialValue => FifteenMinutes;
 
         private TimeSpan _countdownTimerValue;
         public TimeSpan CountdownTimerValue
@@ -68,7 +73,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
         private void StartTimer()
         {
-            CountdownTimerValue = CountdownTimerValue += new TimeSpan(0, 0, 10);
+            CountdownTimerValue = CountdownTimerValue += TenSeconds;
             DispatcherTimer.Start();
         }
 
@@ -90,8 +95,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
                 RingBell();
             }
 
-            var fiveMinutes = new TimeSpan(0, 5, 0);
-            if (CountdownTimerValue == TimeSpan.Zero.Add(fiveMinutes))
+            if (CountdownTimerValue == TimeSpan.Zero.Add(FiveMinutes))
             {
                 RingBell();
             }
