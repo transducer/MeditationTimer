@@ -48,10 +48,10 @@ namespace Rooijakkers.MeditationTimer.ViewModel
                     Interval = OneSecond
                 };
                 DispatcherTimer.Tick += TimerTick;
-                DispatcherTimer.Tick += (s, e) => RingBellMoments(InitialValue, TimeSpan.Zero.Add(FiveMinutes), TimeSpan.Zero);
+                DispatcherTimer.Tick += (s, e) => RingBellMoments(InitialMeditationTime, TimeSpan.Zero.Add(FiveMinutes), TimeSpan.Zero);
                 DispatcherTimer.Tick += StopTimerOnEnd;
 
-                CountdownTimerValue = InitialValue;
+                CountdownTimerValue = InitialMeditationTime;
             }
         }
 
@@ -60,23 +60,23 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         public ICommand AddFiveMinutesCommand { get; private set; }
         public DispatcherTimer DispatcherTimer { get; }
 
-        private TimeSpan _initialValue;
+        private TimeSpan _initialMeditationTime;
 
-        public TimeSpan InitialValue
+        public TimeSpan InitialMeditationTime
         {
             get
             {
-                if (_initialValue == default(TimeSpan))
+                if (_initialMeditationTime == default(TimeSpan))
                 {
-                    _initialValue = FifteenMinutes;
+                    _initialMeditationTime = FifteenMinutes;
                 }
 
-                return _initialValue;
+                return _initialMeditationTime;
             }
             set
             {
-                _initialValue = value;
-                CountdownTimerValue = InitialValue;
+                _initialMeditationTime = value;
+                CountdownTimerValue = InitialMeditationTime;
             }
         }
 
@@ -104,13 +104,13 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
         private void StopTimer()
         {
-            CountdownTimerValue = InitialValue;
+            CountdownTimerValue = InitialMeditationTime;
             DispatcherTimer.Stop();
         }
 
         private void AddFiveMinutes()
         {
-            InitialValue += FiveMinutes;
+            InitialMeditationTime += FiveMinutes;
         }
 
         private void TimerTick(object sender, object e)
