@@ -22,7 +22,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private static readonly TimeSpan OneSecond = new TimeSpan(0, 0, 1);
-        private static readonly TimeSpan TenSeconds = new TimeSpan(0, 10, 0);
+        private static readonly TimeSpan TenSeconds = new TimeSpan(0, 0, 10);
         private static readonly TimeSpan FiveMinutes = new TimeSpan(0, 5, 0);
         private static readonly TimeSpan FifteenMinutes = new TimeSpan(0, 15, 0);
 
