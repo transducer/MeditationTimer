@@ -39,9 +39,9 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             else
             {
                 // Code runs "for real"
-                StartTimerCommand = new RelayCommand(StartTimer, () => true);
-                StopTimerCommand = new RelayCommand(StopTimer, () => true);
-                AddFiveMinutesCommand = new RelayCommand(AddFiveMinutes, () => true);
+                StartTimerCommand = new RelayCommand(StartTimer);
+                StopTimerCommand = new RelayCommand(StopTimer);
+                AddFiveMinutesCommand = new RelayCommand(AddFiveMinutes);
 
                 DispatcherTimer = new DispatcherTimer
                 {
