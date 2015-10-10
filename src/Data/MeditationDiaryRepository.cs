@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Rooijakkers.MeditationTimer.Data.Contracts;
 using Rooijakkers.MeditationTimer.Model;
+
 namespace Rooijakkers.MeditationTimer.Data
 {
     public class MeditationDiaryRepository : IMeditationDiaryRepository
