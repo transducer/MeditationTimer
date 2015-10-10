@@ -37,29 +37,21 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         /// </summary>
         public MainViewModel()
         {
-            if (IsInDesignMode)
+            StartTimerCommand = new RelayCommand(StartTimer);
+            StopTimerCommand = new RelayCommand(StopTimer);
+            AddFiveMinutesCommand = new RelayCommand(AddFiveMinutes);
+
+            DispatcherTimer = new DispatcherTimer
             {
-                // Code runs in Blend --> create design time data.
-            }
-            else
-            {
-                // Code runs "for real"
-                StartTimerCommand = new RelayCommand(StartTimer);
-                StopTimerCommand = new RelayCommand(StopTimer);
-                AddFiveMinutesCommand = new RelayCommand(AddFiveMinutes);
+                Interval = OneSecond
+            };
+            DispatcherTimer.Tick += TimerTick;
+            DispatcherTimer.Tick += (s, e) => RingBellMoments(InitialMeditationTime, TimeSpan.Zero.Add(FiveMinutes), TimeSpan.Zero);
+            DispatcherTimer.Tick += StopTimerOnEnd;
 
-                DispatcherTimer = new DispatcherTimer
-                {
-                    Interval = OneSecond
-                };
-                DispatcherTimer.Tick += TimerTick;
-                DispatcherTimer.Tick += (s, e) => RingBellMoments(InitialMeditationTime, TimeSpan.Zero.Add(FiveMinutes), TimeSpan.Zero);
-                DispatcherTimer.Tick += StopTimerOnEnd;
+            CountdownTimerValue = InitialMeditationTime;
 
-                CountdownTimerValue = InitialMeditationTime;
-
-                _repository = new MeditationDiaryRepository();
-            }
+            _repository = new MeditationDiaryRepository();
         }
 
         public ICommand StartTimerCommand { get; private set; }
@@ -97,7 +89,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             }
             set
             {
-                _countdownTimerValue = value; 
+                _countdownTimerValue = value;
                 RaisePropertyChanged(nameof(TimerText));
             }
         }

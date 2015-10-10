@@ -20,14 +20,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         /// </summary>
         public MeditationDiaryViewModel()
         {
-            if (IsInDesignMode)
-            {
-                // Code runs in Blend --> create design time data.
-            }
-            else
-            {
-                _repository = new MeditationDiaryRepository();
-            }
+            _repository = new MeditationDiaryRepository();
         }
     }
 }
