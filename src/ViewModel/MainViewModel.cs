@@ -113,7 +113,12 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
         private void AddMeditationEntry()
         {
-            var timeMeditated = InitialMeditationTime.Subtract(CountdownTimerValue);
+            // Ensure we are not adding negative value if there is meditated for less than the
+            // time to sit ready
+            var timeMeditated = CountdownTimerValue < InitialMeditationTime 
+                ? InitialMeditationTime.Subtract(CountdownTimerValue) 
+                : TimeSpan.Zero;
+
             var meditationEntry = new MeditationEntry
             {
                 StartTime = DateTime.Now.Subtract(timeMeditated),
