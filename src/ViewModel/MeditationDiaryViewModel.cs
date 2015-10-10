@@ -15,9 +15,6 @@ namespace Rooijakkers.MeditationTimer.ViewModel
     {
         private readonly IMeditationDiaryRepository _repository;
 
-        /// <summary>
-        /// Initializes a new instance of the MainViewModel class.
-        /// </summary>
         public MeditationDiaryViewModel()
         {
             _repository = new MeditationDiaryRepository();
