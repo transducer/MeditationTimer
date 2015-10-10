@@ -113,10 +113,11 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
         private void AddMeditationEntry()
         {
+            var timeMeditated = InitialMeditationTime.Subtract(CountdownTimerValue);
             var meditationEntry = new MeditationEntry
             {
-                StartTime = DateTime.Now.Subtract(CountdownTimerValue),
-                TimeMeditated = InitialMeditationTime.Subtract(CountdownTimerValue)
+                StartTime = DateTime.Now.Subtract(timeMeditated),
+                TimeMeditated = timeMeditated
             };
 
             _repository.AddEntryAsync(meditationEntry);
