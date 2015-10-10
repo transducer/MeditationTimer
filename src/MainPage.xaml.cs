@@ -56,5 +56,10 @@ namespace Rooijakkers.MeditationTimer
             StopTimerButton.Visibility = Visibility.Collapsed;
             AddFiveMinutesButton.IsEnabled = true;
         }
+
+        private void ViewHistoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MeditationDiaryPage));
+        }
     }
 }

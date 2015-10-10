@@ -54,7 +54,20 @@
         	Margin="67,0,0,259" 
         	VerticalAlignment="Bottom"
         	Background="Transparent" 
-        	FontSize="18.667" 
-        	FontWeight="Normal" Width="120" Height="23" />
+        	FontSize="16" 
+        	FontWeight="Normal" 
+            Width="120" 
+            Height="23" />
+        <Button 
+        	Content="View history" 
+        	HorizontalAlignment="Right" 
+        	Margin="0,0,68,259" 
+        	VerticalAlignment="Bottom"
+            Click="ViewHistoryButton_Click"
+        	Background="Transparent" 
+        	FontSize="16" 
+        	FontWeight="Normal" 
+        	Width="120" 
+        	Height="23" />
     </Grid>
 </Page>
