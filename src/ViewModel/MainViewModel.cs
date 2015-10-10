@@ -5,6 +5,9 @@ using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using Rooijakkers.MeditationTimer.Data;
+using Rooijakkers.MeditationTimer.Data.Contracts;
+using Rooijakkers.MeditationTimer.Model;
 
 namespace Rooijakkers.MeditationTimer.ViewModel
 {
@@ -26,6 +29,8 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         private static readonly TimeSpan TenSeconds = new TimeSpan(0, 0, 10);
         private static readonly TimeSpan FiveMinutes = new TimeSpan(0, 5, 0);
         private static readonly TimeSpan TenMinutes = new TimeSpan(0, 10, 0);
+
+        private readonly IMeditationDiaryRepository _repository;
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -52,6 +57,8 @@ namespace Rooijakkers.MeditationTimer.ViewModel
                 DispatcherTimer.Tick += StopTimerOnEnd;
 
                 CountdownTimerValue = InitialMeditationTime;
+
+                _repository = new MeditationDiaryRepository();
             }
         }
 
@@ -105,8 +112,21 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
         private void StopTimer()
         {
+            AddMeditationEntry();
+
             CountdownTimerValue = InitialMeditationTime;
             DispatcherTimer.Stop();
+        }
+
+        private void AddMeditationEntry()
+        {
+            var meditationEntry = new MeditationEntry
+            {
+                StartTime = DateTime.Now.Subtract(CountdownTimerValue),
+                TimeMeditated = InitialMeditationTime.Subtract(CountdownTimerValue)
+            };
+
+            _repository.AddEntryAsync(meditationEntry);
         }
 
         private void AddFiveMinutes()
