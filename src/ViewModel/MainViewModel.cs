@@ -105,6 +105,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         private void StopTimer()
         {
             AddMeditationEntry();
+            UpdateDiary();
 
             CountdownTimerValue = InitialMeditationTime;
             DispatcherTimer.Stop();
@@ -151,6 +152,12 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         private void RingBell()
         {
             Messenger.Default.Send(new PlayMessage());
+        }
+
+        private void UpdateDiary()
+        {
+            var latestDiary = _repository.GetAsync();
+            Messenger.Default.Send(new DiaryMessage(latestDiary));
         }
     }
 }
