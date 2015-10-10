@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Windows.Input;
 using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
@@ -46,6 +47,8 @@ namespace Rooijakkers.MeditationTimer.ViewModel
                     Interval = OneSecond
                 };
                 DispatcherTimer.Tick += TimerTick;
+                DispatcherTimer.Tick += (s, e) => RingBellMoments(InitialValue, TimeSpan.Zero.Add(FiveMinutes), TimeSpan.Zero);
+                DispatcherTimer.Tick += StopTimerOnEnd;
                 CountdownTimerValue = InitialValue;
             }
         }
@@ -87,22 +90,20 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         {
             var oneSecond = new TimeSpan(0, 0, 1);
             CountdownTimerValue = CountdownTimerValue.Subtract(oneSecond);
+        }
 
-            // TODO: Move to a code to a better place (event?)
-
-            if (CountdownTimerValue == InitialValue)
+        private void RingBellMoments(params TimeSpan[] moments)
+        {
+            if (moments.Contains(CountdownTimerValue))
             {
                 RingBell();
             }
+        }
 
-            if (CountdownTimerValue == TimeSpan.Zero.Add(FiveMinutes))
-            {
-                RingBell();
-            }
-
+        private void StopTimerOnEnd(object sender, object e)
+        {
             if (CountdownTimerValue == TimeSpan.Zero)
             {
-                RingBell();
                 StopTimer();
             }
         }
