@@ -25,7 +25,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         private static readonly TimeSpan OneSecond = new TimeSpan(0, 0, 1);
         private static readonly TimeSpan TenSeconds = new TimeSpan(0, 0, 10);
         private static readonly TimeSpan FiveMinutes = new TimeSpan(0, 5, 0);
-        private static readonly TimeSpan FifteenMinutes = new TimeSpan(0, 15, 0);
+        private static readonly TimeSpan TenMinutes = new TimeSpan(0, 10, 0);
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -68,7 +68,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             {
                 if (_initialMeditationTime == default(TimeSpan))
                 {
-                    _initialMeditationTime = FifteenMinutes;
+                    _initialMeditationTime = TenMinutes;
                 }
 
                 return _initialMeditationTime;
