@@ -1,41 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-
-  <Identity Name="dbf8e67d-5c3f-4a44-9a99-297c1744f7c5"
-            Publisher="CN=Erwin Rooijakkers"
-            Version="1.0.0.0" />
-
-  <mp:PhoneIdentity PhoneProductId="dbf8e67d-5c3f-4a44-9a99-297c1744f7c5" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
-
+  <Identity Name="dbf8e67d-5c3f-4a44-9a99-297c1744f7c5" Publisher="CN=Erwin Rooijakkers" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="dbf8e67d-5c3f-4a44-9a99-297c1744f7c5" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>Rooijakkers.MeditationTimer</DisplayName>
+    <DisplayName>No Nonsense Meditation Timer</DisplayName>
     <PublisherDisplayName>Erwin Rooijakkers</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
-
   <Prerequisites>
     <OSMinVersion>6.3.1</OSMinVersion>
     <OSMaxVersionTested>6.3.1</OSMaxVersionTested>
   </Prerequisites>
-  
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application Id="App"
-        Executable="$targetnametoken$.exe"
-        EntryPoint="Rooijakkers.MeditationTimer.App">
-        <m3:VisualElements
-            DisplayName="Rooijakkers.MeditationTimer"
-            Square150x150Logo="Assets\Logo.png"
-            Square44x44Logo="Assets\SmallLogo.png"
-            Description="Rooijakkers.MeditationTimer"
-            ForegroundText="light"
-            BackgroundColor="transparent">
-            <m3:DefaultTile Wide310x150Logo="Assets\WideLogo.png" Square71x71Logo="Assets\Square71x71Logo.png"/>
-            <m3:SplashScreen Image="Assets\SplashScreen.png"/>
-        </m3:VisualElements>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Rooijakkers.MeditationTimer.App">
+      <m3:VisualElements DisplayName="No Nonsense Meditation Timer" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="A no nonsense meditation timer. Version 1 contains the ability to ring a Burmese bell at the start and after 15 minutes of meditation. If the meditator wants to start her or his meditation he or she can simply click on the button &quot;Start&quot;. If the meditator wants to stop he or she can simply click on the button &quot;Stop&quot;. No nonsense." ForegroundText="light" BackgroundColor="transparent">
+        <m3:DefaultTile Wide310x150Logo="Assets\WideLogo.png" Square71x71Logo="Assets\Square71x71Logo.png">
+        </m3:DefaultTile>
+        <m3:SplashScreen Image="Assets\SplashScreen.png" />
+      </m3:VisualElements>
     </Application>
   </Applications>
   <Capabilities>
