@@ -18,9 +18,15 @@ namespace Rooijakkers.MeditationTimer
         public MeditationDiaryPage()
         {
             this.InitializeComponent();
-
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
+            Messenger.Default.Register<DiaryMessage>(this, ReceiveDiaryMessageAsync);
+        }
+
+        private async void ReceiveDiaryMessageAsync(DiaryMessage msg)
+        {
+            var receivedDiary = await msg.CurrentMeditationDiary;
+            DisplayMeditationDiary(receivedDiary);
         }
 
         public void DisplayMeditationDiary(MeditationDiary diary)
