@@ -143,7 +143,12 @@ namespace Rooijakkers.MeditationTimer.ViewModel
                 TimeMeditated = timeMeditated
             };
 
-            _repository.AddEntryAsync(meditationEntry);
+            var task = Task.Run(async () =>
+            {
+                await _repository.AddEntryAsync(meditationEntry);
+            });
+
+            task.Wait();
         }
 
         private void AddFiveMinutes()
