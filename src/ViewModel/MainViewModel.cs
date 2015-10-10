@@ -35,7 +35,6 @@ namespace Rooijakkers.MeditationTimer.ViewModel
                 // Code runs "for real"
                 StartTimerCommand = new RelayCommand(StartTimer, () => true);
                 StopTimerCommand = new RelayCommand(StopTimer, () => true);
-                PlayBellSoundCommand = new RelayCommand(RingBell);
 
                 DispatcherTimer = new DispatcherTimer
                 {
@@ -48,7 +47,6 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
         public ICommand StartTimerCommand { get; private set; }
         public ICommand StopTimerCommand { get; private set; }
-        public ICommand PlayBellSoundCommand { get; private set; }
         public DispatcherTimer DispatcherTimer { get; }
         public TimeSpan InitialValue => new TimeSpan(0, 15, 0); // 15 minutes
 
@@ -70,6 +68,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
         private void StartTimer()
         {
+            CountdownTimerValue = CountdownTimerValue += new TimeSpan(0, 0, 10);
             DispatcherTimer.Start();
         }
 
@@ -85,8 +84,8 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             CountdownTimerValue = CountdownTimerValue.Subtract(oneSecond);
 
             // TODO: Move to a code to a better place (event?)
-            var tenSeconds = new TimeSpan(0, 0, 10);
-            if (CountdownTimerValue == InitialValue.Subtract(tenSeconds))
+
+            if (CountdownTimerValue == InitialValue)
             {
                 RingBell();
             }
