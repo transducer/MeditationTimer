@@ -4,7 +4,6 @@ using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using Rooijakkers.MeditationTimer.Model;
 
 namespace Rooijakkers.MeditationTimer.ViewModel
 {
@@ -72,7 +71,6 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         private void StartTimer()
         {
             DispatcherTimer.Start();
-            RingBell();
         }
 
         private void StopTimer()
@@ -87,6 +85,12 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             CountdownTimerValue = CountdownTimerValue.Subtract(oneSecond);
 
             // TODO: Move to a code to a better place (event?)
+            var tenSeconds = new TimeSpan(0, 0, 10);
+            if (CountdownTimerValue == InitialValue.Subtract(tenSeconds))
+            {
+                RingBell();
+            }
+
             var fiveMinutes = new TimeSpan(0, 5, 0);
             if (CountdownTimerValue == TimeSpan.Zero.Add(fiveMinutes))
             {
