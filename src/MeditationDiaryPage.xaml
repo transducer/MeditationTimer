@@ -9,7 +9,25 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <ListBox Name="MeditationDiaryListBox" Margin="0,0,0,93">
+        <TextBlock x:Name="textBlock" 
+                   HorizontalAlignment="Left" 
+                   Margin="10,41,0,0" 
+                   TextWrapping="Wrap" 
+                   VerticalAlignment="Top" 
+                   Height="33" 
+                   Width="109">
+        	<Run FontSize="21.333" 
+                 Text="Start time"/>
+        </TextBlock>
+        <TextBlock x:Name="textBlock_Copy"
+                   Margin="183,41,25,0" 
+                   TextWrapping="Wrap" 
+                   VerticalAlignment="Top" 
+                   Height="33" 
+                   d:LayoutOverrides="LeftPosition, RightPosition" 
+                   Text="Time meditated" 
+                   FontSize="21.333"/>
+        <ListBox Name="MeditationDiaryListBox" Margin="8,77,0,93" Background="{x:Null}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="HorizontalContentAlignment" 
@@ -24,11 +42,13 @@
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding StartTime}" 
-                               Grid.Column="0" 
-                               HorizontalAlignment="Left"/>
+                                   Grid.Column="0" 
+                                   HorizontalAlignment="Left" 
+                                   FontSize="16"/>
                         <TextBlock Text="{Binding TimeMeditated}" 
-                               Grid.Column="1" 
-                               HorizontalAlignment="Center"/>
+                                   Grid.Column="1" 
+                                   HorizontalAlignment="Center" 
+                                   FontSize="16"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

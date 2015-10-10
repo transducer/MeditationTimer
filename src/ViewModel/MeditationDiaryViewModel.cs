@@ -12,8 +12,6 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         public MeditationDiaryViewModel()
         {
             _repository = new MeditationDiaryRepository();
-
-            // Display latest diary on meditation diary viewmodel construction (once):
             DisplayLatestDiary();
         }
 
