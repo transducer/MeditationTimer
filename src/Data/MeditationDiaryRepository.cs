@@ -14,10 +14,10 @@ namespace Rooijakkers.MeditationTimer.Data
     {
         private const string JSON_FILENAME = "noNonsenseMeditationTimerData.json";
 
-        public void AddEntryAsync(MeditationEntry entry)
+        public async Task AddEntryAsync(MeditationEntry entry)
         {
             EnsureJsonFileExists();
-            AddEntryIntoJsonAsync(entry);
+            await AddEntryIntoJsonAsync(entry);
         }
 
         public async Task<MeditationDiary> GetAsync()
@@ -75,7 +75,7 @@ namespace Rooijakkers.MeditationTimer.Data
             return content;
         }
 
-        private async void AddEntryIntoJsonAsync(MeditationEntry entry)
+        private async Task AddEntryIntoJsonAsync(MeditationEntry entry)
         {
             var content = await ReadJsonAsync();
             var diary = ConvertToMeditationDiary(content);

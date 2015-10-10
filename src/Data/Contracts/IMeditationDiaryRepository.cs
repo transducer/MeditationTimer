@@ -5,7 +5,7 @@ namespace Rooijakkers.MeditationTimer.Data.Contracts
 {
     public interface IMeditationDiaryRepository
     {
-        void AddEntryAsync(MeditationEntry entry);
+        Task AddEntryAsync(MeditationEntry entry);
         Task<MeditationDiary> GetAsync();
     }
 }
