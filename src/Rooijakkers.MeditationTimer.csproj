@@ -94,7 +94,6 @@
     <Compile Include="Model\MeditationEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\StorageFolderExtensions.cs" />
-    <Compile Include="ViewModel\MeditationDiaryViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\DiaryMessage.cs" />
     <Compile Include="ViewModel\PlayMessage.cs" />

@@ -43,11 +43,9 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<MeditationDiaryViewModel>();
         }
 
         public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
-        public MeditationDiaryViewModel MeditationDiary => ServiceLocator.Current.GetInstance<MeditationDiaryViewModel>();
 
         public static void Cleanup()
         {
