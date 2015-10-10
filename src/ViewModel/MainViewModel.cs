@@ -94,6 +94,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
                 RaisePropertyChanged(nameof(TimerText));
             }
         }
+
         public string TimerText => CountdownTimerValue.ToString(@"mm\:ss");
 
         private void StartTimer()
