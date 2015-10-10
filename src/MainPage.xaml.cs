@@ -1,5 +1,7 @@
 ﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using GalaSoft.MvvmLight.Messaging;
+using Rooijakkers.MeditationTimer.ViewModel;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
@@ -15,6 +17,13 @@ namespace Rooijakkers.MeditationTimer
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
+
+            Messenger.Default.Register<PlayMessage>(this, ReceivePlayMessage);
+        }
+
+        private void ReceivePlayMessage(PlayMessage msg)
+        {
+            BurmeseGongMediaElement.Play();
         }
 
         /// <summary>

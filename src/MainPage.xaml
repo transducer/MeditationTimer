@@ -31,5 +31,12 @@
                 Height="47" 
                 d:LayoutOverrides="TopMargin, BottomMargin" 
                 Width="130" />
+        <MediaElement Name="BurmeseGongMediaElement"
+                      Height="10"
+                      Width="10"
+                      Source="/Assets/gong-burmese.wav"
+                      AutoPlay="False" 
+                      
+                      />
     </Grid>
 </Page>
