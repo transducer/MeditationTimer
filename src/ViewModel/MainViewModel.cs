@@ -6,7 +6,6 @@ using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using Rooijakkers.MeditationTimer.Data;
 using Rooijakkers.MeditationTimer.Data.Contracts;
 using Rooijakkers.MeditationTimer.Model;
 
