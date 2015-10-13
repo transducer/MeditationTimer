@@ -15,6 +15,8 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using Rooijakkers.MeditationTimer.Data;
+using Rooijakkers.MeditationTimer.Data.Contracts;
 
 namespace Rooijakkers.MeditationTimer.ViewModel
 {
@@ -31,17 +33,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            ////if (ViewModelBase.IsInDesignModeStatic)
-            ////{
-            ////    // Create design time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-            ////}
-            ////else
-            ////{
-            ////    // Create run time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DataService>();
-            ////}
-
+            SimpleIoc.Default.Register<IMeditationDiaryRepository, MeditationDiaryRepository>();
             SimpleIoc.Default.Register<MainViewModel>();
         }
 

@@ -37,8 +37,14 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel()
+        public MainViewModel(IMeditationDiaryRepository repository)
         {
+            if (repository == null)
+            {
+                throw new ArgumentNullException(nameof(repository));
+            }
+            _repository = repository;
+
             StartTimerCommand = new RelayCommand(StartTimer);
             StopTimerCommand = new RelayCommand(StopTimer);
             AddFiveMinutesCommand = new RelayCommand(AddFiveMinutes);
@@ -54,8 +60,6 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             DispatcherTimer.Tick += StopTimerOnEnd;
 
             CountdownTimerValue = InitialMeditationTime;
-
-            _repository = new MeditationDiaryRepository();
 
             // Initially update diary
             UpdateDiary();
