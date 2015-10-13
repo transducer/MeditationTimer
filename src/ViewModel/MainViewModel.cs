@@ -50,14 +50,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             AddFiveMinutesCommand = new RelayCommand(AddFiveMinutes);
             ResetInitialTimeCommand = new RelayCommand(ResetInitialTime);
 
-            DispatcherTimer = new DispatcherTimer
-            {
-                Interval = OneSecond
-            };
-            DispatcherTimer.Tick += TimerTick;
-            DispatcherTimer.Tick += (s, e) => 
-                RingBellMoments(InitialMeditationTime, TimeSpan.Zero.Add(FiveMinutes), TimeSpan.Zero);
-            DispatcherTimer.Tick += StopTimerOnEnd;
+            InitializeDispatcherTimer();
 
             CountdownTimerValue = InitialMeditationTime;
 
@@ -65,11 +58,23 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             UpdateDiary();
         }
 
+        private void InitializeDispatcherTimer()
+        {
+            DispatcherTimer = new DispatcherTimer
+            {
+                Interval = OneSecond
+            };
+            DispatcherTimer.Tick += TimerTick;
+            DispatcherTimer.Tick += (s, e) =>
+                RingBellMoments(InitialMeditationTime, TimeSpan.Zero.Add(FiveMinutes), TimeSpan.Zero);
+            DispatcherTimer.Tick += StopTimerOnEnd;
+        }
+
         public ICommand StartTimerCommand { get; private set; }
         public ICommand StopTimerCommand { get; private set; }
         public ICommand AddFiveMinutesCommand { get; private set; }
         public ICommand ResetInitialTimeCommand { get; private set; }
-        public DispatcherTimer DispatcherTimer { get; }
+        public DispatcherTimer DispatcherTimer { get; private set; }
 
         private MeditationDiary _meditationDiary;
         public MeditationDiary MeditationDiary
