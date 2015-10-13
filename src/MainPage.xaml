@@ -11,23 +11,22 @@
     <Grid Height="657" Margin="0,0.333,0,-17.333" 
           d:LayoutOverrides="LeftMargin, RightMargin">
         <TextBlock Text="{Binding TimerText}" 
-                   Margin="67,234,68,307" 
+                   Margin="67,72,68,0" 
                    TextWrapping="Wrap" 
                    FontSize="96" 
                    TextAlignment="Center" 
-                   d:LayoutOverrides="Height, LeftPosition, RightPosition, TopPosition, BottomPosition"/>
+                   d:LayoutOverrides="LeftPosition, RightPosition" VerticalAlignment="Top" Height="117" FontStretch="Expanded" FontWeight="SemiLight" CharacterSpacing="100"/>
         <Button Name="StartTimerButton"
                 Command="{Binding StartTimerCommand}" 
                 Content="Start" 
                 HorizontalAlignment="Stretch" 
-                Margin="67,0,68,75" 
-                VerticalAlignment="Bottom" 
-                Height="197"
+                Margin="67,314,68,146" 
+                VerticalAlignment="Stretch"
                 Click="StartTimerButton_Click" 
                 Background="Transparent" 
                 FontSize="48" 
                 FontWeight="Normal" 
-                d:LayoutOverrides="TopMargin, BottomMargin, LeftPosition, RightPosition" />
+                d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" />
         <Button Name="StopTimerButton"
                 Visibility="Collapsed"
                 Command="{Binding StopTimerCommand}" 
@@ -47,27 +46,31 @@
                       Source="/Assets/gong-burmese.wav"
                       AutoPlay="False" />
         <Button 
+        	x:Name="ResetInitialTimeButton"
+        	Command="{Binding ResetInitialTimeCommand}" 
+        	Content="Reset" 
+        	HorizontalAlignment="Left" 
+        	Margin="67,270,0,0" 
+        	VerticalAlignment="Top"
+        	Background="Transparent" 
+        	FontWeight="Normal" />
+        <Button 
             x:Name="AddFiveMinutesButton"
         	Command="{Binding AddFiveMinutesCommand}" 
         	Content="+5 minutes" 
-        	HorizontalAlignment="Left" 
-        	Margin="67,0,0,259" 
-        	VerticalAlignment="Bottom"
+        	HorizontalAlignment="Right" 
+        	Margin="0,270,68,0" 
+        	VerticalAlignment="Top"
         	Background="Transparent" 
-        	FontSize="16" 
-        	FontWeight="Normal" 
-            Width="120" 
-            Height="23" />
+        	FontWeight="Normal" d:LayoutOverrides="HorizontalAlignment" />
         <Button 
         	Content="View history" 
-        	HorizontalAlignment="Right" 
-        	Margin="0,0,68,259" 
+        	HorizontalAlignment="Stretch" 
+        	Margin="67,0,68,103" 
         	VerticalAlignment="Bottom"
             Click="ViewHistoryButton_Click"
         	Background="Transparent" 
-        	FontSize="16" 
         	FontWeight="Normal" 
-        	Width="120" 
-        	Height="23" />
+            d:LayoutOverrides="LeftPosition, RightPosition" />
     </Grid>
 </Page>

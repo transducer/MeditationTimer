@@ -48,6 +48,7 @@ namespace Rooijakkers.MeditationTimer
             StartTimerButton.Visibility = Visibility.Collapsed;
             StopTimerButton.Visibility = Visibility.Visible;
             AddFiveMinutesButton.IsEnabled = false;
+            ResetInitialTimeButton.IsEnabled = false;
         }
 
         private void StopTimerButton_Click(object sender, RoutedEventArgs e)
@@ -55,6 +56,7 @@ namespace Rooijakkers.MeditationTimer
             StartTimerButton.Visibility = Visibility.Visible;
             StopTimerButton.Visibility = Visibility.Collapsed;
             AddFiveMinutesButton.IsEnabled = true;
+            ResetInitialTimeButton.IsEnabled = true;
         }
 
         private void ViewHistoryButton_Click(object sender, RoutedEventArgs e)
