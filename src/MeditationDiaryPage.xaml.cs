@@ -1,10 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using GalaSoft.MvvmLight.Messaging;
-using Rooijakkers.MeditationTimer.Model;
-using Rooijakkers.MeditationTimer.ViewModel;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
