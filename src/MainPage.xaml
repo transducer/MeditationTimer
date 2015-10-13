@@ -8,43 +8,47 @@
     DataContext="{Binding Main, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Height="657" Margin="0,0.333,0,-17.333" 
-          d:LayoutOverrides="LeftMargin, RightMargin">
-        <TextBlock Text="{Binding TimerText}" 
-                   Margin="67,72,68,0" 
-                   TextWrapping="Wrap" 
-                   FontSize="96" 
-                   TextAlignment="Center" 
-                   d:LayoutOverrides="LeftPosition, RightPosition" VerticalAlignment="Top" Height="117" FontStretch="Expanded" FontWeight="SemiLight" CharacterSpacing="100"/>
-        <Button Name="StartTimerButton"
-                Command="{Binding StartTimerCommand}" 
-                Content="Start" 
-                HorizontalAlignment="Stretch" 
-                Margin="67,314,68,146" 
-                VerticalAlignment="Stretch"
-                Click="StartTimerButton_Click" 
-                Background="Transparent" 
-                FontSize="48" 
-                FontWeight="Normal" 
-                d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" />
-        <Button Name="StopTimerButton"
-                Visibility="Collapsed"
-                Command="{Binding StopTimerCommand}" 
-                Content="Stop" 
-                HorizontalAlignment="Stretch" 
-                Margin="67,0,68,75" 
-                VerticalAlignment="Bottom" 
-                Height="197"
-                Click="StopTimerButton_Click" 
-                Background="Transparent" 
-                FontSize="48" 
-                FontWeight="Normal" 
-                d:LayoutOverrides="TopMargin, BottomMargin, LeftPosition, RightPosition" />
-        <MediaElement Name="BurmeseGongMediaElement"
-                      Height="10"
-                      Width="10"
-                      Source="/Assets/gong-burmese.wav"
-                      AutoPlay="False" />
+    <Grid 
+        Height="657" 
+        Margin="0,0.333,0,-17.333" 
+        d:LayoutOverrides="LeftMargin, RightMargin">
+        <TextBlock 
+            Text="{Binding TimerText}" 
+            Margin="10,72,10,0" 
+            TextWrapping="Wrap" 
+            FontSize="106.667" 
+            TextAlignment="Center" 
+            d:LayoutOverrides="LeftPosition, RightPosition" 
+            VerticalAlignment="Top" 
+            Height="117" 
+            FontStretch="Expanded" 
+            FontWeight="SemiLight" 
+            CharacterSpacing="50"/>
+        <Button 
+            Name="StartTimerButton"
+            Command="{Binding StartTimerCommand}" 
+            Click="StartTimerButton_Click" 
+            Content="Start" 
+            HorizontalAlignment="Stretch" 
+            Margin="67,314,68,146" 
+            VerticalAlignment="Stretch"
+            Background="Transparent" 
+            FontSize="48" 
+            FontWeight="Normal" 
+            d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" />
+        <Button 
+            Name="StopTimerButton"
+            Visibility="Collapsed"
+            Command="{Binding StopTimerCommand}" 
+            Click="StopTimerButton_Click" 
+            Content="Stop" 
+            HorizontalAlignment="Stretch" 
+            Margin="67,314,68,146" 
+            VerticalAlignment="Stretch"
+            Background="Transparent" 
+            FontSize="48" 
+            FontWeight="Normal" 
+            d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" />
         <Button 
         	x:Name="ResetInitialTimeButton"
         	Command="{Binding ResetInitialTimeCommand}" 
@@ -72,5 +76,11 @@
         	Background="Transparent" 
         	FontWeight="Normal" 
             d:LayoutOverrides="LeftPosition, RightPosition" />
+        <MediaElement 
+            Name="BurmeseGongMediaElement"
+            Height="10"
+            Width="10"
+            Source="/Assets/gong-burmese.wav"
+            AutoPlay="False" />
     </Grid>
 </Page>
