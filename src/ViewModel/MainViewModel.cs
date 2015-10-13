@@ -30,6 +30,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         private static readonly TimeSpan TenSeconds = new TimeSpan(0, 0, 10);
         private static readonly TimeSpan FiveMinutes = new TimeSpan(0, 5, 0);
         private static readonly TimeSpan TenMinutes = new TimeSpan(0, 10, 0);
+        private static readonly TimeSpan TimeToSitReady = TenSeconds;
 
         private readonly IMeditationDiaryRepository _repository;
 
@@ -48,7 +49,8 @@ namespace Rooijakkers.MeditationTimer.ViewModel
                 Interval = OneSecond
             };
             DispatcherTimer.Tick += TimerTick;
-            DispatcherTimer.Tick += (s, e) => RingBellMoments(InitialMeditationTime, TimeSpan.Zero.Add(FiveMinutes), TimeSpan.Zero);
+            DispatcherTimer.Tick += (s, e) => 
+                RingBellMoments(InitialMeditationTime, TimeSpan.Zero.Add(FiveMinutes), TimeSpan.Zero);
             DispatcherTimer.Tick += StopTimerOnEnd;
 
             CountdownTimerValue = InitialMeditationTime;
@@ -119,18 +121,23 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             ? InitialMeditationTime.Subtract(CountdownTimerValue)
             : TimeSpan.Zero;
 
+        public bool MeditatedForLongerThanTimeToSitReady => TimeMeditated > TimeSpan.Zero;
+
         public string TimerText => CountdownTimerValue.ToString(@"mm\:ss");
 
         private void StartTimer()
         {
-            CountdownTimerValue = CountdownTimerValue += TenSeconds;
+            CountdownTimerValue = CountdownTimerValue += TimeToSitReady;
             DispatcherTimer.Start();
         }
 
         private void StopTimer()
         {
-            AddMeditationEntry();
-            UpdateDiary();
+            if (MeditatedForLongerThanTimeToSitReady)
+            {
+                AddMeditationEntry();
+                UpdateDiary();
+            }
 
             CountdownTimerValue = InitialMeditationTime;
             DispatcherTimer.Stop();
@@ -159,6 +166,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
         private void AddFiveMinutes()
         {
+            InitialMeditationTime += FiveMinutes;
             CountdownTimerValue += FiveMinutes;
         }
 
