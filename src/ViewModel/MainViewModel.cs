@@ -123,7 +123,19 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
         public bool MeditatedForLongerThanTimeToSitReady => TimeMeditated > TimeSpan.Zero;
 
-        public string TimerText => CountdownTimerValue.ToString(@"mm\:ss");
+        public string TimerText
+        {
+            get
+            {
+                var totalMinutes = (int)CountdownTimerValue.TotalMinutes;
+                var seconds = CountdownTimerValue.Seconds % 60;
+
+                var minutesText = totalMinutes < 10 ? "0" + totalMinutes : totalMinutes.ToString();
+                var secondsText = seconds < 10 ? "0" + seconds : seconds.ToString();
+
+                return minutesText + ":" + secondsText;
+            }
+        }
 
         private void StartTimer()
         {
@@ -145,7 +157,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
         private void ResetInitialTime()
         {
-            CountdownTimerValue = InitialMeditationTime;
+            CountdownTimerValue = TenMinutes;
         }
 
         private void AddMeditationEntry()
