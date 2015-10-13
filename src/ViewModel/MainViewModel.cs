@@ -113,6 +113,12 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             }
         }
 
+        // Ensure TimeMedidated is not a negative value if there is meditated for less than the
+        // time to sit ready
+        public TimeSpan TimeMeditated => CountdownTimerValue < InitialMeditationTime
+            ? InitialMeditationTime.Subtract(CountdownTimerValue)
+            : TimeSpan.Zero;
+
         public string TimerText => CountdownTimerValue.ToString(@"mm\:ss");
 
         private void StartTimer()
@@ -137,16 +143,10 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
         private void AddMeditationEntry()
         {
-            // Ensure we are not adding negative value if there is meditated for less than the
-            // time to sit ready
-            var timeMeditated = CountdownTimerValue < InitialMeditationTime 
-                ? InitialMeditationTime.Subtract(CountdownTimerValue) 
-                : TimeSpan.Zero;
-
             var meditationEntry = new MeditationEntry
             {
-                StartTime = DateTime.Now.Subtract(timeMeditated),
-                TimeMeditated = timeMeditated
+                StartTime = DateTime.Now.Subtract(TimeMeditated),
+                TimeMeditated = TimeMeditated
             };
 
             var task = Task.Run(async () =>
