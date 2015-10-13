@@ -41,6 +41,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             StartTimerCommand = new RelayCommand(StartTimer);
             StopTimerCommand = new RelayCommand(StopTimer);
             AddFiveMinutesCommand = new RelayCommand(AddFiveMinutes);
+            ResetInitialTimeCommand = new RelayCommand(ResetInitialTime);
 
             DispatcherTimer = new DispatcherTimer
             {
@@ -61,6 +62,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         public ICommand StartTimerCommand { get; private set; }
         public ICommand StopTimerCommand { get; private set; }
         public ICommand AddFiveMinutesCommand { get; private set; }
+        public ICommand ResetInitialTimeCommand { get; private set; }
         public DispatcherTimer DispatcherTimer { get; }
 
         private MeditationDiary _meditationDiary;
@@ -93,7 +95,6 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             set
             {
                 _initialMeditationTime = value;
-                CountdownTimerValue = InitialMeditationTime;
             }
         }
 
@@ -129,6 +130,11 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             DispatcherTimer.Stop();
         }
 
+        private void ResetInitialTime()
+        {
+            CountdownTimerValue = InitialMeditationTime;
+        }
+
         private void AddMeditationEntry()
         {
             // Ensure we are not adding negative value if there is meditated for less than the
@@ -153,7 +159,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
         private void AddFiveMinutes()
         {
-            InitialMeditationTime += FiveMinutes;
+            CountdownTimerValue += FiveMinutes;
         }
 
         private void TimerTick(object sender, object e)
