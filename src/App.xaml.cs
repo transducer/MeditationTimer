@@ -8,6 +8,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Phone.UI.Input;
+using Windows.System.Display;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,6 +28,7 @@ namespace Rooijakkers.MeditationTimer
     public sealed partial class App : Application
     {
         private TransitionCollection transitions;
+        private static readonly DisplayRequest KeepScreenOnRequest = new DisplayRequest();
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -37,6 +39,10 @@ namespace Rooijakkers.MeditationTimer
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
 
+            // Ensure screen never locks
+            KeepScreenOnRequest.RequestActive();
+
+            // Capture Windows Phone back button to go back to previous screen
 #if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
 #endif
