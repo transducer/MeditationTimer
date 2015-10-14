@@ -9,63 +9,41 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock 
-            HorizontalAlignment="Left" 
-            Margin="64,53,0,0" 
-            TextWrapping="Wrap" 
-            Text="Start time" 
-            VerticalAlignment="Top" 
-            FontSize="16" 
-            Width="99"/>
-        <TextBlock 
-            HorizontalAlignment="Right" 
-            Margin="0,53,25,0" 
-            TextWrapping="Wrap" 
-            Text="Time meditated" 
-            VerticalAlignment="Top" 
-            FontSize="16" 
-            Width="161" Foreground="White"/>
-        <ListBox Name="MeditationDiaryListBox" 
-                 ItemsSource="{Binding MeditationDiary}"
-                 Margin="8,77,0,93" 
-                 Foreground="White" 
-                 Background="#FF311FE0">
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
-                    <Setter Property="HorizontalContentAlignment" 
-                        Value="Stretch"/>
-                </Style>
-            </ListBox.ItemContainerStyle>
-            <ListBox.ItemTemplate>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid x:Name="ListViewHeaders" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  />
+                <ColumnDefinition  />
+            </Grid.ColumnDefinitions>
+            <TextBlock 
+                Grid.Column="0" 
+                Text="Start time" />
+            <TextBlock 
+                Grid.Column="1" 
+                Text="Time meditated" />
+        </Grid>
+        <ListView 
+            Grid.Row="1" 
+            ItemsSource="{Binding MeditationDiary}" >
+            <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid Width="{Binding ElementName=ListViewHeaders, Path=ActualWidth}" >
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition  />
+                            <ColumnDefinition  />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding StartTime}" 
-                                   Grid.Column="0" 
-                                   HorizontalAlignment="Left" 
-                                   FontSize="16"/>
-                        <TextBlock Text="{Binding TimeMeditated}" 
-                                   Grid.Column="1" 
-                                   HorizontalAlignment="Center" 
-                                   FontSize="16"/>
+                        <TextBlock 
+                            Grid.Column="0" 
+                            Text="{Binding StartTime}" />
+                        <TextBlock 
+                            Grid.Column="1" 
+                            Text="{Binding TimeMeditated}" />
                     </Grid>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-
-        <Button 
-        	Content="Go back" 
-        	HorizontalAlignment="Right" 
-        	Margin="0,0,25,40" 
-        	VerticalAlignment="Bottom"
-            Click="GoToMainScreenButton_Click"
-        	Background="Transparent" 
-        	FontSize="16" 
-        	FontWeight="Normal" 
-        	Width="120" 
-        	Height="23" />
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>
