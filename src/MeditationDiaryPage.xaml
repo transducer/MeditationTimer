@@ -8,39 +8,47 @@
     DataContext="{Binding Main, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid
+        Margin="30">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid x:Name="ListViewHeaders" >
+        <Grid Name="MeditationDiaryListViewHeaders"
+              Width="400">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition  />
-                <ColumnDefinition  />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <TextBlock 
                 Grid.Column="0" 
-                Text="Start time" />
+                Text="Start time" 
+                FontSize="16" />
             <TextBlock 
                 Grid.Column="1" 
-                Text="Time meditated" />
+                Text="Time meditated"
+                FontSize="16" />
         </Grid>
         <ListView 
-            Grid.Row="1" 
-            ItemsSource="{Binding MeditationDiary}" >
+            ShowsScrollingPlaceholders="True"
+            Grid.Row="1"
+            Name="MeditationDiaryListView" 
+            ItemsSource="{Binding MeditationDiary}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Width="{Binding ElementName=ListViewHeaders, Path=ActualWidth}" >
+                    <Grid Width="400">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition  />
-                            <ColumnDefinition  />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock 
-                            Grid.Column="0" 
-                            Text="{Binding StartTime}" />
-                        <TextBlock 
-                            Grid.Column="1" 
-                            Text="{Binding TimeMeditated}" />
+                        <TextBlock Text="{Binding StartTime}" 
+                                   Grid.Column="0" />
+                        <TextBlock Text="{Binding TimeMeditated}"
+                                   Grid.Row="0" Grid.Column="1" />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

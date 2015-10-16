@@ -1,9 +1,7 @@
 using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -63,6 +61,19 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
             // Initially update diary
             UpdateDiary();
+
+            if (IsInDesignMode)
+            {
+                SeedDesignTimeData();
+            }
+        }
+
+        private void SeedDesignTimeData()
+        {
+            for (var i = 0; i < 1000; i++)
+            {
+                MeditationDiary.Add(new MeditationEntry { TimeMeditated = TenMinutes, StartTime = DateTime.Now });
+            }
         }
 
         private void InitializeDispatcherTimer()
@@ -83,7 +94,18 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         public ICommand ResetInitialTimeCommand { get; private set; }
         public DispatcherTimer DispatcherTimer { get; private set; }
 
-        public MeditationDiary MeditationDiary { get; set; }
+        private MeditationDiary _meditationDiary;
+        public MeditationDiary MeditationDiary
+        {
+            get
+            {
+                return _meditationDiary ?? (_meditationDiary = new MeditationDiary());
+            }
+            set
+            {
+                _meditationDiary = value;
+            }
+        }
 
         private TimeSpan _initialMeditationTime;
         public TimeSpan InitialMeditationTime
@@ -215,7 +237,12 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         {
             var latestDiary = await _repository.GetAsync();
 
-            MeditationDiary = latestDiary;
+            MeditationDiary.Clear();
+
+            foreach (var entry in latestDiary)
+            {
+                MeditationDiary.Add(entry);
+            }
         }
     }
 }
