@@ -83,18 +83,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         public ICommand ResetInitialTimeCommand { get; private set; }
         public DispatcherTimer DispatcherTimer { get; private set; }
 
-        private MeditationDiary _meditationDiary;
-        public MeditationDiary MeditationDiary
-        {
-            get
-            {
-                return _meditationDiary;
-            }
-            set
-            {
-                _meditationDiary = value;
-            }
-        }
+        public MeditationDiary MeditationDiary { get; set; }
 
         private TimeSpan _initialMeditationTime;
         public TimeSpan InitialMeditationTime
