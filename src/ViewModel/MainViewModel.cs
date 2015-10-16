@@ -1,7 +1,9 @@
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -26,7 +28,13 @@ namespace Rooijakkers.MeditationTimer.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private static readonly TimeSpan OneSecond = new TimeSpan(0, 0, 1);
+
+        // While debugging we want 10 seconds to last 10 times as short
+#if DEBUG
+        private static readonly TimeSpan TenSeconds = new TimeSpan(0, 0, 1);
+#else
         private static readonly TimeSpan TenSeconds = new TimeSpan(0, 0, 10);
+#endif
         private static readonly TimeSpan FiveMinutes = new TimeSpan(0, 5, 0);
         private static readonly TimeSpan TenMinutes = new TimeSpan(0, 10, 0);
         private static readonly TimeSpan TimeToSitReady = TenSeconds;
