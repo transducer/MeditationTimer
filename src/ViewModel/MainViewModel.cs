@@ -80,13 +80,11 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         {
             get
             {
-                RaisePropertyChanged(nameof(MeditationDiary));
                 return _meditationDiary;
             }
             set
             {
                 _meditationDiary = value;
-                RaisePropertyChanged(nameof(MeditationDiary));
             }
         }
 
@@ -219,6 +217,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         private async void UpdateDiary()
         {
             var latestDiary = await _repository.GetAsync();
+
             MeditationDiary = latestDiary;
         }
     }

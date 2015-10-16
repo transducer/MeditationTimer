@@ -2,5 +2,5 @@
 
 namespace Rooijakkers.MeditationTimer.Model
 {
-    public class MeditationDiary : Collection<MeditationEntry> { }
+    public class MeditationDiary : ObservableCollection<MeditationEntry> { }
 }
