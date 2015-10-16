@@ -22,18 +22,20 @@
             </Grid.ColumnDefinitions>
             <TextBlock 
                 Grid.Column="0" 
-                Text="Start time" 
-                FontSize="16" />
+                Text="Started" 
+                FontSize="30" 
+                FontFamily="Segoe WP" />
             <TextBlock 
                 Grid.Column="1" 
-                Text="Time meditated"
-                FontSize="16" />
+                Text="Length"
+                FontSize="30" 
+                FontFamily="Segoe WP" />
         </Grid>
         <ListView 
             ShowsScrollingPlaceholders="True"
             Grid.Row="1"
             Name="MeditationDiaryListView" 
-            ItemsSource="{Binding MeditationDiary}">
+            ItemsSource="{Binding MeditationDiary}" FontFamily="Segoe WP">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Width="400">
@@ -42,13 +44,16 @@
                             <RowDefinition />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="19*" />
+                            <ColumnDefinition Width="81*"/>
+                            <ColumnDefinition Width="100*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding StartTime}" 
-                                   Grid.Column="0" />
+                                   FontSize="16" 
+                                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,-0.333" Grid.RowSpan="2" />
                         <TextBlock Text="{Binding TimeMeditated}"
-                                   Grid.Row="0" Grid.Column="1" />
+                                   Grid.Row="0" Grid.Column="2" 
+                                   FontSize="16" Margin="0,0,0,-0.333" Grid.RowSpan="2" />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
