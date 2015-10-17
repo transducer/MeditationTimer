@@ -182,6 +182,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
         private void ResetInitialTime()
         {
+            InitialMeditationTime = TenMinutes;
             CountdownTimerValue = TenMinutes;
         }
 
