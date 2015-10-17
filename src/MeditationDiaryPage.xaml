@@ -40,7 +40,11 @@
             ShowsScrollingPlaceholders="True"
             Grid.Row="1"
             Name="MeditationDiaryListView" 
-            ItemsSource="{Binding MeditationDiary}" FontFamily="Segoe WP" Margin="0,45.5,0,0" Grid.RowSpan="2" d:LayoutOverrides="TopPosition, BottomPosition">
+            ItemsSource="{Binding MeditationDiary}" 
+            FontFamily="Segoe WP" 
+            Margin="0,45.5,0,0" 
+            Grid.RowSpan="2" 
+            d:LayoutOverrides="TopPosition, BottomPosition">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Width="400">
