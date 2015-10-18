@@ -55,6 +55,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             StopTimerCommand = new RelayCommand(StopTimer);
             AddFiveMinutesCommand = new RelayCommand(AddFiveMinutes);
             ResetInitialTimeCommand = new RelayCommand(ResetInitialTime);
+            DeleteMeditationEntryCommand = new RelayCommand<int>(DeleteMeditationEntry);
 
             InitializeDispatcherTimer();
 
@@ -96,6 +97,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         public ICommand StopTimerCommand { get; private set; }
         public ICommand AddFiveMinutesCommand { get; private set; }
         public ICommand ResetInitialTimeCommand { get; private set; }
+        public ICommand DeleteMeditationEntryCommand { get; private set; }
         public DispatcherTimer DispatcherTimer { get; private set; }
 
         private MeditationDiary _meditationDiary;
@@ -260,6 +262,18 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         private void RingFiveMinutesLeftBell()
         {
             Messenger.Default.Send(new PlayMessage(BellSound.Cymbals));
+        }
+
+        private void DeleteMeditationEntry(int entryId)
+        {
+            var task = Task.Run(async () =>
+            {
+                await _repository.DeleteEntryAsync(entryId);
+            });
+
+            task.Wait();
+
+            UpdateDiary();
         }
 
         private async void UpdateDiary()

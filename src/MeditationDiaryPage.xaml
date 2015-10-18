@@ -43,6 +43,7 @@
                 FontFamily="Segoe WP" />
         </Grid>
         <ListView 
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             ShowsScrollingPlaceholders="True"
             Grid.Row="1"
             ItemsSource="{Binding MeditationDiary}" 
@@ -61,8 +62,9 @@
                         <FlyoutBase.AttachedFlyout>
                             <MenuFlyout>
                                 <MenuFlyoutItem 
-                                    x:Name="DeleteEntryButton"
-                                    Text="Delete entry"/>
+                                    Text="Delete entry"
+                                    Command="{Binding Source={StaticResource Locator}, Path=Main.DeleteMeditationEntryCommand}"
+                                    CommandParameter="{Binding EntryId}"/>
                             </MenuFlyout>
                         </FlyoutBase.AttachedFlyout>
                         <Grid.RowDefinitions>

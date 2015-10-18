@@ -1,6 +1,4 @@
-﻿using Rooijakkers.MeditationTimer.Model;
-
-namespace Rooijakkers.MeditationTimer.ViewModel
+﻿namespace Rooijakkers.MeditationTimer.Messages
 {
     /// <summary>
     /// Class used to send display sit ready event or not to view
