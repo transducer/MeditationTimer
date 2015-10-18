@@ -61,8 +61,9 @@
                         <FlyoutBase.AttachedFlyout>
                             <MenuFlyout>
                                 <MenuFlyoutItem 
-                                    x:Name="DeleteEntryButton"
-                                    Text="Delete entry"/>
+                                    Text="Delete entry"
+                                    Command="{Binding Source={StaticResource Locator}, Path=Main.DeleteMeditationEntryCommand}"
+                                    CommandParameter="{Binding EntryId}"/>
                             </MenuFlyout>
                         </FlyoutBase.AttachedFlyout>
                         <Grid.RowDefinitions>

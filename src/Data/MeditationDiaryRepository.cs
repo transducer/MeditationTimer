@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,11 @@ namespace Rooijakkers.MeditationTimer.Data
             var meditationDiaryJson = await ReadJsonAsync();
 
             return ConvertToMeditationDiary(meditationDiaryJson);
+        }
+
+        public async Task DeleteEntryAsync(int entryId)
+        {
+            await DeleteEntryFromJsonAsync(entryId);
         }
 
         private void EnsureJsonFileExists()
@@ -81,6 +87,25 @@ namespace Rooijakkers.MeditationTimer.Data
             var diary = ConvertToMeditationDiary(content);
 
             diary.Insert(0, entry);
+            SetEntryIds(diary);
+
+            WriteJsonAsync(diary);
+        }
+
+        private static void SetEntryIds(MeditationDiary diary)
+        {
+            for (var entryIndex = 0; entryIndex < diary.Count; entryIndex++)
+            {
+                diary[entryIndex].EntryId = entryIndex;
+            }
+        }
+
+        private async Task DeleteEntryFromJsonAsync(int entryId)
+        {
+            var content = await ReadJsonAsync();
+            var diary = ConvertToMeditationDiary(content);
+
+            diary.Remove(diary.Single(s => s.EntryId == entryId));
 
             WriteJsonAsync(diary);
         }
