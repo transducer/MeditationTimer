@@ -98,11 +98,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\StorageFolderExtensions.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\DiaryMessage.cs" />
+    <Compile Include="Messages\DiaryMessage.cs" />
     <Compile Include="ViewModel\DisplaySitReadyMessage.cs" />
-    <Compile Include="ViewModel\StartTimerMessage.cs" />
-    <Compile Include="ViewModel\StopTimerMessage.cs" />
-    <Compile Include="ViewModel\PlayMessage.cs" />
+    <Compile Include="Messages\StartTimerMessage.cs" />
+    <Compile Include="Messages\StopTimerMessage.cs" />
+    <Compile Include="Messages\PlayMessage.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Rooijakkers.MeditationTimer.Data.Contracts;
+using Rooijakkers.MeditationTimer.Messages;
 using Rooijakkers.MeditationTimer.Model;
 
 namespace Rooijakkers.MeditationTimer.ViewModel

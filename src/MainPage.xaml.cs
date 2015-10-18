@@ -6,6 +6,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using GalaSoft.MvvmLight.Messaging;
+using Rooijakkers.MeditationTimer.Messages;
 using Rooijakkers.MeditationTimer.Model;
 using Rooijakkers.MeditationTimer.ViewModel;
 

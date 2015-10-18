@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Rooijakkers.MeditationTimer.Model;
 
-namespace Rooijakkers.MeditationTimer.ViewModel
+namespace Rooijakkers.MeditationTimer.Messages
 {
     /// <summary>
     /// Class used to send new diary event to view

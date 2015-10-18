@@ -1,6 +1,6 @@
 ﻿using Rooijakkers.MeditationTimer.Model;
 
-namespace Rooijakkers.MeditationTimer.ViewModel
+namespace Rooijakkers.MeditationTimer.Messages
 {
     /// <summary>
     /// Class used to send play event to view
