@@ -97,6 +97,8 @@
     <Compile Include="Utilities\StorageFolderExtensions.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\DiaryMessage.cs" />
+    <Compile Include="ViewModel\StartTimerMessage.cs" />
+    <Compile Include="ViewModel\StopTimerMessage.cs" />
     <Compile Include="ViewModel\PlayMessage.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
@@ -131,7 +133,6 @@
     <Content Include="Assets\WideLogo.scale-100.png" />
     <Content Include="Assets\WideLogo.scale-140.png" />
     <Content Include="Assets\WideLogo.scale-240.png" />
-    <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />

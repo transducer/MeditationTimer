@@ -25,6 +25,8 @@ namespace Rooijakkers.MeditationTimer
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
             Messenger.Default.Register<PlayMessage>(this, ReceivePlayMessage);
+            Messenger.Default.Register<StartTimerMessage>(this, ReceiveStartTimerMessage);
+            Messenger.Default.Register<StopTimerMessage>(this, ReceiveStopTimerMessage);
 
             SwipingSurface.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;
             SwipingSurface.ManipulationStarted += SetInitialPosition;
@@ -50,6 +52,22 @@ namespace Rooijakkers.MeditationTimer
             BurmeseGongMediaElement.Play();
         }
 
+        private void ReceiveStartTimerMessage(StartTimerMessage msg)
+        {
+            StartTimerButton.Visibility = Visibility.Collapsed;
+            StopTimerButton.Visibility = Visibility.Visible;
+            AddFiveMinutesButton.IsEnabled = false;
+            ResetInitialTimeButton.IsEnabled = false;
+        }
+
+        private void ReceiveStopTimerMessage(StopTimerMessage msg)
+        {
+            StartTimerButton.Visibility = Visibility.Visible;
+            StopTimerButton.Visibility = Visibility.Collapsed;
+            AddFiveMinutesButton.IsEnabled = true;
+            ResetInitialTimeButton.IsEnabled = true;
+        }
+
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
         /// </summary>
@@ -64,22 +82,6 @@ namespace Rooijakkers.MeditationTimer
             // Windows.Phone.UI.Input.HardwareButtons.BackPressed event.
             // If you are using the NavigationHelper provided by some templates,
             // this event is handled for you.
-        }
-
-        private void StartTimerButton_Click(object sender, RoutedEventArgs e)
-        {
-            StartTimerButton.Visibility = Visibility.Collapsed;
-            StopTimerButton.Visibility = Visibility.Visible;
-            AddFiveMinutesButton.IsEnabled = false;
-            ResetInitialTimeButton.IsEnabled = false;
-        }
-
-        private void StopTimerButton_Click(object sender, RoutedEventArgs e)
-        {
-            StartTimerButton.Visibility = Visibility.Visible;
-            StopTimerButton.Visibility = Visibility.Collapsed;
-            AddFiveMinutesButton.IsEnabled = true;
-            ResetInitialTimeButton.IsEnabled = true;
         }
 
         private void ViewHistoryButton_Click(object sender, RoutedEventArgs e)

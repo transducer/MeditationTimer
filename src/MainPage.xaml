@@ -29,7 +29,6 @@
         <Button 
             Name="StartTimerButton"
             Command="{Binding StartTimerCommand}" 
-            Click="StartTimerButton_Click" 
             Content="Start" 
             HorizontalAlignment="Stretch" 
             Margin="67,314,68,146" 
@@ -42,7 +41,6 @@
             Name="StopTimerButton"
             Visibility="Collapsed"
             Command="{Binding StopTimerCommand}" 
-            Click="StopTimerButton_Click" 
             Content="Stop" 
             HorizontalAlignment="Stretch" 
             Margin="67,314,68,146" 

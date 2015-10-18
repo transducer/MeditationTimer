@@ -166,6 +166,8 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         {
             CountdownTimerValue = CountdownTimerValue += TimeToSitReady;
             DispatcherTimer.Start();
+
+            Messenger.Default.Send(new StartTimerMessage());
         }
 
         private void StopTimer()
@@ -178,6 +180,8 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
             CountdownTimerValue = InitialMeditationTime;
             DispatcherTimer.Stop();
+
+            Messenger.Default.Send(new StopTimerMessage());
         }
 
         private void ResetInitialTime()
