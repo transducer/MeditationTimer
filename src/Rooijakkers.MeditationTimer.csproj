@@ -91,6 +91,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\BellSound.cs" />
     <Compile Include="Model\MeditationDiary.cs" />
     <Compile Include="Model\MeditationEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,6 +113,7 @@
     <Content Include="Assets\BadgeLogo.scale-140.png" />
     <Content Include="Assets\BadgeLogo.scale-240.png" />
     <Content Include="Assets\gong-burmese.wav" />
+    <Content Include="Assets\gong-cymbals.wav" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-140.png" />

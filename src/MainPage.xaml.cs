@@ -1,10 +1,12 @@
-﻿using Windows.Foundation;
+﻿using System;
+using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Input;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using GalaSoft.MvvmLight.Messaging;
+using Rooijakkers.MeditationTimer.Model;
 using Rooijakkers.MeditationTimer.ViewModel;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
@@ -49,7 +51,17 @@ namespace Rooijakkers.MeditationTimer
 
         private void ReceivePlayMessage(PlayMessage msg)
         {
-            BurmeseGongMediaElement.Play();
+            switch (msg.BellSound)
+            {
+                case BellSound.Burmese:
+                    BurmeseGongMediaElement.Play();
+                    break;
+                case BellSound.Cymbals:
+                    CymbalsGongMediaElement.Play();
+                    break;
+                default:
+                    throw new ArgumentException("BellSound not found.", nameof(msg));
+            }
         }
 
         private void ReceiveStartTimerMessage(StartTimerMessage msg)

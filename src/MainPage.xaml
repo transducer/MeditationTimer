@@ -82,5 +82,11 @@
             Width="10"
             Source="/Assets/gong-burmese.wav"
             AutoPlay="False" />
+        <MediaElement 
+            Name="CymbalsGongMediaElement"
+            Height="10"
+            Width="10"
+            Source="/Assets/gong-cymbals.wav"
+            AutoPlay="False" />
     </Grid>
 </Page>

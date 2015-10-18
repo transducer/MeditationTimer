@@ -84,7 +84,9 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             };
             DispatcherTimer.Tick += TimerTick;
             DispatcherTimer.Tick += (s, e) =>
-                RingBellMoments(InitialMeditationTime, TimeSpan.Zero.Add(FiveMinutes), TimeSpan.Zero);
+                RingBellOnMoment(InitialMeditationTime, TimeSpan.Zero);
+            DispatcherTimer.Tick += (s, e) =>
+                RingFiveMinutesLeftBellOnMoment(TimeSpan.Zero.Add(FiveMinutes));
             DispatcherTimer.Tick += StopTimerOnEnd;
         }
 
@@ -217,11 +219,19 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             CountdownTimerValue = CountdownTimerValue.Subtract(OneSecond);
         }
 
-        private void RingBellMoments(params TimeSpan[] moments)
+        private void RingBellOnMoment(params TimeSpan[] moments)
         {
             if (moments.Contains(CountdownTimerValue))
             {
                 RingBell();
+            }
+        }
+
+        private void RingFiveMinutesLeftBellOnMoment(params TimeSpan[] moments)
+        {
+            if (moments.Contains(CountdownTimerValue))
+            {
+                RingFiveMinutesLeftBell();
             }
         }
 
@@ -235,7 +245,12 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
         private void RingBell()
         {
-            Messenger.Default.Send(new PlayMessage());
+            Messenger.Default.Send(new PlayMessage(BellSound.Burmese));
+        }
+
+        private void RingFiveMinutesLeftBell()
+        {
+            Messenger.Default.Send(new PlayMessage(BellSound.Cymbals));
         }
 
         private async void UpdateDiary()
