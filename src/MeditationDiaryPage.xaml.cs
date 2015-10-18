@@ -1,6 +1,7 @@
 ﻿using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 
@@ -58,6 +59,13 @@ namespace Rooijakkers.MeditationTimer
         private void NavigateToMain()
         {
             Frame.Navigate(typeof(MainPage));
+        }
+
+        private void Grid_Holding(object sender, HoldingRoutedEventArgs e)
+        {
+            var senderElement = sender as FrameworkElement;
+            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+            flyoutBase.ShowAt(senderElement);
         }
     }
 }
