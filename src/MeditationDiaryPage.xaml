@@ -9,6 +9,9 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid
+        Name="SwipingSurface"
+        Background="Transparent"
+        Height="657"
         Margin="30">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -39,7 +42,6 @@
         <ListView 
             ShowsScrollingPlaceholders="True"
             Grid.Row="1"
-            Name="MeditationDiaryListView" 
             ItemsSource="{Binding MeditationDiary}" 
             FontFamily="Segoe WP" 
             Margin="0,45.5,0,0" 

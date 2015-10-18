@@ -9,6 +9,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid 
+        Name="SwipingSurface"
+        Background="Transparent"
         Height="657" 
         Margin="0,0.333,0,-17.333" 
         d:LayoutOverrides="LeftMargin, RightMargin">

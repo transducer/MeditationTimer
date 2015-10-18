@@ -1,5 +1,7 @@
-﻿using Windows.UI.Xaml;
+﻿using Windows.Foundation;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
@@ -11,10 +13,30 @@ namespace Rooijakkers.MeditationTimer
     /// </summary>
     public sealed partial class MeditationDiaryPage : Page
     {
+        private Point _initialPoint;
+
         public MeditationDiaryPage()
         {
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
+
+            SwipingSurface.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;
+            SwipingSurface.ManipulationStarted += SetInitialPosition;
+            SwipingSurface.ManipulationCompleted += ToDiaryIfSwipedRight;
+        }
+
+        public void SetInitialPosition(object sender, ManipulationStartedRoutedEventArgs e)
+        {
+            _initialPoint = e.Position;
+        }
+
+        public void ToDiaryIfSwipedRight(object sender, ManipulationCompletedRoutedEventArgs e)
+        {
+            var currentPoint = e.Position;
+            if (currentPoint.X - _initialPoint.X >= Constants.SwipingTreshold)
+            {
+                NavigateToMain();
+            }
         }
 
         /// <summary>
@@ -34,6 +56,11 @@ namespace Rooijakkers.MeditationTimer
         }
 
         private void GoToMainScreenButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigateToMain();
+        }
+
+        private void NavigateToMain()
         {
             Frame.Navigate(typeof(MainPage));
         }

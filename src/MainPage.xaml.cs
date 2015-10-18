@@ -1,4 +1,7 @@
-﻿using Windows.UI.Xaml;
+﻿using Windows.Foundation;
+using Windows.UI.Xaml;
+using Windows.UI.Input;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using GalaSoft.MvvmLight.Messaging;
@@ -13,6 +16,8 @@ namespace Rooijakkers.MeditationTimer
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private Point _initialPoint;
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -20,6 +25,24 @@ namespace Rooijakkers.MeditationTimer
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
             Messenger.Default.Register<PlayMessage>(this, ReceivePlayMessage);
+
+            SwipingSurface.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;
+            SwipingSurface.ManipulationStarted += SetInitialPosition;
+            SwipingSurface.ManipulationCompleted += ToDiaryIfSwipedLeft;
+        }
+
+        public void SetInitialPosition(object sender, ManipulationStartedRoutedEventArgs e)
+        {
+            _initialPoint = e.Position;
+        }
+
+        public void ToDiaryIfSwipedLeft(object sender, ManipulationCompletedRoutedEventArgs e)
+        {
+            var currentPoint = e.Position;
+            if (_initialPoint.X - currentPoint.X >= Constants.SwipingTreshold)
+            {
+                NavigateToDiary();
+            }
         }
 
         private void ReceivePlayMessage(PlayMessage msg)
@@ -60,6 +83,11 @@ namespace Rooijakkers.MeditationTimer
         }
 
         private void ViewHistoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigateToDiary();
+        }
+
+        private void NavigateToDiary()
         {
             Frame.Navigate(typeof(MeditationDiaryPage));
         }
