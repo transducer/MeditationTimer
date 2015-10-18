@@ -29,6 +29,7 @@ namespace Rooijakkers.MeditationTimer
             Messenger.Default.Register<PlayMessage>(this, ReceivePlayMessage);
             Messenger.Default.Register<StartTimerMessage>(this, ReceiveStartTimerMessage);
             Messenger.Default.Register<StopTimerMessage>(this, ReceiveStopTimerMessage);
+            Messenger.Default.Register<DisplaySitReadyMessage>(this, ReceiveSitReadyMessage);
 
             SwipingSurface.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;
             SwipingSurface.ManipulationStarted += SetInitialPosition;
@@ -78,6 +79,11 @@ namespace Rooijakkers.MeditationTimer
             StopTimerButton.Visibility = Visibility.Collapsed;
             AddFiveMinutesButton.IsEnabled = true;
             ResetInitialTimeButton.IsEnabled = true;
+        }
+
+        private void ReceiveSitReadyMessage(DisplaySitReadyMessage msg)
+        {
+            SitReadyTextBlock.Visibility = msg.Display ? Visibility.Visible : Visibility.Collapsed;
         }
 
         /// <summary>

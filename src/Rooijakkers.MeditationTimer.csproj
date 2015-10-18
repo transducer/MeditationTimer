@@ -98,6 +98,7 @@
     <Compile Include="Utilities\StorageFolderExtensions.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\DiaryMessage.cs" />
+    <Compile Include="ViewModel\DisplaySitReadyMessage.cs" />
     <Compile Include="ViewModel\StartTimerMessage.cs" />
     <Compile Include="ViewModel\StopTimerMessage.cs" />
     <Compile Include="ViewModel\PlayMessage.cs" />

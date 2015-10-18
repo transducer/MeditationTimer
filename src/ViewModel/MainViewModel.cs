@@ -27,9 +27,9 @@ namespace Rooijakkers.MeditationTimer.ViewModel
     {
         private static readonly TimeSpan OneSecond = new TimeSpan(0, 0, 1);
 
-        // While debugging we want 10 seconds to last 10 times as short
+        // While debugging we want 10 seconds to last 5 times as short
 #if DEBUG
-        private static readonly TimeSpan TenSeconds = new TimeSpan(0, 0, 1);
+        private static readonly TimeSpan TenSeconds = new TimeSpan(0, 0, 2);
 #else
         private static readonly TimeSpan TenSeconds = new TimeSpan(0, 0, 10);
 #endif
@@ -88,6 +88,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             DispatcherTimer.Tick += (s, e) =>
                 RingFiveMinutesLeftBellOnMoment(TimeSpan.Zero.Add(FiveMinutes));
             DispatcherTimer.Tick += StopTimerOnEnd;
+            DispatcherTimer.Tick += DisplaySitReadyMessageAtBegin;
         }
 
         public ICommand StartTimerCommand { get; private set; }
@@ -217,6 +218,13 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         private void TimerTick(object sender, object e)
         {
             CountdownTimerValue = CountdownTimerValue.Subtract(OneSecond);
+        }
+
+        private void DisplaySitReadyMessageAtBegin(object sender, object e)
+        {
+            Messenger.Default.Send(CountdownTimerValue > InitialMeditationTime
+                ? new DisplaySitReadyMessage(true)
+                : new DisplaySitReadyMessage(false));
         }
 
         private void RingBellOnMoment(params TimeSpan[] moments)

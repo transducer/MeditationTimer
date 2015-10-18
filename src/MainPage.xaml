@@ -88,5 +88,18 @@
             Width="10"
             Source="/Assets/gong-cymbals.wav"
             AutoPlay="False" />
+        <TextBlock 
+            Name="SitReadyTextBlock"
+            Visibility="Collapsed"
+        	Text="Sit ready..." 
+        	Margin="67,194,68,0" 
+        	TextWrapping="Wrap" 
+        	FontSize="44" 
+        	TextAlignment="Center" 
+        	VerticalAlignment="Top" 
+        	Height="61" 
+        	FontStretch="Expanded" 
+        	CharacterSpacing="50" 
+            d:LayoutOverrides="LeftPosition, RightPosition"/>
     </Grid>
 </Page>
