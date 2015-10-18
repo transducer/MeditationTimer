@@ -13,7 +13,7 @@ namespace Rooijakkers.MeditationTimer
     /// </summary>
     public sealed partial class MeditationDiaryPage : Page
     {
-        private Point _initialPoint;
+        private Point _initialPoint; // Point used to store start position so a swipe can be recognized
 
         public MeditationDiaryPage()
         {
@@ -53,11 +53,6 @@ namespace Rooijakkers.MeditationTimer
             // Windows.Phone.UI.Input.HardwareButtons.BackPressed event.
             // If you are using the NavigationHelper provided by some templates,
             // this event is handled for you.
-        }
-
-        private void GoToMainScreenButton_Click(object sender, RoutedEventArgs e)
-        {
-            NavigateToMain();
         }
 
         private void NavigateToMain()

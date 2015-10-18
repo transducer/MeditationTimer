@@ -18,7 +18,7 @@ namespace Rooijakkers.MeditationTimer
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private Point _initialPoint;
+        private Point _initialPoint; // Point used to store start position so a swipe can be recognized
 
         public MainPage()
         {
