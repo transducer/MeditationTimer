@@ -1,9 +1,12 @@
 ﻿<Page
     x:Class="Rooijakkers.MeditationTimer.MeditationDiaryPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:i="using:Microsoft.Xaml.Interactivity" 
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:actions="using:Rooijakkers.MeditationTimer.Actions"
     mc:Ignorable="d"
     DataContext="{Binding Main, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -49,8 +52,12 @@
             d:LayoutOverrides="TopPosition, BottomPosition">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Holding="Grid_Holding" 
-                          Width="400">
+                    <Grid Width="400">
+                        <i:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="Holding">
+                                <actions:OpenMenuFlyoutAction />
+                            </core:EventTriggerBehavior>
+                        </i:Interaction.Behaviors>
                         <FlyoutBase.AttachedFlyout>
                             <MenuFlyout>
                                 <MenuFlyoutItem 

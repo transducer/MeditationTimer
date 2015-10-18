@@ -60,12 +60,5 @@ namespace Rooijakkers.MeditationTimer
         {
             Frame.Navigate(typeof(MainPage));
         }
-
-        private void Grid_Holding(object sender, HoldingRoutedEventArgs e)
-        {
-            var senderElement = sender as FrameworkElement;
-            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
-            flyoutBase.ShowAt(senderElement);
-        }
     }
 }
