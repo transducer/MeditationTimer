@@ -22,17 +22,9 @@ namespace Rooijakkers.MeditationTimer
 
         async void ExtendedSplashScreen()
         {
+            // TODO: Retrieve list of meditations entries here while waiting
             await Task.Delay(TimeSpan.FromSeconds(3));
             Frame.Navigate(typeof(MainPage));
         }
-
-        /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
-        /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.
-        /// This parameter is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        { 
-        }
-    }
+   }
 }
