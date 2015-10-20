@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="dbf8e67d-5c3f-4a44-9a99-297c1744f7c5" Publisher="CN=Erwin Rooijakkers" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="dbf8e67d-5c3f-4a44-9a99-297c1744f7c5" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="59470ErwinRooijakkers.NoNonsenseMeditationTimer" Publisher="CN=7A14F3FF-B578-4640-8DFC-2F0498449C89" Version="1.1.0.1" />
+  <mp:PhoneIdentity PhoneProductId="a9609970-96f4-4903-adcc-213ce4048c4f" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>No Nonsense Meditation Timer</DisplayName>
     <PublisherDisplayName>Erwin Rooijakkers</PublisherDisplayName>
