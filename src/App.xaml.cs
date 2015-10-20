@@ -39,18 +39,22 @@ namespace Rooijakkers.MeditationTimer
         }
 
 #if WINDOWS_PHONE_APP
-        void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
+        void HardwareButtons_BackPressed(object sender, Windows.Phone.UI.Input.BackPressedEventArgs e)
         {
-            var rootFrame = Window.Current.Content as Frame;
-
-            if (rootFrame != null && rootFrame.CanGoBack)
+            var frame = Window.Current.Content as Frame;
+            if (frame == null)
             {
+                return;
+            }
+
+            if (frame.CanGoBack)
+            {
+                frame.GoBack();
+                //Indicate the back button press is handled so the app does not exit  
                 e.Handled = true;
-                rootFrame.GoBack();
             }
         }
 #endif
-
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used when the application is launched to open a specific file, to display
@@ -108,7 +112,7 @@ namespace Rooijakkers.MeditationTimer
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                if (!rootFrame.Navigate(typeof(MainPage), e.Arguments))
+                if (!rootFrame.Navigate(typeof(SplashScreenPage), e.Arguments))
                 {
                     throw new Exception("Failed to create initial page");
                 }

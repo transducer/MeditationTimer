@@ -91,6 +91,9 @@
     <Compile Include="MeditationDiaryPage.xaml.cs">
       <DependentUpon>MeditationDiaryPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SplashScreenPage.xaml.cs">
+      <DependentUpon>SplashScreenPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -150,6 +153,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="MeditationDiaryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SplashScreenPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
