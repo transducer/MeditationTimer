@@ -16,13 +16,13 @@
         d:LayoutOverrides="LeftMargin, RightMargin">
         <TextBlock 
             Text="{Binding TimerText}" 
-            Margin="10,72,10,0" 
+            Margin="10,56,10,0" 
             TextWrapping="Wrap" 
-            FontSize="106.667" 
+            FontSize="133.333" 
             TextAlignment="Center" 
             d:LayoutOverrides="LeftPosition, RightPosition" 
             VerticalAlignment="Top" 
-            Height="117" 
+            Height="163" 
             FontStretch="Expanded" 
             FontWeight="SemiLight" 
             CharacterSpacing="50"/>
@@ -34,7 +34,7 @@
             Margin="67,314,68,146" 
             VerticalAlignment="Stretch"
             Background="Transparent" 
-            FontSize="48" 
+            FontSize="66.667" 
             FontWeight="Normal" 
             d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" />
         <Button 
