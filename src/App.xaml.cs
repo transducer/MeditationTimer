@@ -130,7 +130,7 @@ namespace Rooijakkers.MeditationTimer
         private void RootFrame_FirstNavigated(object sender, NavigationEventArgs e)
         {
             var rootFrame = sender as Frame;
-            rootFrame.ContentTransitions = _transitions ?? new TransitionCollection() { new NavigationThemeTransition() };
+            rootFrame.ContentTransitions = _transitions ?? new TransitionCollection { new NavigationThemeTransition() };
             rootFrame.Navigated -= RootFrame_FirstNavigated;
         }
 
