@@ -43,14 +43,14 @@
                 FontFamily="Segoe WP" />
         </Grid>
         <ListView 
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-            ShowsScrollingPlaceholders="True"
             Grid.Row="1"
             ItemsSource="{Binding MeditationDiary}" 
             FontFamily="Segoe WP" 
             Margin="0,45.5,0,0" 
             Grid.RowSpan="2" 
-            d:LayoutOverrides="TopPosition, BottomPosition">
+            d:LayoutOverrides="TopPosition, BottomPosition" 
+            ManipulationMode="None" 
+            ShowsScrollingPlaceholders="False">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Width="400">
