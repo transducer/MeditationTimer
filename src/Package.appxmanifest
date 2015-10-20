@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="59470ErwinRooijakkers.NoNonsenseMeditationTimer" Publisher="CN=7A14F3FF-B578-4640-8DFC-2F0498449C89" Version="1.1.0.1" />
+  <Identity Name="59470ErwinRooijakkers.NoNonsenseMeditationTimer" Publisher="CN=7A14F3FF-B578-4640-8DFC-2F0498449C89" Version="1.1.0.3" />
   <mp:PhoneIdentity PhoneProductId="a9609970-96f4-4903-adcc-213ce4048c4f" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>No Nonsense Meditation Timer</DisplayName>
