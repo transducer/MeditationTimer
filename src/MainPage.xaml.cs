@@ -1,7 +1,9 @@
 ﻿using System;
 using Windows.Foundation;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Input;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -106,9 +108,9 @@ namespace Rooijakkers.MeditationTimer
             NavigateToDiary();
         }
 
-        private void NavigateToDiary()
+        private async void NavigateToDiary()
         {
-            Frame.Navigate(typeof(MeditationDiaryPage));
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Frame.Navigate(typeof(MeditationDiaryPage)));
         }
     }
 }
