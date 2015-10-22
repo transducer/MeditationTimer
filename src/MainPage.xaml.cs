@@ -2,15 +2,12 @@
 using Windows.Foundation;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
-using Windows.UI.Input;
-using Windows.UI.Popups;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using GalaSoft.MvvmLight.Messaging;
 using Rooijakkers.MeditationTimer.Messages;
 using Rooijakkers.MeditationTimer.Model;
-using Rooijakkers.MeditationTimer.ViewModel;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
