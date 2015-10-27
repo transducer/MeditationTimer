@@ -188,6 +188,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             DispatcherTimer.Stop();
 
             Messenger.Default.Send(new StopTimerMessage());
+            Messenger.Default.Send(new DisplaySitReadyMessage(false));
         }
 
         private void ResetInitialTime()
