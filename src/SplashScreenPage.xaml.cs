@@ -19,11 +19,15 @@ namespace Rooijakkers.MeditationTimer
             ExtendedSplashScreen();
         }
 
-        async void ExtendedSplashScreen()
+        private async void ExtendedSplashScreen()
         {
-            // Pretend like we are doing something
+#if DEBUG
+            // Pretend like we are doing something for 1 second
+            await Task.Delay(TimeSpan.FromSeconds(1));
+#else
+            // Pretend like we are doing something for 3 seconds
             await Task.Delay(TimeSpan.FromSeconds(3));
-
+#endif
             Frame.Navigate(typeof(TimerPage));
         }
    }
