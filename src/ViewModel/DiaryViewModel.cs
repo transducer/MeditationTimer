@@ -42,7 +42,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         {
             for (var i = 0; i < 1000; i++)
             {
-                MeditationDiary.Add(new MeditationEntry { TimeMeditated = TenMinutes, StartTime = DateTime.Now });
+                //MeditationDiary.Add(new MeditationEntry { TimeMeditated = TenMinutes, StartTime = DateTime.Now });
             }
         }
 

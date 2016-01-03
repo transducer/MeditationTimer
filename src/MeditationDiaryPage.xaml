@@ -43,6 +43,7 @@
                 FontFamily="Segoe WP" />
         </Grid>
         <ListView 
+            Name="MeditationDiaryListView"
             Grid.Row="1"
             ItemsSource="{Binding MeditationDiary}" 
             FontFamily="Segoe WP" 
@@ -89,8 +90,18 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <TextBlock 
+            x:Name="ListViewNoItems"  
+            Text="There are no entries to display!"  
+            TextWrapping="WrapWholeWords"
+            HorizontalAlignment="Stretch" 
+            Margin="10,144,10,10" 
+            VerticalAlignment="Stretch"
+            FontSize="16" 
+            FontWeight="Normal"
+            d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition"
+            Visibility="Collapsed"/>  
     </Grid>
-    
     <!-- Below code is duplicated. Haven't found a way yet to extract it.-->
     <Page.BottomAppBar>
         <CommandBar x:Name="appBar">

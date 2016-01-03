@@ -48,6 +48,22 @@ namespace Rooijakkers.MeditationTimer
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            // Display friendly message to user when diary is empty.
+
+            var emptyDiary = MeditationDiaryListView.Items.Count == 0;
+
+            if (emptyDiary)
+            {
+                ListViewNoItems.Visibility = Visibility.Visible;
+                MeditationDiaryListView.Visibility = Visibility.Collapsed;
+                MeditationDiaryListViewHeaders.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                ListViewNoItems.Visibility = Visibility.Collapsed;
+                MeditationDiaryListView.Visibility = Visibility.Visible;
+                MeditationDiaryListViewHeaders.Visibility = Visibility.Visible;
+            }
         }
 
         private void NavigateToMain()
