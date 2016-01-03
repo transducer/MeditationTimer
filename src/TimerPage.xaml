@@ -34,8 +34,8 @@
             Margin="67,314,68,146" 
             VerticalAlignment="Stretch"
             Background="Transparent" 
-            FontSize="66.667" 
-            FontWeight="Normal" 
+            FontSize="53.333" 
+            FontWeight="Normal"
             d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" />
         <Button 
             Name="StopTimerButton"
@@ -46,7 +46,7 @@
             Margin="67,314,68,146" 
             VerticalAlignment="Stretch"
             Background="Transparent" 
-            FontSize="66.667" 
+            FontSize="53.333" 
             FontWeight="Normal" 
             d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" />
         <Button 
