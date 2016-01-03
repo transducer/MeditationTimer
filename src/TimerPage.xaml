@@ -1,0 +1,106 @@
+﻿<Page
+    x:Class="Rooijakkers.MeditationTimer.TimerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    DataContext="{Binding Timer, Source={StaticResource Locator}}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid 
+        Name="SwipingSurface"
+        Background="Transparent"
+        Height="657" 
+        Margin="0,0.333,0,-17.333" 
+        d:LayoutOverrides="LeftMargin, RightMargin">
+        <TextBlock 
+            Text="{Binding TimerText}"
+            Margin="10,56,10,0" 
+            TextWrapping="Wrap" 
+            FontSize="133.333" 
+            TextAlignment="Center" 
+            d:LayoutOverrides="LeftPosition, RightPosition" 
+            VerticalAlignment="Top" 
+            Height="163" 
+            FontStretch="Expanded" 
+            FontWeight="SemiLight" 
+            CharacterSpacing="50"/>
+        <Button 
+            Name="StartTimerButton"
+            Command="{Binding StartTimerCommand}" 
+            Content="Start" 
+            HorizontalAlignment="Stretch" 
+            Margin="67,314,68,146" 
+            VerticalAlignment="Stretch"
+            Background="Transparent" 
+            FontSize="66.667" 
+            FontWeight="Normal" 
+            d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" />
+        <Button 
+            Name="StopTimerButton"
+            Visibility="Collapsed"
+            Command="{Binding StopTimerCommand}" 
+            Content="Stop" 
+            HorizontalAlignment="Stretch" 
+            Margin="67,314,68,146" 
+            VerticalAlignment="Stretch"
+            Background="Transparent" 
+            FontSize="66.667" 
+            FontWeight="Normal" 
+            d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" />
+        <Button 
+        	x:Name="ResetInitialTimeButton"
+        	Command="{Binding ResetInitialTimeCommand}" 
+        	Content="Reset" 
+        	HorizontalAlignment="Left" 
+        	Margin="67,270,0,0" 
+        	VerticalAlignment="Top"
+        	Background="Transparent" 
+        	FontWeight="Normal" />
+        <Button 
+            x:Name="AddFiveMinutesButton"
+        	Command="{Binding AddFiveMinutesCommand}" 
+        	Content="+5 minutes" 
+        	HorizontalAlignment="Right" 
+        	Margin="0,270,68,0" 
+        	VerticalAlignment="Top"
+        	Background="Transparent" 
+        	FontWeight="Normal" 
+            d:LayoutOverrides="HorizontalAlignment" />
+        <Button 
+        	Content="View history" 
+        	HorizontalAlignment="Stretch" 
+        	Margin="67,0,68,103" 
+        	VerticalAlignment="Bottom"
+            Click="ViewHistoryButton_Click"
+        	Background="Transparent" 
+        	FontWeight="Normal" 
+            d:LayoutOverrides="LeftPosition, RightPosition" />
+        <MediaElement 
+            Name="BurmeseGongMediaElement"
+            Height="10"
+            Width="10"
+            Source="/Assets/gong-burmese.wav"
+            AutoPlay="False" />
+        <MediaElement 
+            Name="CymbalsGongMediaElement"
+            Height="10"
+            Width="10"
+            Source="/Assets/gong-cymbals.wav"
+            AutoPlay="False" />
+        <TextBlock 
+            Name="SitReadyTextBlock"
+            Visibility="Collapsed"
+        	Text="Sit ready..." 
+        	Margin="67,194,68,0" 
+        	TextWrapping="Wrap" 
+        	FontSize="44" 
+        	TextAlignment="Center" 
+        	VerticalAlignment="Top" 
+        	Height="61" 
+        	FontStretch="Expanded" 
+        	CharacterSpacing="50" 
+            d:LayoutOverrides="LeftPosition, RightPosition"/>
+    </Grid>
+</Page>

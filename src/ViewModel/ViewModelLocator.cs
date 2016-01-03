@@ -12,7 +12,6 @@
   See http://www.galasoft.ch/mvvm
 */
 
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using Rooijakkers.MeditationTimer.Data;
@@ -34,10 +33,13 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<IMeditationDiaryRepository, MeditationDiaryRepository>();
-            SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<TimerViewModel>();
+            SimpleIoc.Default.Register<DiaryViewModel>();
         }
 
-        public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
+        public TimerViewModel Timer => ServiceLocator.Current.GetInstance<TimerViewModel>();
+
+        public DiaryViewModel Diary => ServiceLocator.Current.GetInstance<DiaryViewModel>();
 
         public static void Cleanup()
         {

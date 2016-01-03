@@ -91,19 +91,20 @@
     <Compile Include="MeditationDiaryPage.xaml.cs">
       <DependentUpon>MeditationDiaryPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Messages\UpdateDiaryMessage.cs" />
     <Compile Include="SplashScreenPage.xaml.cs">
       <DependentUpon>SplashScreenPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="TimerPage.xaml.cs">
+      <DependentUpon>TimerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\BellSound.cs" />
     <Compile Include="Model\MeditationDiary.cs" />
     <Compile Include="Model\MeditationEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\StorageFolderExtensions.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="Messages\DiaryMessage.cs" />
+    <Compile Include="ViewModel\DiaryViewModel.cs" />
+    <Compile Include="ViewModel\TimerViewModel.cs" />
     <Compile Include="Messages\DisplaySitReadyMessage.cs" />
     <Compile Include="Messages\StartTimerMessage.cs" />
     <Compile Include="Messages\StopTimerMessage.cs" />
@@ -160,7 +161,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="TimerPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

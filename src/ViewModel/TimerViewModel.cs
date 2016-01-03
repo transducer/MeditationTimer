@@ -24,7 +24,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class MainViewModel : ViewModelBase
+    public class TimerViewModel : ViewModelBase
     {
         private static readonly TimeSpan OneSecond = new TimeSpan(0, 0, 1);
 
@@ -43,7 +43,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(IMeditationDiaryRepository repository)
+        public TimerViewModel(IMeditationDiaryRepository repository)
         {
             if (repository == null)
             {
@@ -55,27 +55,10 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             StopTimerCommand = new RelayCommand(StopTimer);
             AddFiveMinutesCommand = new RelayCommand(AddFiveMinutes);
             ResetInitialTimeCommand = new RelayCommand(ResetInitialTime);
-            DeleteMeditationEntryCommand = new RelayCommand<int>(DeleteMeditationEntry);
 
             InitializeDispatcherTimer();
 
             CountdownTimerValue = InitialMeditationTime;
-
-            // Initially update diary
-            UpdateDiary();
-
-            if (IsInDesignMode)
-            {
-                SeedDesignTimeData();
-            }
-        }
-
-        private void SeedDesignTimeData()
-        {
-            for (var i = 0; i < 1000; i++)
-            {
-                MeditationDiary.Add(new MeditationEntry { TimeMeditated = TenMinutes, StartTime = DateTime.Now });
-            }
         }
 
         private void InitializeDispatcherTimer()
@@ -97,21 +80,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         public ICommand StopTimerCommand { get; private set; }
         public ICommand AddFiveMinutesCommand { get; private set; }
         public ICommand ResetInitialTimeCommand { get; private set; }
-        public ICommand DeleteMeditationEntryCommand { get; private set; }
         public DispatcherTimer DispatcherTimer { get; private set; }
-
-        private MeditationDiary _meditationDiary;
-        public MeditationDiary MeditationDiary
-        {
-            get
-            {
-                return _meditationDiary ?? (_meditationDiary = new MeditationDiary());
-            }
-            set
-            {
-                _meditationDiary = value;
-            }
-        }
 
         private TimeSpan _initialMeditationTime;
         public TimeSpan InitialMeditationTime
@@ -181,7 +150,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             if (MeditatedForLongerThanTimeToSitReady)
             {
                 AddMeditationEntry();
-                UpdateDiary();
+                Messenger.Default.Send(new UpdateDiaryMessage());
             }
 
             CountdownTimerValue = InitialMeditationTime;
@@ -263,30 +232,6 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         private void RingFiveMinutesLeftBell()
         {
             Messenger.Default.Send(new PlayMessage(BellSound.Cymbals));
-        }
-
-        private void DeleteMeditationEntry(int entryId)
-        {
-            var task = Task.Run(async () =>
-            {
-                await _repository.DeleteEntryAsync(entryId);
-            });
-
-            task.Wait();
-
-            UpdateDiary();
-        }
-
-        private async void UpdateDiary()
-        {
-            var latestDiary = await _repository.GetAsync();
-
-            MeditationDiary.Clear();
-
-            foreach (var entry in latestDiary)
-            {
-                MeditationDiary.Add(entry);
-            }
         }
     }
 }

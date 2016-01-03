@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:actions="using:Rooijakkers.MeditationTimer.Actions"
     mc:Ignorable="d"
-    DataContext="{Binding Main, Source={StaticResource Locator}}"
+    DataContext="{Binding Diary, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid
@@ -63,7 +63,7 @@
                             <MenuFlyout>
                                 <MenuFlyoutItem 
                                     Text="Delete entry"
-                                    Command="{Binding Source={StaticResource Locator}, Path=Main.DeleteMeditationEntryCommand}"
+                                    Command="{Binding Source={StaticResource Locator}, Path=Diary.DeleteMeditationEntryCommand}"
                                     CommandParameter="{Binding EntryId}"/>
                             </MenuFlyout>
                         </FlyoutBase.AttachedFlyout>

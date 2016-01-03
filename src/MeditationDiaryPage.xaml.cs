@@ -49,7 +49,7 @@ namespace Rooijakkers.MeditationTimer
 
         private void NavigateToMain()
         {
-            Frame.Navigate(typeof(MainPage));
+            Frame.Navigate(typeof(TimerPage));
         }
     }
 }
