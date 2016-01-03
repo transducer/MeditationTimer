@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="Rooijakkers.MeditationTimer.RootPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+    <Page.BottomAppBar>
+        <CommandBar x:Name="appBar">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton 
+                    Icon="Clock" 
+                    IsCompact="False" 
+                    Click="ViewTimerButton_Click"
+                    Label="Timer"/>
+                <AppBarButton 
+                    Icon="Calendar" 
+                    IsCompact="False" 
+                    Click="ViewHistoryButton_Click"
+                    Label="History"/>
+                <AppBarButton 
+                    Icon="FourBars" 
+                    IsCompact="False" 
+                    Click="ViewStatisticsButton_Click"
+                    Label="Statistics"/>
+                <AppBarButton 
+                    Icon="Setting" 
+                    IsCompact="False" 
+                    Click="ViewSettingsButton_Click"
+                    Label="Settings"/>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>

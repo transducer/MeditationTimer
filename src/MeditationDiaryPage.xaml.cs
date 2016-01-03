@@ -1,4 +1,7 @@
-﻿using Windows.Foundation;
+﻿using System;
+using Windows.Foundation;
+using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
@@ -50,6 +53,47 @@ namespace Rooijakkers.MeditationTimer
         private void NavigateToMain()
         {
             Frame.Navigate(typeof(TimerPage));
+        }
+
+        /* NOTE: The code below is duplicated on all pages. I do not know how to extract it to separate page. */
+        private void ViewTimerButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigateToTimer();
+        }
+
+        private void ViewHistoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigateToDiary();
+        }
+
+        private void ViewSettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigateToSettings();
+        }
+
+        private void ViewStatisticsButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigateToStatistics();
+        }
+
+        private async void NavigateToTimer()
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Frame.Navigate(typeof(TimerPage)));
+        }
+
+        private async void NavigateToDiary()
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Frame.Navigate(typeof(MeditationDiaryPage)));
+        }
+
+        private async void NavigateToStatistics()
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Frame.Navigate(typeof(MeditationDiaryPage)));
+        }
+
+        private async void NavigateToSettings()
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Frame.Navigate(typeof(MeditationDiaryPage)));
         }
     }
 }

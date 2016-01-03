@@ -103,4 +103,30 @@
         	CharacterSpacing="50" 
             d:LayoutOverrides="LeftPosition, RightPosition"/>
     </Grid>
+    <Page.BottomAppBar>
+        <CommandBar x:Name="appBar">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton 
+                    Icon="Clock" 
+                    IsCompact="False" 
+                    Click="ViewTimerButton_Click"
+                    Label="Timer"/>
+                <AppBarButton 
+                    Icon="Calendar" 
+                    IsCompact="False" 
+                    Click="ViewHistoryButton_Click"
+                    Label="History"/>
+                <AppBarButton 
+                    Icon="FourBars" 
+                    IsCompact="False" 
+                    Click="ViewStatisticsButton_Click"
+                    Label="Statistics"/>
+                <AppBarButton 
+                    Icon="Setting" 
+                    IsCompact="False" 
+                    Click="ViewSettingsButton_Click"
+                    Label="Settings"/>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>
