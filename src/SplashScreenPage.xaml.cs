@@ -15,7 +15,7 @@ namespace Rooijakkers.MeditationTimer
         {
             this.InitializeComponent();
 
-            // Call MainPage from ExtendedSplashScreen after some delay  
+            // Go to main page from ExtendedSplashScreen after some delay  
             ExtendedSplashScreen();
         }
 
