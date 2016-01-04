@@ -18,7 +18,7 @@
             Text="{Binding TimerText}"
             Margin="10,56,10,0" 
             TextWrapping="Wrap" 
-            FontSize="133.333" 
+            FontSize="106.667" 
             TextAlignment="Center" 
             d:LayoutOverrides="LeftPosition, RightPosition" 
             VerticalAlignment="Top" 
