@@ -88,6 +88,9 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Data\Contracts\IMeditationDiaryRepository.cs" />
     <Compile Include="Data\MeditationDiaryRepository.cs" />
+    <Compile Include="SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MeditationDiaryPage.xaml.cs">
       <DependentUpon>MeditationDiaryPage.xaml</DependentUpon>
     </Compile>
@@ -148,6 +151,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MeditationDiaryPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

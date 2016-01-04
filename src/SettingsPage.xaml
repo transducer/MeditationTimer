@@ -1,0 +1,68 @@
+﻿<Page
+    x:Class="Rooijakkers.MeditationTimer.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:i="using:Microsoft.Xaml.Interactivity" 
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:actions="using:Rooijakkers.MeditationTimer.Actions"
+    mc:Ignorable="d"
+    DataContext="{Binding Settings, Source={StaticResource Locator}}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid
+        Name="SwipingSurface"
+        Background="Transparent"
+        Height="657"
+        Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Settings" 
+                   FontFamily="Segoe WP" 
+                   FontSize="80" />
+        <TextBlock x:Name="textBlock" 
+                   Margin="26,79.333,69,0" 
+                   Grid.Row="1" 
+                   TextWrapping="Wrap" 
+                   VerticalAlignment="Top" 
+                   Height="35" 
+                   d:LayoutOverrides="LeftPosition, RightPosition" 
+                   FontSize="26.667">
+        	<Run Text="Time to get ready"/>
+        	<LineBreak/>
+        	<Run/>
+        </TextBlock>
+        <Slider x:Name="TimeToGetReadySlider" 
+                Margin="26,0,51,68.667" 
+                Grid.Row="1" 
+                VerticalAlignment="Bottom" 
+                d:LayoutOverrides="LeftPosition, RightPosition"/>
+        <TextBlock
+            Margin="26,131.333,107,116.667" 
+            Grid.Row="1" 
+            TextWrapping="Wrap" 
+            d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" 
+            FontSize="18.667" 
+            FontStyle="Italic">
+           <Run Text="{Binding ElementName=TimeToGetReadySlider,Path=Value}"/>
+           <Run Text=" seconds"/>
+        </TextBlock>
+    </Grid>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton 
+                    Icon="Accept" 
+                    IsCompact="False" 
+                    Click="AcceptSettingsButton_Click"
+                    Command="{Binding Source={StaticResource Locator}, Path=Settings.SetTimeToGetReadyCommand}"
+                    CommandParameter="{Binding ElementName=TimeToGetReadySlider,Path=Value}"
+                    Label="Confirm"/>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>
