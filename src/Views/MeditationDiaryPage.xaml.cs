@@ -35,7 +35,7 @@ namespace Rooijakkers.MeditationTimer.Views
         public void ToDiaryIfSwipedRight(object sender, ManipulationCompletedRoutedEventArgs e)
         {
             var currentPoint = e.Position;
-            if (currentPoint.X - _initialPoint.X >= Constants.SwipingTreshold)
+            if (currentPoint.X - _initialPoint.X >= Constants.SWIPING_TRESHOLD)
             {
                 NavigateToMain();
             }
