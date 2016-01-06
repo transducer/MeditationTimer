@@ -5,11 +5,11 @@ namespace Rooijakkers.MeditationTimer.Data
     /// <summary>
     /// Stores settings data in local settings storage
     /// </summary>
-    public class Settings
+    public static class Settings
     {
         private const string TIME_TO_GET_READY_IN_SECONDS_STORAGE = "TimeToGetReadyStorage";
 
-        public TimeSpan TimeToGetReady
+        public static TimeSpan TimeToGetReady
         {
             get
             {
@@ -33,7 +33,7 @@ namespace Rooijakkers.MeditationTimer.Data
             }
         }
 
-        private void SetTimeToGetReady(int value)
+        private static void SetTimeToGetReady(int value)
         {
             Windows.Storage.ApplicationData.Current.LocalSettings.Values[TIME_TO_GET_READY_IN_SECONDS_STORAGE] = value;
         }
