@@ -13,17 +13,18 @@ namespace Rooijakkers.MeditationTimer.Data
         {
             get
             {
-                var secondsToGetReady = 
-                    Windows.Storage.ApplicationData.Current.LocalSettings.Values[TIME_TO_GET_READY_IN_SECONDS_STORAGE];
+                int? secondsToGetReady = 
+                    Windows.Storage.ApplicationData.Current.LocalSettings.Values[TIME_TO_GET_READY_IN_SECONDS_STORAGE] as int?;
 
+                // If settings were not yet stored set to default value.
                 if (secondsToGetReady == null)
                 {
                     secondsToGetReady = Constants.DEFAULT_TIME_TO_GET_READY_IN_SECONDS;
-                    SetTimeToGetReady(Convert.ToInt32(secondsToGetReady));
+                    SetTimeToGetReady(secondsToGetReady.Value);
                 }
 
                 // Return stored time in seconds as a TimeSpan.
-                return new TimeSpan(0, 0, Convert.ToInt32(secondsToGetReady));
+                return new TimeSpan(0, 0, secondsToGetReady.Value);
             }
             set
             {
