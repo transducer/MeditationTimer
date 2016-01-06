@@ -1,6 +1,7 @@
 ﻿using System;
 using Windows.Foundation;
 using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
@@ -25,11 +26,6 @@ namespace Rooijakkers.MeditationTimer.Views
             SwipingSurface.ManipulationStarted += SetInitialPosition;
             SwipingSurface.ManipulationCompleted += ToDiaryIfSwipedLeft;
             SwipingSurface.ManipulationCompleted += ToStatisticsIfSwipedRight;
-        }
-
-        public void SetTimeToGetReadyCommand(int seconds)
-        {
-
         }
 
         public void SetInitialPosition(object sender, ManipulationStartedRoutedEventArgs e)
@@ -63,6 +59,12 @@ namespace Rooijakkers.MeditationTimer.Views
         private async void NavigateToDiary()
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Frame.Navigate(typeof(MeditationDiaryPage)));
+        }
+
+        private async void AcceptSettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Return to meditation timer when settings are accepted. Command on view model can handle other stuff.
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Frame.Navigate(typeof(TimerPage)));
         }
     }
 }

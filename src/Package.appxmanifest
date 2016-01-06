@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="59470ErwinRooijakkers.NoNonsenseMeditationTimer" Publisher="CN=7A14F3FF-B578-4640-8DFC-2F0498449C89" Version="1.2.0.14" />
+  <Identity Name="59470ErwinRooijakkers.NoNonsenseMeditationTimer" Publisher="CN=7A14F3FF-B578-4640-8DFC-2F0498449C89" Version="1.3.0.0" />
   <mp:PhoneIdentity PhoneProductId="a9609970-96f4-4903-adcc-213ce4048c4f" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>No Nonsense Meditation Timer</DisplayName>
@@ -16,7 +16,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Rooijakkers.MeditationTimer.App">
-      <m3:VisualElements DisplayName="No Nonsense Meditation Timer" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="A no nonsense meditation timer. Version 1 contains the ability to ring a Burmese bell after 10 seconds preparation time, 5 minutes before the end and at the end of the meditation. If the meditator wants to meditate for five minutes more than the initial meditation time the meditator should press &quot;+5 minutes&quot;. If the meditator wants to start his or her meditation he or she can simply click on the button &quot;Start&quot;. If the meditator wants to stop he or she can simply click on the button &quot;Stop&quot;. If the meditator wants to view his or her meditation history he or she can simply click &quot;View history&quot;.  No nonsense." ForegroundText="light" BackgroundColor="transparent" ToastCapable="false">
+      <m3:VisualElements DisplayName="No Nonsense Meditation Timer" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="A no nonsense meditation timer. Version 1.3 contains the ability to ring a Burmese bell after 10 seconds preparation time, 5 minutes before the end and at the end of the meditation. If the meditator wants to meditate for five minutes more than the initial meditation time the meditator should press &quot;+5 minutes&quot;. If the meditator wants to start his or her meditation he or she can simply click on the button &quot;Start&quot;. If the meditator wants to stop he or she can simply click on the button &quot;Stop&quot;. If the meditator wants to view his or her meditation history he or she can simply click &quot;View history&quot;.  If the meditator wants to change the time to sit ready he or she can do so at &quot;Settings&quot;. No nonsense." ForegroundText="light" BackgroundColor="transparent" ToastCapable="false">
         <m3:LockScreen Notification="badge" BadgeLogo="Assets\BadgeLogo.png" />
         <m3:DefaultTile Wide310x150Logo="Assets\WideLogo.png" Square71x71Logo="Assets\square170x170.png">
           <m3:ShowNameOnTiles>

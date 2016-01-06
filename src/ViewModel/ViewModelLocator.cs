@@ -16,6 +16,7 @@ using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using Rooijakkers.MeditationTimer.Data;
 using Rooijakkers.MeditationTimer.Data.Contracts;
+using Rooijakkers.MeditationTimer.Utilities;
 
 namespace Rooijakkers.MeditationTimer.ViewModel
 {

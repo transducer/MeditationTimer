@@ -9,6 +9,7 @@ using GalaSoft.MvvmLight.Messaging;
 using Rooijakkers.MeditationTimer.Data.Contracts;
 using Rooijakkers.MeditationTimer.Messages;
 using Rooijakkers.MeditationTimer.Model;
+using Rooijakkers.MeditationTimer.Data;
 
 namespace Rooijakkers.MeditationTimer.ViewModel
 {
@@ -36,7 +37,6 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 #endif
         private static readonly TimeSpan FiveMinutes = new TimeSpan(0, 5, 0);
         private static readonly TimeSpan TenMinutes = new TimeSpan(0, 10, 0);
-        private static readonly TimeSpan TimeToSitReady = TenSeconds;
 
         private readonly IMeditationDiaryRepository _repository;
 
@@ -139,7 +139,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
         private void StartTimer()
         {
-            CountdownTimerValue = CountdownTimerValue += TimeToSitReady;
+            CountdownTimerValue = CountdownTimerValue += Settings.TimeToGetReady;
             DispatcherTimer.Start();
 
             Messenger.Default.Send(new StartTimerMessage());

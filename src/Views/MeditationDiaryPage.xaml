@@ -116,11 +116,11 @@
                     IsCompact="False" 
                     Click="ViewHistoryButton_Click"
                     Label="History"/>
-                <AppBarButton 
+                <!-- <AppBarButton 
                     Icon="FourBars" 
                     IsCompact="False" 
                     Click="ViewStatisticsButton_Click"
-                    Label="Statistics"/>
+                    Label="Statistics"/> -->
                 <AppBarButton 
                     Icon="Setting" 
                     IsCompact="False" 

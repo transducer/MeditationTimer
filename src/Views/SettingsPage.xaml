@@ -10,7 +10,7 @@
     mc:Ignorable="d"
     DataContext="{Binding Settings, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    
     <Grid
         Name="SwipingSurface"
         Background="Transparent"
@@ -38,6 +38,7 @@
         </TextBlock>
         <Slider x:Name="TimeToGetReadySlider" 
                 Margin="26,0,51,68.667" 
+                Value="{Binding TimeToGetReadySliderValue, Mode=TwoWay}"
                 Grid.Row="1" 
                 VerticalAlignment="Bottom" 
                 d:LayoutOverrides="LeftPosition, RightPosition"/>
@@ -49,7 +50,7 @@
             FontSize="18.667" 
             FontStyle="Italic">
            <Run Text="{Binding ElementName=TimeToGetReadySlider,Path=Value}"/>
-           <Run Text=" seconds"/>
+           <Run Text="second(s)"/>
         </TextBlock>
     </Grid>
     <Page.BottomAppBar>
@@ -59,8 +60,7 @@
                     Icon="Accept" 
                     IsCompact="False" 
                     Click="AcceptSettingsButton_Click"
-                    Command="{Binding Source={StaticResource Locator}, Path=SetTimeToGetReadyCommand}"
-                    CommandParameter="{Binding ElementName=TimeToGetReadySlider,Path=Value}"
+                    Command="{Binding SetTimeToGetReadyCommand}" 
                     Label="Confirm"/>
             </CommandBar.PrimaryCommands>
         </CommandBar>

@@ -139,7 +139,7 @@ namespace Rooijakkers.MeditationTimer.Views
 
         private async void NavigateToSettings()
         {
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Frame.Navigate(typeof(MeditationDiaryPage)));
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Frame.Navigate(typeof(SettingsPage)));
         }
     }
 }

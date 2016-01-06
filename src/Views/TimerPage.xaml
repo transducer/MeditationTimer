@@ -92,7 +92,7 @@
         <TextBlock 
             Name="SitReadyTextBlock"
             Visibility="Collapsed"
-        	Text="Sit ready..." 
+        	Text="Get ready..." 
         	Margin="67,194,68,0" 
         	TextWrapping="Wrap" 
         	FontSize="44" 
@@ -116,11 +116,11 @@
                     IsCompact="False" 
                     Click="ViewHistoryButton_Click"
                     Label="History"/>
-                <AppBarButton 
+                <!--<AppBarButton 
                     Icon="FourBars" 
                     IsCompact="False" 
                     Click="ViewStatisticsButton_Click"
-                    Label="Statistics"/>
+                    Label="Statistics"/>-->
                 <AppBarButton 
                     Icon="Setting" 
                     IsCompact="False" 
