@@ -88,17 +88,17 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Data\Contracts\IMeditationDiaryRepository.cs" />
     <Compile Include="Data\MeditationDiaryRepository.cs" />
-    <Compile Include="SettingsPage.xaml.cs">
+    <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MeditationDiaryPage.xaml.cs">
+    <Compile Include="Views\MeditationDiaryPage.xaml.cs">
       <DependentUpon>MeditationDiaryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Messages\UpdateDiaryMessage.cs" />
-    <Compile Include="SplashScreenPage.xaml.cs">
+    <Compile Include="Views\SplashScreenPage.xaml.cs">
       <DependentUpon>SplashScreenPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TimerPage.xaml.cs">
+    <Compile Include="Views\TimerPage.xaml.cs">
       <DependentUpon>TimerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\BellSound.cs" />
@@ -151,19 +151,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="SettingsPage.xaml">
+    <Page Include="Views\SettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MeditationDiaryPage.xaml">
+    <Page Include="Views\MeditationDiaryPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SplashScreenPage.xaml">
+    <Page Include="Views\SplashScreenPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="TimerPage.xaml">
+    <Page Include="Views\TimerPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -194,6 +194,7 @@
       <Name>Behaviors SDK %28XAML%29</Name>
     </SDKReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

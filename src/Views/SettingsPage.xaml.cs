@@ -1,14 +1,13 @@
 ﻿using System;
 using Windows.Foundation;
 using Windows.UI.Core;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
-namespace Rooijakkers.MeditationTimer
+namespace Rooijakkers.MeditationTimer.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -16,17 +15,9 @@ namespace Rooijakkers.MeditationTimer
     public sealed partial class SettingsPage : Page
     {
         private Point _initialPoint; // Point used to store start position so a swipe can be recognized
-        private ISettingsRepository _repository;
 
-        public SettingsPage(ISettingsRepository repository)
+        public SettingsPage()
         {
-            if (repository == null)
-            {
-                throw new ArgumentNullException(nameof(repository));
-            }
-
-            _repository = repository;
-
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
 

@@ -5,26 +5,35 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
+using GalaSoft.MvvmLight.Messaging;
+using Rooijakkers.MeditationTimer.Messages;
+using Rooijakkers.MeditationTimer.Model;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
-namespace Rooijakkers.MeditationTimer
+namespace Rooijakkers.MeditationTimer.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MeditationDiaryPage : Page
+    public sealed partial class TimerPage : Page
     {
         private Point _initialPoint; // Point used to store start position so a swipe can be recognized
 
-        public MeditationDiaryPage()
+        public TimerPage()
         {
             this.InitializeComponent();
+
             this.NavigationCacheMode = NavigationCacheMode.Required;
+
+            Messenger.Default.Register<PlayMessage>(this, ReceivePlayMessage);
+            Messenger.Default.Register<StartTimerMessage>(this, ReceiveStartTimerMessage);
+            Messenger.Default.Register<StopTimerMessage>(this, ReceiveStopTimerMessage);
+            Messenger.Default.Register<DisplaySitReadyMessage>(this, ReceiveSitReadyMessage);
 
             SwipingSurface.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;
             SwipingSurface.ManipulationStarted += SetInitialPosition;
-            SwipingSurface.ManipulationCompleted += ToDiaryIfSwipedRight;
+            SwipingSurface.ManipulationCompleted += ToDiaryIfSwipedLeft;
         }
 
         public void SetInitialPosition(object sender, ManipulationStartedRoutedEventArgs e)
@@ -32,13 +41,49 @@ namespace Rooijakkers.MeditationTimer
             _initialPoint = e.Position;
         }
 
-        public void ToDiaryIfSwipedRight(object sender, ManipulationCompletedRoutedEventArgs e)
+        public void ToDiaryIfSwipedLeft(object sender, ManipulationCompletedRoutedEventArgs e)
         {
             var currentPoint = e.Position;
-            if (currentPoint.X - _initialPoint.X >= Constants.SwipingTreshold)
+            if (_initialPoint.X - currentPoint.X >= Constants.SwipingTreshold)
             {
-                NavigateToMain();
+                NavigateToDiary();
             }
+        }
+
+        private void ReceivePlayMessage(PlayMessage msg)
+        {
+            switch (msg.BellSound)
+            {
+                case BellSound.Burmese:
+                    BurmeseGongMediaElement.Play();
+                    break;
+                case BellSound.Cymbals:
+                    CymbalsGongMediaElement.Play();
+                    break;
+                default:
+                    throw new ArgumentException("BellSound not found.", nameof(msg));
+            }
+        }
+
+        private void ReceiveStartTimerMessage(StartTimerMessage msg)
+        {
+            StartTimerButton.Visibility = Visibility.Collapsed;
+            StopTimerButton.Visibility = Visibility.Visible;
+            AddFiveMinutesButton.IsEnabled = false;
+            ResetInitialTimeButton.IsEnabled = false;
+        }
+
+        private void ReceiveStopTimerMessage(StopTimerMessage msg)
+        {
+            StartTimerButton.Visibility = Visibility.Visible;
+            StopTimerButton.Visibility = Visibility.Collapsed;
+            AddFiveMinutesButton.IsEnabled = true;
+            ResetInitialTimeButton.IsEnabled = true;
+        }
+
+        private void ReceiveSitReadyMessage(DisplaySitReadyMessage msg)
+        {
+            SitReadyTextBlock.Visibility = msg.Display ? Visibility.Visible : Visibility.Collapsed;
         }
 
         /// <summary>
@@ -48,30 +93,15 @@ namespace Rooijakkers.MeditationTimer
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            // Display friendly message to user when diary is empty.
-
-            var emptyDiary = MeditationDiaryListView.Items.Count == 0;
-
-            if (emptyDiary)
+            // Check if SplashScreenPage is on the backstack and remove so that the loading screen is only displayed once   
+            if (Frame.BackStack.Count == 1)
             {
-                ListViewNoItems.Visibility = Visibility.Visible;
-                MeditationDiaryListView.Visibility = Visibility.Collapsed;
-                MeditationDiaryListViewHeaders.Visibility = Visibility.Collapsed;
+                Frame.BackStack.RemoveAt(Frame.BackStackDepth - 1);
             }
-            else
-            {
-                ListViewNoItems.Visibility = Visibility.Collapsed;
-                MeditationDiaryListView.Visibility = Visibility.Visible;
-                MeditationDiaryListViewHeaders.Visibility = Visibility.Visible;
-            }
-        }
-
-        private void NavigateToMain()
-        {
-            Frame.Navigate(typeof(TimerPage));
         }
 
         /* NOTE: The code below is duplicated on all pages. I do not know how to extract it to separate page. */
+
         private void ViewTimerButton_Click(object sender, RoutedEventArgs e)
         {
             NavigateToTimer();

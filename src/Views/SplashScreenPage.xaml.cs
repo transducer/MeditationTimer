@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Controls;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
-namespace Rooijakkers.MeditationTimer
+namespace Rooijakkers.MeditationTimer.Views
 {
     /// <summary>
     /// Page that is used to have the Splash screen displayed bit longer and pre-load the meditation diary data
