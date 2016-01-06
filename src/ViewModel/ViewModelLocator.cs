@@ -35,11 +35,12 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             SimpleIoc.Default.Register<IMeditationDiaryRepository, MeditationDiaryRepository>();
             SimpleIoc.Default.Register<TimerViewModel>();
             SimpleIoc.Default.Register<DiaryViewModel>();
+            SimpleIoc.Default.Register<SettingsViewModel>();
         }
 
         public TimerViewModel Timer => ServiceLocator.Current.GetInstance<TimerViewModel>();
-
         public DiaryViewModel Diary => ServiceLocator.Current.GetInstance<DiaryViewModel>();
+        public SettingsViewModel Settings => ServiceLocator.Current.GetInstance<SettingsViewModel>();
 
         public static void Cleanup()
         {
