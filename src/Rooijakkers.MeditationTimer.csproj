@@ -87,6 +87,7 @@
     </Compile>
     <Compile Include="Constants.cs" />
     <Compile Include="Data\Contracts\IMeditationDiaryRepository.cs" />
+    <Compile Include="Data\Contracts\ISettings.cs" />
     <Compile Include="Data\MeditationDiaryRepository.cs" />
     <Compile Include="Data\Settings.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />

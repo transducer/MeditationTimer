@@ -1,15 +1,16 @@
 ﻿using System;
+using Rooijakkers.MeditationTimer.Data.Contracts;
 
 namespace Rooijakkers.MeditationTimer.Data
 {
     /// <summary>
     /// Stores settings data in local settings storage
     /// </summary>
-    public static class Settings
+    public class Settings : ISettings
     {
         private const string TIME_TO_GET_READY_IN_SECONDS_STORAGE = "TimeToGetReadyStorage";
 
-        public static TimeSpan TimeToGetReady
+        public TimeSpan TimeToGetReady
         {
             get
             {
@@ -33,7 +34,7 @@ namespace Rooijakkers.MeditationTimer.Data
             }
         }
 
-        private static void SetTimeToGetReady(int value)
+        private void SetTimeToGetReady(int value)
         {
             Windows.Storage.ApplicationData.Current.LocalSettings.Values[TIME_TO_GET_READY_IN_SECONDS_STORAGE] = value;
         }
