@@ -19,18 +19,19 @@
             Margin="10,56,10,0" 
             TextWrapping="Wrap" 
             FontSize="106.667" 
+            TextAlignment="Center" 
             d:LayoutOverrides="LeftPosition, RightPosition" 
             VerticalAlignment="Top" 
             Height="163" 
             FontStretch="Expanded" 
             FontWeight="SemiLight" 
-            CharacterSpacing="50" HorizontalAlignment="Center" LineHeight="8"/>
+            CharacterSpacing="50"/>
         <Button 
             Name="StartTimerButton"
             Command="{Binding StartTimerCommand}" 
             Content="Start" 
             HorizontalAlignment="Stretch" 
-            Margin="67,279,68,181" 
+            Margin="67,314,68,146" 
             VerticalAlignment="Stretch"
             Background="Transparent" 
             FontSize="53.333" 
@@ -53,40 +54,70 @@
         	Command="{Binding ResetInitialTimeCommand}" 
         	Content="Reset" 
         	HorizontalAlignment="Left" 
-        	Margin="67,215,0,0" 
+        	Margin="67,270,0,0" 
         	VerticalAlignment="Top"
         	Background="Transparent" 
-        	FontWeight="Normal" Height="77" />
+        	FontWeight="Normal" />
         <Button 
             x:Name="AddFiveMinutesButton"
         	Command="{Binding AddFiveMinutesCommand}" 
         	Content="+5 minutes" 
         	HorizontalAlignment="Right" 
-        	Margin="0,215,68,0" 
+        	Margin="0,270,68,0" 
         	VerticalAlignment="Top"
         	Background="Transparent" 
         	FontWeight="Normal" 
-            d:LayoutOverrides="HorizontalAlignment" Height="77" />
+            d:LayoutOverrides="HorizontalAlignment" />
         <Button 
         	Content="View history" 
         	HorizontalAlignment="Stretch" 
-        	Margin="67,0,68,129" 
+        	Margin="67,0,68,103" 
         	VerticalAlignment="Bottom"
             Click="ViewHistoryButton_Click"
         	Background="Transparent" 
         	FontWeight="Normal" 
-            d:LayoutOverrides="LeftPosition, RightPosition" Height="67" />
+            d:LayoutOverrides="LeftPosition, RightPosition" />
         <MediaElement 
             Name="BurmeseGongMediaElement"
             Height="10"
             Width="10"
-            Source="/Assets/gong-burmese.wav"
+            Source="/Assets/Sounds/gong-burmese.wav"
             AutoPlay="False" />
         <MediaElement 
             Name="CymbalsGongMediaElement"
             Height="10"
             Width="10"
-            Source="/Assets/gong-cymbals.wav"
+            Source="/Assets/Sounds/gong-cymbals-horst.mp3"
+            AutoPlay="False" />
+        <MediaElement 
+            Name="FluteGongMediaElement"
+            Height="10"
+            Width="10"
+            Source="/Assets/Sounds/gong-with-flute-nocpr.wav"
+            AutoPlay="False" />
+        <MediaElement 
+            Name="ChantOhmMediaElement"
+            Height="10"
+            Width="10"
+            Source="/Assets/Sounds/chant-ohm-jagadamba.mp3"
+            AutoPlay="False" />   
+        <MediaElement 
+            Name="ChantThaiBuddhistMediaElement"
+            Height="10"
+            Width="10"
+            Source="/Assets/Sounds/chant-thai-buddhist-kyles.mp3"
+            AutoPlay="False" />
+        <MediaElement 
+            Name="ChantHariKrishnaMediaElement"
+            Height="10"
+            Width="10"
+            Source="/Assets/Sounds/chant-hari-krishna-jagadamba.mp3"
+            AutoPlay="False" />
+        <MediaElement 
+            Name="ChantOahuMediaElement"
+            Height="10"
+            Width="10"
+            Source="/Assets/Sounds/chant-oahu-mista-bumpy.mp3"
             AutoPlay="False" />
         <TextBlock 
             Name="SitReadyTextBlock"
