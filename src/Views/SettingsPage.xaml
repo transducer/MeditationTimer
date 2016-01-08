@@ -10,7 +10,7 @@
     mc:Ignorable="d"
     DataContext="{Binding Settings, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    
+
     <Grid
         Name="SwipingSurface"
         Background="Transparent"
@@ -24,8 +24,7 @@
         <TextBlock Text="Settings" 
                    FontFamily="Segoe WP" 
                    FontSize="80" />
-        <TextBlock x:Name="textBlock" 
-                   Margin="26,79.333,69,0" 
+        <TextBlock Margin="26,79.333,69,0" 
                    Grid.Row="1" 
                    TextWrapping="Wrap" 
                    VerticalAlignment="Top" 
@@ -52,6 +51,21 @@
            <Run Text="{Binding ElementName=TimeToGetReadySlider,Path=Value}"/>
            <Run Text="second(s)"/>
         </TextBlock>
+        <TextBlock Margin="26,206.333,51,0" 
+                   Grid.Row="1" 
+                   TextWrapping="Wrap" 
+                   VerticalAlignment="Top" 
+                   Height="69" 
+                   FontSize="26.667" Grid.RowSpan="2">
+        	<Run Text="Ring bell five minutes before end"/>
+        	<LineBreak/>
+        	<Run/>
+        </TextBlock>
+        <CheckBox Name="RingBellFiveMinutesBeforeEndCheckBox" 
+                  IsChecked="{Binding RingBellFiveMinutesBeforeEndCheckBoxValue, Mode=TwoWay}"
+                  Content="Yes, ring bell"
+                  Margin="26,-6.667,0,0" 
+                  Grid.Row="2"/>
     </Grid>
     <Page.BottomAppBar>
         <CommandBar>
@@ -59,8 +73,8 @@
                 <AppBarButton 
                     Icon="Accept" 
                     IsCompact="False" 
-                    Click="AcceptSettingsButton_Click"
-                    Command="{Binding SetTimeToGetReadyCommand}" 
+                    Click="SaveSettingsButton_Click"
+                    Command="{Binding SaveSettingsCommand}" 
                     Label="Confirm"/>
             </CommandBar.PrimaryCommands>
         </CommandBar>

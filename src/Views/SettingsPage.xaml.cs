@@ -62,7 +62,7 @@ namespace Rooijakkers.MeditationTimer.Views
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Frame.Navigate(typeof(MeditationDiaryPage)));
         }
 
-        private async void AcceptSettingsButton_Click(object sender, RoutedEventArgs e)
+        private async void SaveSettingsButton_Click(object sender, RoutedEventArgs e)
         {
             // Return to meditation timer when settings are accepted. Command on view model can handle other stuff.
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Frame.Navigate(typeof(TimerPage)));
@@ -76,8 +76,8 @@ namespace Rooijakkers.MeditationTimer.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            // Reset time to value in settings so that the saved value is displayed on the page.
-            ViewModel.SetTimeToGetReadySliderValueToValueInSettings();
+            // Reset value in settings so that the saved value are displayed on the page.
+            ViewModel.SetValuesToSettings();
         }
 
         public SettingsViewModel ViewModel

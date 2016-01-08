@@ -78,6 +78,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
                 RingBellOnMoment(InitialMeditationTime, TimeSpan.Zero);
             DispatcherTimer.Tick += (s, e) =>
                 RingFiveMinutesLeftBellOnMoment(TimeSpan.Zero.Add(FiveMinutes));
+            
             DispatcherTimer.Tick += StopTimerOnEnd;
             DispatcherTimer.Tick += DisplaySitReadyMessageAtBegin;
         }
@@ -216,7 +217,9 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
         private void RingFiveMinutesLeftBellOnMoment(params TimeSpan[] moments)
         {
-            if (moments.Contains(CountdownTimerValue))
+            // We need to check the setting every time, since it might have changed. 
+            // There is probably a cleaner way to do it, but the performance penalty is minimal.
+            if (_settings.RingBellFiveMinutesBeforeEnd && moments.Contains(CountdownTimerValue))
             {
                 RingFiveMinutesLeftBell();
             }
