@@ -25,7 +25,7 @@ namespace Rooijakkers.MeditationTimer.Data
                 }
 
                 // Return stored time in seconds as a TimeSpan.
-                return new TimeSpan(0, 0, secondsToGetReady.Value);
+                return TimeSpan.FromSeconds(secondsToGetReady.Value);
             }
             set
             {
