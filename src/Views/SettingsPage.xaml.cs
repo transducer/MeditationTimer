@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rooijakkers.MeditationTimer.ViewModel;
+using System;
 using Windows.Foundation;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -65,6 +66,26 @@ namespace Rooijakkers.MeditationTimer.Views
         {
             // Return to meditation timer when settings are accepted. Command on view model can handle other stuff.
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Frame.Navigate(typeof(TimerPage)));
+        }
+
+        /// <summary>
+        /// Invoked when this page is about to be displayed in a Frame.
+        /// </summary>
+        /// <param name="e">Event data that describes how this page was reached.
+        /// This parameter is typically used to configure the page.</param>
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            // Reset time to value in settings so that the saved value is displayed on the page.
+            ViewModel.SetTimeToGetReadySliderValueToValueInSettings();
+        }
+
+        public SettingsViewModel ViewModel
+        {
+            get
+            {
+                return this.DataContext as SettingsViewModel;
+            }
         }
     }
 }

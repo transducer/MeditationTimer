@@ -3,6 +3,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Rooijakkers.MeditationTimer.Data.Contracts;
+using System.ComponentModel;
 
 namespace Rooijakkers.MeditationTimer.ViewModel
 {
@@ -19,7 +20,13 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             _settings = settings;
 
             SetTimeToGetReadyCommand = new RelayCommand(SetTimeToGetReady);
-            TimeToGetReadySliderValue = settings.TimeToGetReady.Seconds;
+
+            SetTimeToGetReadySliderValueToValueInSettings();
+        }
+
+        public void SetTimeToGetReadySliderValueToValueInSettings()
+        {
+            TimeToGetReadySliderValue = _settings.TimeToGetReady.Seconds;
         }
 
         public ICommand SetTimeToGetReadyCommand { get; private set; }
@@ -29,6 +36,19 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             _settings.TimeToGetReady = TimeSpan.FromSeconds(TimeToGetReadySliderValue);
         }
 
-        public double TimeToGetReadySliderValue { get; set; }
+        private double _timeToGetReadySliderValue;
+        public double TimeToGetReadySliderValue
+        {
+            get
+            {
+                RaisePropertyChanged(nameof(TimeToGetReadySliderValue));
+                return _timeToGetReadySliderValue;
+            }
+            set
+            {
+                _timeToGetReadySliderValue = value;
+                RaisePropertyChanged(nameof(TimeToGetReadySliderValue));
+            }
+        }
     }
 }
