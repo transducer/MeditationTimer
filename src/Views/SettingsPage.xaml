@@ -24,7 +24,7 @@
         <TextBlock Text="Settings" 
                    FontFamily="Segoe WP" 
                    FontSize="80" />
-        <TextBlock Margin="26,79.333,69,0" 
+        <TextBlock Margin="10,10.333,85,0" 
                    Grid.Row="1" 
                    TextWrapping="Wrap" 
                    VerticalAlignment="Top" 
@@ -36,27 +36,27 @@
         	<Run/>
         </TextBlock>
         <Slider x:Name="TimeToGetReadySlider" 
-                Margin="26,0,51,68.667" 
+                Margin="10,80.333,67,0" 
                 Value="{Binding TimeToGetReadySliderValue, Mode=TwoWay}"
                 Grid.Row="1" 
-                VerticalAlignment="Bottom" 
+                VerticalAlignment="Top" 
                 d:LayoutOverrides="LeftPosition, RightPosition"/>
         <TextBlock
-            Margin="26,131.333,107,116.667" 
+            Margin="10,62.333,123,0" 
             Grid.Row="1" 
             TextWrapping="Wrap" 
-            d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" 
+            d:LayoutOverrides="LeftPosition, RightPosition" 
             FontSize="18.667" 
-            FontStyle="Italic">
+            FontStyle="Italic" Height="27" VerticalAlignment="Top">
            <Run Text="{Binding ElementName=TimeToGetReadySlider,Path=Value}"/>
            <Run Text="second(s)"/>
         </TextBlock>
-        <TextBlock Margin="26,206.333,51,0" 
+        <TextBlock Margin="10,137.333,67,0" 
                    Grid.Row="1" 
                    TextWrapping="Wrap" 
                    VerticalAlignment="Top" 
                    Height="69" 
-                   FontSize="26.667" Grid.RowSpan="2">
+                   FontSize="26.667">
         	<Run Text="Ring bell five minutes before end"/>
         	<LineBreak/>
         	<Run/>
@@ -64,8 +64,8 @@
         <CheckBox Name="RingBellFiveMinutesBeforeEndCheckBox" 
                   IsChecked="{Binding RingBellFiveMinutesBeforeEndCheckBoxValue, Mode=TwoWay}"
                   Content="Yes, ring bell"
-                  Margin="26,-6.667,0,0" 
-                  Grid.Row="2"/>
+                  Margin="10,0,0,18.667" 
+                  Grid.Row="1" VerticalAlignment="Bottom"/>
     </Grid>
     <Page.BottomAppBar>
         <CommandBar>
