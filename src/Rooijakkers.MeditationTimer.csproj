@@ -90,6 +90,9 @@
     <Compile Include="Data\Contracts\ISettings.cs" />
     <Compile Include="Data\MeditationDiaryRepository.cs" />
     <Compile Include="Data\Settings.cs" />
+    <Compile Include="Model\ChantSound.cs" />
+    <Compile Include="Model\Notification.cs" />
+    <Compile Include="Utilities\EnumAttribute.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
@@ -132,10 +135,12 @@
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-140.png" />
     <Content Include="Assets\SmallLogo.scale-240.png" />
-    <Content Include="Assets\Sounds\chant-hari-krishna-jagadamba.mp3" />
+    <Content Include="Assets\Sounds\chant-hare-krishna-jagadamba.mp3" />
+    <Content Include="Assets\Sounds\chant-jong-sou-south-korea-by-rtb45.mp3" />
     <Content Include="Assets\Sounds\chant-oahu-mista-bumpy.mp3" />
     <Content Include="Assets\Sounds\chant-ohm-jagadamba.mp3" />
     <Content Include="Assets\Sounds\chant-thai-buddhist-kyles.mp3" />
+    <Content Include="Assets\Sounds\chant-wat-phra-si-ratana-mahathat-thailand-by-rtb45.mp3" />
     <Content Include="Assets\Sounds\gong-burmese.wav" />
     <Content Include="Assets\Sounds\gong-cymbals-horst.mp3" />
     <Content Include="Assets\Sounds\gong-perfect-qudobup.flac" />
@@ -153,6 +158,7 @@
     <Content Include="Assets\WideLogo.scale-100.png" />
     <Content Include="Assets\WideLogo.scale-140.png" />
     <Content Include="Assets\WideLogo.scale-240.png" />
+    <Compile Include="Utilities\EnumExtensions.cs" />
     <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <ItemGroup>

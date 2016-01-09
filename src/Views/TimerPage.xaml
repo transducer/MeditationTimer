@@ -96,6 +96,12 @@
             Source="/Assets/Sounds/gong-with-flute-nocpr.wav"
             AutoPlay="False" />
         <MediaElement 
+            Name="PerfectGongMediaElement"
+            Height="10"
+            Width="10"
+            Source="/Assets/Sounds/gong-perfect-qudobup.flac"
+            AutoPlay="False" />
+        <MediaElement 
             Name="ChantOhmMediaElement"
             Height="10"
             Width="10"
@@ -118,6 +124,18 @@
             Height="10"
             Width="10"
             Source="/Assets/Sounds/chant-oahu-mista-bumpy.mp3"
+            AutoPlay="False" />
+        <MediaElement 
+            Name="ChantJongSouElement"
+            Height="10"
+            Width="10"
+            Source="/Assets/Sounds/chant-jong-sou-south-korea-by-rtb45.mp3"
+            AutoPlay="False" />
+        <MediaElement 
+            Name="ChantMahathatElement"
+            Height="10"
+            Width="10"
+            Source="/Assets/Sounds/chant-wat-phra-si-ratana-mahathat-thailand-by-rtb45.mp3"
             AutoPlay="False" />
         <TextBlock 
             Name="SitReadyTextBlock"

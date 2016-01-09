@@ -11,62 +11,109 @@
     DataContext="{Binding Settings, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid
-        Name="SwipingSurface"
-        Background="Transparent"
-        Height="657"
-        Margin="30">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <TextBlock Text="Settings" 
-                   FontFamily="Segoe WP" 
-                   FontSize="80" />
-        <TextBlock Margin="10,10.333,85,0" 
+    <ScrollViewer 
+        Margin="0,0,0,0"
+        VerticalAlignment="Top" 
+        VerticalScrollBarVisibility="Visible" 
+        VerticalScrollMode="Enabled" 
+        AllowDrop="False" 
+        BringIntoViewOnFocusChange="True" 
+        HorizontalScrollMode="Disabled" 
+        IsHoldingEnabled="True" >
+        <Grid
+           Name="SwipingSurface"
+           Background="Transparent"
+           Height="657"
+           Margin="30">
+           <Grid.RowDefinitions>
+               <RowDefinition Height="Auto" />
+               <RowDefinition />
+               <RowDefinition />
+           </Grid.RowDefinitions>
+           <TextBlock Text="Settings" 
+                      FontFamily="Segoe WP" 
+                      FontSize="80" />
+           <TextBlock Margin="10,10.333,85,0" 
+                      Grid.Row="1" 
+                      TextWrapping="Wrap" 
+                      VerticalAlignment="Top" 
+                      Height="35" 
+                      d:LayoutOverrides="LeftPosition, RightPosition" 
+                      FontSize="26.667">
+           	<Run Text="Time to get ready"/>
+           	<LineBreak/>
+           	<Run/>
+           </TextBlock>
+           <Slider x:Name="TimeToGetReadySlider" 
+                   Margin="10,80.333,67,0" 
+                   Value="{Binding TimeToGetReadySliderValue, Mode=TwoWay}"
                    Grid.Row="1" 
-                   TextWrapping="Wrap" 
                    VerticalAlignment="Top" 
-                   Height="35" 
-                   d:LayoutOverrides="LeftPosition, RightPosition" 
-                   FontSize="26.667">
-        	<Run Text="Time to get ready"/>
-        	<LineBreak/>
-        	<Run/>
-        </TextBlock>
-        <Slider x:Name="TimeToGetReadySlider" 
-                Margin="10,80.333,67,0" 
-                Value="{Binding TimeToGetReadySliderValue, Mode=TwoWay}"
-                Grid.Row="1" 
-                VerticalAlignment="Top" 
-                d:LayoutOverrides="LeftPosition, RightPosition"/>
-        <TextBlock
-            Margin="10,62.333,123,0" 
-            Grid.Row="1" 
-            TextWrapping="Wrap" 
-            d:LayoutOverrides="LeftPosition, RightPosition" 
-            FontSize="18.667" 
-            FontStyle="Italic" Height="27" VerticalAlignment="Top">
-           <Run Text="{Binding ElementName=TimeToGetReadySlider,Path=Value}"/>
-           <Run Text="second(s)"/>
-        </TextBlock>
-        <TextBlock Margin="10,137.333,67,0" 
-                   Grid.Row="1" 
-                   TextWrapping="Wrap" 
-                   VerticalAlignment="Top" 
-                   Height="69" 
-                   FontSize="26.667">
-        	<Run Text="Ring bell five minutes before end"/>
-        	<LineBreak/>
-        	<Run/>
-        </TextBlock>
-        <CheckBox Name="RingBellFiveMinutesBeforeEndCheckBox" 
-                  IsChecked="{Binding RingBellFiveMinutesBeforeEndCheckBoxValue, Mode=TwoWay}"
-                  Content="Yes, ring bell"
-                  Margin="10,0,0,18.667" 
-                  Grid.Row="1" VerticalAlignment="Bottom"/>
-    </Grid>
+                   d:LayoutOverrides="LeftPosition, RightPosition"/>
+           <TextBlock
+               Margin="10,62.333,123,0" 
+               Grid.Row="1" 
+               TextWrapping="Wrap" 
+               d:LayoutOverrides="LeftPosition, RightPosition" 
+               FontSize="18.667" 
+               FontStyle="Italic" Height="27" VerticalAlignment="Top">
+              <Run Text="{Binding ElementName=TimeToGetReadySlider,Path=Value}"/>
+              <Run Text="second(s)"/>
+           </TextBlock>
+           <TextBlock Margin="10,137.333,67,0" 
+                      Grid.Row="1" 
+                      TextWrapping="Wrap" 
+                      VerticalAlignment="Top" 
+                      Height="69" 
+                      FontSize="26.667">
+           	<Run Text="Notify five minutes before end"/>
+           	<LineBreak/>
+           	<Run/>
+           </TextBlock>
+           <CheckBox Name="RingBellFiveMinutesBeforeEndCheckBox" 
+                     IsChecked="{Binding RingBellFiveMinutesBeforeEndCheckBoxValue, Mode=TwoWay}"
+                     Content="Yes, notify"
+                     Margin="10,0,0,18.667" 
+                     Grid.Row="1" VerticalAlignment="Bottom"/>
+           <TextBlock Margin="10,112.333,67,93.667" 
+                      Grid.Row="2" 
+                      TextWrapping="Wrap" 
+                      FontSize="26.667" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition">
+           	<Run Text="Five minutes before end notification"/>
+           	<LineBreak/>
+           	<Run/>
+           </TextBlock>
+           <ComboBox ItemsSource="{Binding FiveMinutesBeforeEndNotications}" 
+                     Margin="10,0,67,-8.333" 
+                     Grid.Row="2" Height="107" VerticalAlignment="Bottom" d:LayoutOverrides="LeftPosition, RightPosition">
+               <ComboBox.ItemTemplate>
+                   <DataTemplate>
+                       <TextBlock Text="{Binding Description}"/>
+                   </DataTemplate>
+               </ComboBox.ItemTemplate>
+           </ComboBox>
+           <TextBlock Margin="10,0.333,67,0" 
+                      Grid.Row="2" 
+                      TextWrapping="Wrap" 
+                      VerticalAlignment="Top" 
+                      Height="69" 
+                      FontSize="26.667" d:LayoutOverrides="VerticalAlignment">
+           	<Run Text="Begin and end bell"/>
+           	<LineBreak/>
+           	<Run/>
+           </TextBlock>
+           <ComboBox ItemsSource="{Binding BellNotications}" 
+                     Margin="10,35.333,67,0" 
+                     Grid.Row="2" Height="57" VerticalAlignment="Top">
+               <ComboBox.ItemTemplate>
+                   <DataTemplate>
+                       <TextBlock Text="{Binding Description}"/>
+                   </DataTemplate>
+               </ComboBox.ItemTemplate>
+           </ComboBox>
+       </Grid>
+    </ScrollViewer>
+
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
