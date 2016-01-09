@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rooijakkers.MeditationTimer.ViewModel;
+using System;
 using Windows.Foundation;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -48,9 +49,8 @@ namespace Rooijakkers.MeditationTimer.Views
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            // Display friendly message to user when diary is empty.
-
-            var emptyDiary = MeditationDiaryListView.Items.Count == 0;
+            // Display friendly message to user when diary is empty (check on view model because of asynchronous loading)
+            var emptyDiary = ViewModel.MeditationDiary.Count == 0;
 
             if (emptyDiary)
             {
@@ -110,6 +110,14 @@ namespace Rooijakkers.MeditationTimer.Views
         private async void NavigateToSettings()
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Frame.Navigate(typeof(SettingsPage)));
+        }
+
+        public DiaryViewModel ViewModel
+        {
+            get
+            {
+                return this.DataContext as DiaryViewModel;
+            }
         }
     }
 }

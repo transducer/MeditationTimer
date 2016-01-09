@@ -32,10 +32,9 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
             DeleteMeditationEntryCommand = new RelayCommand<int>(DeleteMeditationEntry);
 
-            if (IsInDesignMode)
-            {
-                SeedDesignTimeData();
-            }
+#if DEBUG
+            SeedDesignTimeData();
+#endif
         }
 
         private void SeedDesignTimeData()
