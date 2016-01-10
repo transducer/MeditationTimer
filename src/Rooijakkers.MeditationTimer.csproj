@@ -90,6 +90,7 @@
     <Compile Include="Data\Contracts\ISettings.cs" />
     <Compile Include="Data\MeditationDiaryRepository.cs" />
     <Compile Include="Data\Settings.cs" />
+    <Compile Include="Messages\DisplayNotificationSoundPickerMessage.cs" />
     <Compile Include="Model\ChantSound.cs" />
     <Compile Include="Model\Notification.cs" />
     <Compile Include="Utilities\EnumAttribute.cs" />

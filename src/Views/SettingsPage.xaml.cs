@@ -1,4 +1,6 @@
-﻿using Rooijakkers.MeditationTimer.ViewModel;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Rooijakkers.MeditationTimer.Messages;
+using Rooijakkers.MeditationTimer.ViewModel;
 using System;
 using Windows.Foundation;
 using Windows.UI.Core;
@@ -23,6 +25,8 @@ namespace Rooijakkers.MeditationTimer.Views
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
+            Messenger.Default.Register<DisplayNotificationSoundPickerMessage>(this, ReceiveFiveMinutesBeforeEndCheckBoxValueChangedMessage);
+
             SwipingSurface.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;
             SwipingSurface.ManipulationStarted += SetInitialPosition;
             SwipingSurface.ManipulationCompleted += ToDiaryIfSwipedLeft;
@@ -32,6 +36,20 @@ namespace Rooijakkers.MeditationTimer.Views
         public void SetInitialPosition(object sender, ManipulationStartedRoutedEventArgs e)
         {
             _initialPoint = e.Position;
+        }
+
+        private void ReceiveFiveMinutesBeforeEndCheckBoxValueChangedMessage(DisplayNotificationSoundPickerMessage msg) 
+        {
+            if (msg.Display)
+            {
+                NoticationsComboBox.Visibility = Visibility.Visible;
+                NotificationSoundTextBlock.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                NoticationsComboBox.Visibility = Visibility.Collapsed;
+                NotificationSoundTextBlock.Visibility = Visibility.Collapsed;
+            }
         }
 
         public void ToDiaryIfSwipedRight(object sender, ManipulationCompletedRoutedEventArgs e)

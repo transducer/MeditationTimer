@@ -1,12 +1,16 @@
-using System;
-using System.Linq;
-using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+
 using Rooijakkers.MeditationTimer.Data.Contracts;
-using System.Collections.Generic;
+using Rooijakkers.MeditationTimer.Messages;
 using Rooijakkers.MeditationTimer.Model;
 using Rooijakkers.MeditationTimer.Utilities;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Input;
 
 namespace Rooijakkers.MeditationTimer.ViewModel
 {
@@ -74,11 +78,17 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             get
             {
                 RaisePropertyChanged(nameof(RingBellFiveMinutesBeforeEndCheckBoxValue));
+                Messenger.Default.Send(
+                    new DisplayNotificationSoundPickerMessage(_ringBellFiveMinutesBeforeEndCheckBoxValue));
+
                 return _ringBellFiveMinutesBeforeEndCheckBoxValue;
             }
             set
             {
                 _ringBellFiveMinutesBeforeEndCheckBoxValue = value;
+
+                Messenger.Default.Send(
+                    new DisplayNotificationSoundPickerMessage(_ringBellFiveMinutesBeforeEndCheckBoxValue));
                 RaisePropertyChanged(nameof(RingBellFiveMinutesBeforeEndCheckBoxValue));
             }
         }
