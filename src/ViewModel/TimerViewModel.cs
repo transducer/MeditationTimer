@@ -77,7 +77,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             DispatcherTimer.Tick += (s, e) =>
                 RingBellOnMoment(InitialMeditationTime, TimeSpan.Zero);
             DispatcherTimer.Tick += (s, e) =>
-                RingFiveMinutesLeftBellOnMoment(TimeSpan.Zero.Add(FiveMinutes));
+                PlayNotificationSoundOnMoments(TimeSpan.Zero.Add(FiveMinutes));
             
             DispatcherTimer.Tick += StopTimerOnEnd;
             DispatcherTimer.Tick += DisplaySitReadyMessageAtBegin;
@@ -215,7 +215,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             }
         }
 
-        private void RingFiveMinutesLeftBellOnMoment(params TimeSpan[] moments)
+        private void PlayNotificationSoundOnMoments(params TimeSpan[] moments)
         {
             // We need to check the setting every time, since it might have changed. 
             // There is probably a cleaner way to do it, but the performance penalty is minimal.
