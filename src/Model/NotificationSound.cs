@@ -2,7 +2,7 @@
 
 namespace Rooijakkers.MeditationTimer.Model
 {
-    public enum ChantSound
+    public enum NotificationSound
     {
         [Description("Thai Buddhists chanting - by Kyles")]
         ThaiBuddhist,
@@ -15,6 +15,16 @@ namespace Rooijakkers.MeditationTimer.Model
         [Description("Oahu temple bells - by Bumpy")]
         Oahu,
         [Description("Hare Krishna chanting - by Jagadamba")]
-        HareKrishna
+        HareKrishna,
+
+        // Notification sounds also contain bell sounds (copy pasted since we cannot inherit from another enum)
+        [Description("Burmese gong")]
+        Burmese,
+        [Description("Cymbals Duisberg - by the Very Real Horst")]
+        Cymbals,
+        [Description("Perfect gong - by Qudobup")]
+        Perfect,
+        [Description("Bell with flute - by Nocpr")]
+        Flute
     }
 }

@@ -107,8 +107,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             get
             {
                 // Get description values of all chant and bell sounds
-                return EnumExtensions.GetValues<BellSound>().Select(s => new Notification { Name = s.ToString(), Description = s.GetDescription() })
-                    .Concat(EnumExtensions.GetValues<ChantSound>().Select(s => new Notification { Name = s.ToString(), Description = s.GetDescription() }));
+                return EnumExtensions.GetValues<NotificationSound>().Select(s => new Notification { Name = s.ToString(), Description = s.GetDescription() });
             }
         }
     }

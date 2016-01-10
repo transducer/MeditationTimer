@@ -1,5 +1,6 @@
 ﻿using System;
 using Rooijakkers.MeditationTimer.Data.Contracts;
+using Rooijakkers.MeditationTimer.Model;
 
 namespace Rooijakkers.MeditationTimer.Data
 {
@@ -10,6 +11,9 @@ namespace Rooijakkers.MeditationTimer.Data
     {
         private const string TIME_TO_GET_READY_IN_SECONDS_STORAGE = "TimeToGetReadyStorage";
         private const string RING_BELL_FIVE_MINUTES_BEFORE_END_STORAGE = "RingBellFiveMinutesBeforeEndStorage";
+        private const string BEGIN_SOUND_STORAGE = "BeginSoundStorage";
+        private const string END_SOUND_STORAGE = "EndSoundStorage";
+        private const string NOTIFICATION_SOUND_STORAGE = "NotificationSoundStorage";
 
         public bool RingBellFiveMinutesBeforeEnd
         {
@@ -32,6 +36,7 @@ namespace Rooijakkers.MeditationTimer.Data
                 SetRingBellBeforeEnd(value);
             }
         }
+
         public TimeSpan TimeToGetReady
         {
             get
@@ -56,6 +61,72 @@ namespace Rooijakkers.MeditationTimer.Data
             }
         }
 
+        public BellSound BeginSound
+        {
+            get
+            {
+                BellSound? beginSound = 
+                    Windows.Storage.ApplicationData.Current.LocalSettings.Values[BEGIN_SOUND_STORAGE] as BellSound?;
+
+                // If settings were not yet stored set to default value.
+                if (beginSound == null)
+                {
+                    beginSound = Constants.DEFAULT_BEGIN_SOUND;
+                    SetBeginSound(beginSound.Value);
+                }
+
+                return beginSound.Value;
+            }
+            set
+            {
+                SetBeginSound(value);
+            }
+        }
+
+        public BellSound EndSound
+        {
+            get
+            {
+                BellSound? endSound = 
+                    Windows.Storage.ApplicationData.Current.LocalSettings.Values[END_SOUND_STORAGE] as BellSound?;
+
+                // If settings were not yet stored set to default value.
+                if (endSound == null)
+                {
+                    endSound = Constants.DEFAULT_END_SOUND;
+                    SetEndSound(endSound.Value);
+                }
+
+                return endSound.Value;
+            }
+            set
+            {
+                SetEndSound(value);
+            }
+        }
+
+        public NotificationSound NotificationSound
+        {
+            get
+            {
+                NotificationSound? notificationSound = 
+                    Windows.Storage.ApplicationData.Current.LocalSettings.Values[NOTIFICATION_SOUND_STORAGE] as NotificationSound?;
+
+                // If settings were not yet stored set to default value.
+                if (notificationSound == null)
+                {
+                    notificationSound = Constants.DEFAULT_NOTIFICATION_SOUND;
+                    SetNotificationSound(notificationSound.Value);
+                }
+
+                return notificationSound.Value;
+            }
+            set
+            {
+                SetNotificationSound(value);
+            }
+        }
+
         private void SetRingBellBeforeEnd(bool value)
         {
             Windows.Storage.ApplicationData.Current.LocalSettings.Values[RING_BELL_FIVE_MINUTES_BEFORE_END_STORAGE] = value;
@@ -64,6 +135,21 @@ namespace Rooijakkers.MeditationTimer.Data
         private void SetTimeToGetReady(int value)
         {
             Windows.Storage.ApplicationData.Current.LocalSettings.Values[TIME_TO_GET_READY_IN_SECONDS_STORAGE] = value;
+        }
+
+        private void SetBeginSound(BellSound value)
+        {
+            Windows.Storage.ApplicationData.Current.LocalSettings.Values[BEGIN_SOUND_STORAGE] = value;
+        }
+
+        private void SetEndSound(BellSound value)
+        {
+            Windows.Storage.ApplicationData.Current.LocalSettings.Values[END_SOUND_STORAGE] = value;
+        }
+
+        private void SetNotificationSound(NotificationSound value)
+        {
+            Windows.Storage.ApplicationData.Current.LocalSettings.Values[NOTIFICATION_SOUND_STORAGE] = value;
         }
     }
 }
