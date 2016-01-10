@@ -1,5 +1,6 @@
 ﻿using Rooijakkers.MeditationTimer.ViewModel;
 using System;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -51,6 +52,15 @@ namespace Rooijakkers.MeditationTimer.Views
         {
             // Display friendly message to user when diary is empty (check on view model because of asynchronous loading)
             var emptyDiary = ViewModel.MeditationDiary.Count == 0;
+
+            // If diary is empty, wait for a while and recheck
+            // (It takes some time to load the diary and on first view the entries are always empty)
+            // This is a quick bug fix
+            if (emptyDiary)
+            {
+                Task.Delay(400);
+                emptyDiary = ViewModel.MeditationDiary.Count == 0;
+            }
 
             if (emptyDiary)
             {
