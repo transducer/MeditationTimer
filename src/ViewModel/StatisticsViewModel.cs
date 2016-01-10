@@ -1,23 +1,24 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+
 using Rooijakkers.MeditationTimer.Data.Contracts;
 using Rooijakkers.MeditationTimer.Messages;
 using Rooijakkers.MeditationTimer.Model;
 
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Linq;
+
 namespace Rooijakkers.MeditationTimer.ViewModel
 {
-    public class DiaryViewModel : ViewModelBase
+    public class StatisticsViewModel : ViewModelBase
     {
         private readonly IMeditationDiaryRepository _repository;
         private static readonly TimeSpan TenMinutes = new TimeSpan(0, 10, 0);
 
-        public DiaryViewModel(IMeditationDiaryRepository repository)
+        public StatisticsViewModel(IMeditationDiaryRepository repository)
         {
             if (repository == null)
             {
@@ -29,8 +30,6 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             UpdateDiary();
 
             Messenger.Default.Register<UpdateDiaryMessage>(this, ReceiveUpdateDiaryMessage);
-
-            DeleteMeditationEntryCommand = new RelayCommand<int>(DeleteMeditationEntry);
         }
 
         private void SeedDesignTimeData()
@@ -39,6 +38,38 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             {
                 MeditationDiary.Add(new MeditationEntry { TimeMeditated = TenMinutes, StartTime = DateTime.Now });
             }
+        }
+
+        private IEnumerable<HoursMeditatedPerWeek> _hoursMeditatedPerWeeks;
+        public IEnumerable<HoursMeditatedPerWeek> HoursMeditatedPerWeeks
+        {
+            get
+            {
+                RaisePropertyChanged(nameof(HoursMeditatedPerWeeks));
+                return _hoursMeditatedPerWeeks ?? (_hoursMeditatedPerWeeks = new Collection<HoursMeditatedPerWeek>());
+            }
+            set
+            {
+                _hoursMeditatedPerWeeks = value;
+                RaisePropertyChanged(nameof(HoursMeditatedPerWeeks));
+            }
+        }
+
+        private IEnumerable<HoursMeditatedPerWeek> CalculateHoursMeditatedPerWeeks()
+        {
+            // TODO: Sort by years. If the app is used for longer than a year this statistic fails.
+            Func<MeditationEntry, int> weekProjector = d =>
+                CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(d.StartTime, CalendarWeekRule.FirstDay, DayOfWeek.Monday);
+
+            var _hoursMeditatedPerWeeks = MeditationDiary
+                .GroupBy(weekProjector)
+                .Select(g => new HoursMeditatedPerWeek
+                {
+                    WeekNumber = g.Key,
+                    HoursMeditated = g.ToList().Sum(m => m.TimeMeditated.Minutes / 60)
+                });
+
+            return _hoursMeditatedPerWeeks;
         }
 
         private MeditationDiary _meditationDiary;
@@ -54,8 +85,6 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             }
         }
 
-        public ICommand DeleteMeditationEntryCommand { get; private set; }
-
         /// <summary>
         /// Updates the diary to the latest version.
         /// </summary>
@@ -63,6 +92,9 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         private void ReceiveUpdateDiaryMessage(UpdateDiaryMessage msg)
         {
             UpdateDiary();
+
+            // Also recalculate hours meditated per week
+            HoursMeditatedPerWeeks = CalculateHoursMeditatedPerWeeks();
         }
 
         private async void UpdateDiary()
@@ -75,18 +107,6 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             {
                 MeditationDiary.Add(entry);
             }
-        }
-
-        private void DeleteMeditationEntry(int entryId)
-        {
-            var task = Task.Run(async () =>
-            {
-                await _repository.DeleteEntryAsync(entryId);
-            });
-
-            task.Wait();
-
-            Messenger.Default.Send(new UpdateDiaryMessage());
         }
     }
 }

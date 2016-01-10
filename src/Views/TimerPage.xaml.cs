@@ -180,7 +180,7 @@ namespace Rooijakkers.MeditationTimer.Views
 
         private async void NavigateToStatistics()
         {
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Frame.Navigate(typeof(MeditationDiaryPage)));
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Frame.Navigate(typeof(StatisticsPage)));
         }
 
         private async void NavigateToSettings()

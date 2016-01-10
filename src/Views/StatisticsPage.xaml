@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Rooijakkers.MeditationTimer.Views.MeditationDiaryPage"
+    x:Class="Rooijakkers.MeditationTimer.Views.StatisticsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:i="using:Microsoft.Xaml.Interactivity" 
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:actions="using:Rooijakkers.MeditationTimer.Actions"
     mc:Ignorable="d"
-    DataContext="{Binding Diary, Source={StaticResource Locator}}"
+    DataContext="{Binding Statistics, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid
@@ -21,31 +21,38 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock Text="History" 
+        <TextBlock Text="Statistics" 
                    FontFamily="Segoe WP" 
                    FontSize="80" />
-        <Grid Name="MeditationDiaryListViewHeaders"
-              Width="400"
-              Grid.Row="1">
+        <Grid Name="StatisticsListViewHeaders"
+              Grid.Row="1" Margin="0,0.333,0,274.667" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="212*"/>
+                <RowDefinition Height="63*"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <TextBlock 
                 Grid.Column="0" 
-                Text="Started" 
+                Text="Week" 
                 FontSize="30" 
-                FontFamily="Segoe WP" />
+                FontFamily="Segoe WP" 
+                Grid.RowSpan="2" />
             <TextBlock 
-                Grid.Column="1" 
-                Text="Length"
+                Text="Hours"
+                TextWrapping="WrapWholeWords"
                 FontSize="30" 
-                FontFamily="Segoe WP" />
+                FontFamily="Segoe WP" 
+                Grid.ColumnSpan="2" 
+                Margin="165,0,0,0" 
+                Grid.RowSpan="2" />
         </Grid>
         <ListView 
-            Name="MeditationDiaryListView"
+            Name="StatisticsListView"
             Grid.Row="1"
-            ItemsSource="{Binding MeditationDiary}" 
+            ItemsSource="{Binding HoursMeditatedPerWeeks}" 
             FontFamily="Segoe WP" 
             Margin="0,45.5,0,0" 
             Grid.RowSpan="2" 
@@ -55,19 +62,6 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Width="400">
-                        <i:Interaction.Behaviors>
-                            <core:EventTriggerBehavior EventName="Holding">
-                                <actions:OpenMenuFlyoutAction />
-                            </core:EventTriggerBehavior>
-                        </i:Interaction.Behaviors>
-                        <FlyoutBase.AttachedFlyout>
-                            <MenuFlyout>
-                                <MenuFlyoutItem 
-                                    Text="Delete entry"
-                                    Command="{Binding Source={StaticResource Locator}, Path=Diary.DeleteMeditationEntryCommand}"
-                                    CommandParameter="{Binding EntryId}"/>
-                            </MenuFlyout>
-                        </FlyoutBase.AttachedFlyout>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition />
@@ -76,12 +70,12 @@
                             <ColumnDefinition Width="1*" />
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding StartTime}" 
+                        <TextBlock Text="{Binding WeekNumber}" 
                                    FontSize="16" 
                                    Grid.Column="0" 
                                    Margin="0,0,0,-0.333" 
                                    Grid.RowSpan="2" />
-                        <TextBlock Text="{Binding TimeMeditated}"
+                        <TextBlock Text="{Binding HoursMeditated}"
                                    Grid.Column="1" 
                                    FontSize="16" 
                                    Margin="0,0,0,-0.333" 
@@ -92,7 +86,7 @@
         </ListView>
         <TextBlock 
             x:Name="ListViewNoItems"  
-            Text="There are no entries to display!"  
+            Text="There are no statistics to display!"  
             TextWrapping="WrapWholeWords"
             HorizontalAlignment="Stretch" 
             Margin="10,144,10,10" 
@@ -100,9 +94,9 @@
             FontSize="16" 
             FontWeight="Normal"
             d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition"
-            Visibility="Collapsed"/>  
+            Visibility="Collapsed"/>
     </Grid>
-    
+
     <!-- Below code is duplicated. Haven't found a way yet to extract it.-->
     <Page.BottomAppBar>
         <CommandBar x:Name="appBar">

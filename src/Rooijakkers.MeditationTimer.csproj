@@ -92,10 +92,15 @@
     <Compile Include="Data\Settings.cs" />
     <Compile Include="Messages\DisplayNotificationSoundPickerMessage.cs" />
     <Compile Include="Messages\PlayNotificationMessage.cs" />
+    <Compile Include="Model\HoursMeditatedPerWeek.cs" />
     <Compile Include="Model\NotificationSound.cs" />
     <Compile Include="Model\Notification.cs" />
     <Compile Include="Utilities\EnumAttribute.cs" />
+    <Compile Include="ViewModel\StatisticsViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
+    <Compile Include="Views\StatisticsPage.xaml.cs">
+      <DependentUpon>StatisticsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
@@ -145,7 +150,7 @@
     <Content Include="Assets\Sounds\chant-wat-phra-si-ratana-mahathat-thailand-by-rtb45.mp3" />
     <Content Include="Assets\Sounds\gong-burmese.wav" />
     <Content Include="Assets\Sounds\gong-cymbals-horst.mp3" />
-    <Content Include="Assets\Sounds\gong-perfect-qudobup.flac" />
+    <Content Include="Assets\Sounds\gong-perfect-qudobup.wav" />
     <Content Include="Assets\Sounds\gong-with-flute-nocpr.wav" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-140.png" />
@@ -168,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\StatisticsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

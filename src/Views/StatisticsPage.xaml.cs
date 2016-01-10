@@ -1,6 +1,8 @@
 ﻿using Rooijakkers.MeditationTimer.ViewModel;
+
 using System;
 using System.Threading.Tasks;
+
 using Windows.Foundation;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -15,11 +17,11 @@ namespace Rooijakkers.MeditationTimer.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MeditationDiaryPage : Page
+    public sealed partial class StatisticsPage : Page
     {
         private Point _initialPoint; // Point used to store start position so a swipe can be recognized
 
-        public MeditationDiaryPage()
+        public StatisticsPage()
         {
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
@@ -39,7 +41,7 @@ namespace Rooijakkers.MeditationTimer.Views
             var currentPoint = e.Position;
             if (currentPoint.X - _initialPoint.X >= Constants.SWIPING_TRESHOLD)
             {
-                NavigateToMain();
+                NavigateToDiary();
             }
         }
 
@@ -65,20 +67,15 @@ namespace Rooijakkers.MeditationTimer.Views
             if (emptyDiary)
             {
                 ListViewNoItems.Visibility = Visibility.Visible;
-                MeditationDiaryListView.Visibility = Visibility.Collapsed;
-                MeditationDiaryListViewHeaders.Visibility = Visibility.Collapsed;
+                StatisticsListView.Visibility = Visibility.Collapsed;
+                StatisticsListViewHeaders.Visibility = Visibility.Collapsed;
             }
             else
             {
                 ListViewNoItems.Visibility = Visibility.Collapsed;
-                MeditationDiaryListView.Visibility = Visibility.Visible;
-                MeditationDiaryListViewHeaders.Visibility = Visibility.Visible;
+                StatisticsListView.Visibility = Visibility.Visible;
+                StatisticsListViewHeaders.Visibility = Visibility.Visible;
             }
-        }
-
-        private void NavigateToMain()
-        {
-            Frame.Navigate(typeof(TimerPage));
         }
 
         /* NOTE: The code below is duplicated on all pages. I do not know how to extract it to separate page. */
@@ -122,11 +119,11 @@ namespace Rooijakkers.MeditationTimer.Views
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Frame.Navigate(typeof(SettingsPage)));
         }
 
-        public DiaryViewModel ViewModel
+        public StatisticsViewModel ViewModel
         {
             get
             {
-                return this.DataContext as DiaryViewModel;
+                return this.DataContext as StatisticsViewModel;
             }
         }
     }

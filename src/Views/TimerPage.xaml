@@ -16,9 +16,9 @@
         d:LayoutOverrides="LeftMargin, RightMargin">
         <TextBlock 
             Text="{Binding TimerText}"
-            Margin="10,56,10,0" 
+            Margin="0,36,20,0" 
             TextWrapping="Wrap" 
-            FontSize="106.667" 
+            FontSize="120" 
             TextAlignment="Center" 
             d:LayoutOverrides="LeftPosition, RightPosition" 
             VerticalAlignment="Top" 
@@ -31,7 +31,7 @@
             Command="{Binding StartTimerCommand}" 
             Content="Start" 
             HorizontalAlignment="Stretch" 
-            Margin="67,314,68,146" 
+            Margin="67,278,68,180" 
             VerticalAlignment="Stretch"
             Background="Transparent" 
             FontSize="53.333" 
@@ -43,40 +43,43 @@
             Command="{Binding StopTimerCommand}" 
             Content="Stop" 
             HorizontalAlignment="Stretch" 
-            Margin="67,314,68,146" 
+            Margin="67,278,68,180" 
             VerticalAlignment="Stretch"
             Background="Transparent" 
             FontSize="53.333" 
-            FontWeight="Normal" 
+            FontWeight="Normal"
             d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" />
         <Button 
         	x:Name="ResetInitialTimeButton"
         	Command="{Binding ResetInitialTimeCommand}" 
         	Content="Reset" 
         	HorizontalAlignment="Left" 
-        	Margin="67,270,0,0" 
+        	Margin="67,215,0,0" 
         	VerticalAlignment="Top"
         	Background="Transparent" 
-        	FontWeight="Normal" />
+        	FontWeight="Normal" 
+            Height="74" />
         <Button 
             x:Name="AddFiveMinutesButton"
         	Command="{Binding AddFiveMinutesCommand}" 
         	Content="+5 minutes" 
         	HorizontalAlignment="Right" 
-        	Margin="0,270,68,0" 
+        	Margin="0,215,68,0" 
         	VerticalAlignment="Top"
         	Background="Transparent" 
         	FontWeight="Normal" 
-            d:LayoutOverrides="HorizontalAlignment" />
+            d:LayoutOverrides="HorizontalAlignment" 
+            Height="74" />
         <Button 
         	Content="View history" 
         	HorizontalAlignment="Stretch" 
-        	Margin="67,0,68,103" 
+        	Margin="67,0,68,117" 
         	VerticalAlignment="Bottom"
             Click="ViewHistoryButton_Click"
         	Background="Transparent" 
         	FontWeight="Normal" 
-            d:LayoutOverrides="LeftPosition, RightPosition" />
+            d:LayoutOverrides="LeftPosition, RightPosition" 
+            Height="74" />
         <MediaElement 
             Name="BurmeseGongMediaElement"
             Height="10"
@@ -99,14 +102,14 @@
             Name="PerfectGongMediaElement"
             Height="10"
             Width="10"
-            Source="/Assets/Sounds/gong-perfect-qudobup.flac"
+            Source="/Assets/Sounds/gong-perfect-qudobup.wav"
             AutoPlay="False" />
         <MediaElement 
             Name="ChantOhmMediaElement"
             Height="10"
             Width="10"
             Source="/Assets/Sounds/chant-ohm-jagadamba.mp3"
-            AutoPlay="False" />   
+            AutoPlay="False" />
         <MediaElement 
             Name="ChantRatanaMahathatMediaElement"
             Height="10"
@@ -147,15 +150,14 @@
             Name="SitReadyTextBlock"
             Visibility="Collapsed"
         	Text="Get ready..." 
-        	Margin="67,194,68,0" 
+        	Margin="67,164,68,0" 
         	TextWrapping="Wrap" 
         	FontSize="44" 
         	TextAlignment="Center" 
         	VerticalAlignment="Top" 
         	Height="61" 
         	FontStretch="Expanded" 
-        	CharacterSpacing="50" 
-            d:LayoutOverrides="LeftPosition, RightPosition"/>
+        	CharacterSpacing="50"/>
     </Grid>
     <Page.BottomAppBar>
         <CommandBar x:Name="appBar">
@@ -170,11 +172,11 @@
                     IsCompact="False" 
                     Click="ViewHistoryButton_Click"
                     Label="History"/>
-                <!--<AppBarButton 
+                <AppBarButton 
                     Icon="FourBars" 
                     IsCompact="False" 
                     Click="ViewStatisticsButton_Click"
-                    Label="Statistics"/>-->
+                    Label="Statistics"/>
                 <AppBarButton 
                     Icon="Setting" 
                     IsCompact="False" 
