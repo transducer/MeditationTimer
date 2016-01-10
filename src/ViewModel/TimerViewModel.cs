@@ -221,7 +221,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             // There is probably a cleaner way to do it, but the performance penalty is minimal.
             if (_settings.NotificationBeforeEnd && moments.Contains(CountdownTimerValue))
             {
-                RingFiveMinutesLeftBell();
+                PlayNotificiationSound();
             }
         }
 
@@ -235,12 +235,12 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
         private void RingBell()
         {
-            Messenger.Default.Send(new PlayMessage(BellSound.Burmese));
+            Messenger.Default.Send(new PlayMessage(_settings.BellSound));
         }
 
-        private void RingFiveMinutesLeftBell()
+        private void PlayNotificiationSound()
         {
-            Messenger.Default.Send(new PlayMessage(BellSound.Cymbals));
+            Messenger.Default.Send(new PlayNotificationMessage(_settings.NotificationSound));
         }
     }
 }

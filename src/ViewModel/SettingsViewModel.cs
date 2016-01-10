@@ -34,7 +34,9 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         public void SetValuesToSettings()
         {
             TimeToGetReadySliderValue = _settings.TimeToGetReady.Seconds;
+            NotificationBeforeEndCheckBoxValue = _settings.NotificationBeforeEnd;
             SelectedBellIndex = (int)_settings.BellSound;
+            SelectedNotificationIndex = (int)_settings.NotificationSound;
         }
 
         public ICommand SaveSettingsCommand { get; private set; }
@@ -57,7 +59,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
 
         private void SaveRingBellFiveMinutesBeforeEnd()
         {
-            _settings.NotificationBeforeEnd = RingBellFiveMinutesBeforeEndCheckBoxValue;
+            _settings.NotificationBeforeEnd = NotificationBeforeEndCheckBoxValue;
         }
 
         private void SaveBellSound()
@@ -115,24 +117,24 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             }
         }
 
-        private bool _ringBellFiveMinutesBeforeEndCheckBoxValue;
-        public bool RingBellFiveMinutesBeforeEndCheckBoxValue 
+        private bool _notificationBeforeEndCheckBoxValue;
+        public bool NotificationBeforeEndCheckBoxValue 
         {
             get
             {
-                RaisePropertyChanged(nameof(RingBellFiveMinutesBeforeEndCheckBoxValue));
+                RaisePropertyChanged(nameof(NotificationBeforeEndCheckBoxValue));
                 Messenger.Default.Send(
-                    new DisplayNotificationSoundPickerMessage(_ringBellFiveMinutesBeforeEndCheckBoxValue));
+                    new DisplayNotificationSoundPickerMessage(_notificationBeforeEndCheckBoxValue));
 
-                return _ringBellFiveMinutesBeforeEndCheckBoxValue;
+                return _notificationBeforeEndCheckBoxValue;
             }
             set
             {
-                _ringBellFiveMinutesBeforeEndCheckBoxValue = value;
+                _notificationBeforeEndCheckBoxValue = value;
 
                 Messenger.Default.Send(
-                    new DisplayNotificationSoundPickerMessage(_ringBellFiveMinutesBeforeEndCheckBoxValue));
-                RaisePropertyChanged(nameof(RingBellFiveMinutesBeforeEndCheckBoxValue));
+                    new DisplayNotificationSoundPickerMessage(_notificationBeforeEndCheckBoxValue));
+                RaisePropertyChanged(nameof(NotificationBeforeEndCheckBoxValue));
             }
         }
 

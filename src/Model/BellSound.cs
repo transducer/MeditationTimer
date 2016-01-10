@@ -5,12 +5,12 @@ namespace Rooijakkers.MeditationTimer.Model
     public enum BellSound
     {
         [Description("Burmese gong")]
-        Burmese,
+        Burmese = 0,
         [Description("Cymbals Duisberg - by the Very Real Horst")]
-        Cymbals,
+        Cymbals = 1,
         [Description("Perfect gong - by Qudobup")]
-        Perfect,
+        Perfect = 2,
         [Description("Bell with flute - by Nocpr")]
-        Flute
+        Flute = 3
     }
 }

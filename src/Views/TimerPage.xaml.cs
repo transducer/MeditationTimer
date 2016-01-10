@@ -27,6 +27,7 @@ namespace Rooijakkers.MeditationTimer.Views
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
             Messenger.Default.Register<PlayMessage>(this, ReceivePlayMessage);
+            Messenger.Default.Register<PlayNotificationMessage>(this, ReceivePlayNotificationMessage);
             Messenger.Default.Register<StartTimerMessage>(this, ReceiveStartTimerMessage);
             Messenger.Default.Register<StopTimerMessage>(this, ReceiveStopTimerMessage);
             Messenger.Default.Register<DisplaySitReadyMessage>(this, ReceiveSitReadyMessage);
@@ -60,8 +61,53 @@ namespace Rooijakkers.MeditationTimer.Views
                 case BellSound.Cymbals:
                     CymbalsGongMediaElement.Play();
                     break;
+                case BellSound.Flute:
+                    FluteGongMediaElement.Play();
+                    break;
+                case BellSound.Perfect:
+                    PerfectGongMediaElement.Play();
+                    break;
                 default:
                     throw new ArgumentException("BellSound not found.", nameof(msg));
+            }
+        }
+
+        private void ReceivePlayNotificationMessage(PlayNotificationMessage msg)
+        {
+            switch (msg.NotificationSound)
+            {
+                case NotificationSound.Burmese:
+                    BurmeseGongMediaElement.Play();
+                    break;
+                case NotificationSound.Cymbals:
+                    CymbalsGongMediaElement.Play();
+                    break;
+                case NotificationSound.Flute:
+                    FluteGongMediaElement.Play();
+                    break;
+                case NotificationSound.Perfect:
+                    PerfectGongMediaElement.Play();
+                    break;
+                case NotificationSound.HareKrishna:
+                    ChantHariKrishnaMediaElement.Play();
+                    break;
+                case NotificationSound.JongSou:
+                    ChantJongSouElement.Play();
+                    break;
+                case NotificationSound.Ohm:
+                    ChantOhmMediaElement.Play();
+                    break;
+                case NotificationSound.Oahu:
+                    ChantOahuMediaElement.Play();
+                    break;
+                case NotificationSound.RatanaMahathat:
+                    ChantRatanaMahathatMediaElement.Play();
+                    break;
+                case NotificationSound.ThaiBuddhist:
+                    ChantThaiBuddhistMediaElement.Play();
+                    break;
+                default:
+                    throw new ArgumentException("NotificationSound not found.", nameof(msg));
             }
         }
 
