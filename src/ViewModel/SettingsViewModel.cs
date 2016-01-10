@@ -34,6 +34,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         public void SetValuesToSettings()
         {
             TimeToGetReadySliderValue = _settings.TimeToGetReady.Seconds;
+            SelectedBellIndex = (int)_settings.BellSound;
         }
 
         public ICommand SaveSettingsCommand { get; private set; }
@@ -43,18 +44,60 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         /// </summary>
         private void SaveSettings()
         {
-            SetTimeToGetReady();
-            SetRingBellFiveMinutesBeforeEnd();
+            SaveTimeToGetReady();
+            SaveRingBellFiveMinutesBeforeEnd();
+            SaveBellSound();
+            SaveNotificationSound();
         }
 
-        private void SetTimeToGetReady()
+        private void SaveTimeToGetReady()
         {
             _settings.TimeToGetReady = TimeSpan.FromSeconds(TimeToGetReadySliderValue);
         }
 
-        private void SetRingBellFiveMinutesBeforeEnd()
+        private void SaveRingBellFiveMinutesBeforeEnd()
         {
-            _settings.RingBellFiveMinutesBeforeEnd = RingBellFiveMinutesBeforeEndCheckBoxValue;
+            _settings.NotificationBeforeEnd = RingBellFiveMinutesBeforeEndCheckBoxValue;
+        }
+
+        private void SaveBellSound()
+        {
+            _settings.BellSound = (BellSound)SelectedBellIndex;
+        }
+
+        private void SaveNotificationSound()
+        {
+            _settings.NotificationSound = (NotificationSound)SelectedNotificationIndex;
+        }
+
+        private int _selectedBellIndex; 
+        public int SelectedBellIndex
+        {
+            get
+            {
+                RaisePropertyChanged(nameof(SelectedBellIndex));
+                return _selectedBellIndex;
+            }
+            set
+            {
+                _selectedBellIndex = value;
+                RaisePropertyChanged(nameof(SelectedBellIndex));
+            }
+        }
+
+        private int _selectedNotificationIndex; 
+        public int SelectedNotificationIndex
+        {
+            get
+            {
+                RaisePropertyChanged(nameof(SelectedNotificationIndex));
+                return _selectedNotificationIndex;
+            }
+            set
+            {
+                _selectedNotificationIndex = value;
+                RaisePropertyChanged(nameof(SelectedNotificationIndex));
+            }
         }
 
         private double _timeToGetReadySliderValue; 
@@ -107,7 +150,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         {
             get
             {
-                // Get description values of all chant and bell sounds
+                // Get description values of all chant and bell sounds.
                 return EnumExtensions.GetValues<NotificationSound>()
                     .Select(s => new Notification { Id = (int)s,  Name = s.ToString(), Description = s.GetDescription() });
             }

@@ -219,7 +219,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         {
             // We need to check the setting every time, since it might have changed. 
             // There is probably a cleaner way to do it, but the performance penalty is minimal.
-            if (_settings.RingBellFiveMinutesBeforeEnd && moments.Contains(CountdownTimerValue))
+            if (_settings.NotificationBeforeEnd && moments.Contains(CountdownTimerValue))
             {
                 RingFiveMinutesLeftBell();
             }

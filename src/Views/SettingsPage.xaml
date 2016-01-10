@@ -74,6 +74,7 @@
                 </TextBlock>
                 <ComboBox Name="BellNoticationsComboBox" 
                           ItemsSource="{Binding BellNotications}" 
+                          SelectedIndex="{Binding SelectedBellIndex}"
                           Margin="10,0,10,45.667" 
                           Grid.Row="1" 
                           Height="Auto" 
@@ -111,6 +112,7 @@
                 </TextBlock>
                 <ComboBox Name="NoticationsComboBox" 
                           ItemsSource="{Binding FiveMinutesBeforeEndNotications}" 
+                          SelectedIndex="{Binding SelectedNotificationIndex}"
                           Margin="10,92.333,10,19.5" 
                           Grid.Row="2" 
                           d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition">

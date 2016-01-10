@@ -11,11 +11,10 @@ namespace Rooijakkers.MeditationTimer.Data
     {
         private const string TIME_TO_GET_READY_IN_SECONDS_STORAGE = "TimeToGetReadyStorage";
         private const string RING_BELL_FIVE_MINUTES_BEFORE_END_STORAGE = "RingBellFiveMinutesBeforeEndStorage";
-        private const string BEGIN_SOUND_STORAGE = "BeginSoundStorage";
-        private const string END_SOUND_STORAGE = "EndSoundStorage";
+        private const string BELL_SOUND_STORAGE = "BellSoundStorage";
         private const string NOTIFICATION_SOUND_STORAGE = "NotificationSoundStorage";
 
-        public bool RingBellFiveMinutesBeforeEnd
+        public bool NotificationBeforeEnd
         {
             get
             {
@@ -61,47 +60,26 @@ namespace Rooijakkers.MeditationTimer.Data
             }
         }
 
-        public BellSound BeginSound
+        public BellSound BellSound
         {
             get
             {
-                BellSound? beginSound = 
-                    Windows.Storage.ApplicationData.Current.LocalSettings.Values[BEGIN_SOUND_STORAGE] as BellSound?;
+                // Enum storage is not supported, so store as int
+                int? bellSoundEnumIndex = 
+                    Windows.Storage.ApplicationData.Current.LocalSettings.Values[BELL_SOUND_STORAGE] as int?;
 
                 // If settings were not yet stored set to default value.
-                if (beginSound == null)
+                if (bellSoundEnumIndex == null)
                 {
-                    beginSound = Constants.DEFAULT_BEGIN_SOUND;
-                    SetBeginSound(beginSound.Value);
+                    bellSoundEnumIndex = (int)Constants.DEFAULT_BELL_SOUND;
+                    SetBellSound((BellSound)bellSoundEnumIndex);
                 }
 
-                return beginSound.Value;
+                return (BellSound)bellSoundEnumIndex;
             }
             set
             {
-                SetBeginSound(value);
-            }
-        }
-
-        public BellSound EndSound
-        {
-            get
-            {
-                BellSound? endSound = 
-                    Windows.Storage.ApplicationData.Current.LocalSettings.Values[END_SOUND_STORAGE] as BellSound?;
-
-                // If settings were not yet stored set to default value.
-                if (endSound == null)
-                {
-                    endSound = Constants.DEFAULT_END_SOUND;
-                    SetEndSound(endSound.Value);
-                }
-
-                return endSound.Value;
-            }
-            set
-            {
-                SetEndSound(value);
+                SetBellSound(value);
             }
         }
 
@@ -109,17 +87,18 @@ namespace Rooijakkers.MeditationTimer.Data
         {
             get
             {
-                NotificationSound? notificationSound = 
-                    Windows.Storage.ApplicationData.Current.LocalSettings.Values[NOTIFICATION_SOUND_STORAGE] as NotificationSound?;
+                // Enum storage is not supported, so store as int
+                int? notificationSoundEnumIndex = 
+                    Windows.Storage.ApplicationData.Current.LocalSettings.Values[NOTIFICATION_SOUND_STORAGE] as int?;
 
                 // If settings were not yet stored set to default value.
-                if (notificationSound == null)
+                if (notificationSoundEnumIndex == null)
                 {
-                    notificationSound = Constants.DEFAULT_NOTIFICATION_SOUND;
-                    SetNotificationSound(notificationSound.Value);
+                    notificationSoundEnumIndex = (int)Constants.DEFAULT_NOTIFICATION_SOUND;
+                    SetNotificationSound((NotificationSound)notificationSoundEnumIndex);
                 }
 
-                return notificationSound.Value;
+                return (NotificationSound)notificationSoundEnumIndex;
             }
             set
             {
@@ -137,19 +116,14 @@ namespace Rooijakkers.MeditationTimer.Data
             Windows.Storage.ApplicationData.Current.LocalSettings.Values[TIME_TO_GET_READY_IN_SECONDS_STORAGE] = value;
         }
 
-        private void SetBeginSound(BellSound value)
+        private void SetBellSound(BellSound value)
         {
-            Windows.Storage.ApplicationData.Current.LocalSettings.Values[BEGIN_SOUND_STORAGE] = value;
-        }
-
-        private void SetEndSound(BellSound value)
-        {
-            Windows.Storage.ApplicationData.Current.LocalSettings.Values[END_SOUND_STORAGE] = value;
+            Windows.Storage.ApplicationData.Current.LocalSettings.Values[BELL_SOUND_STORAGE] = (int)value;
         }
 
         private void SetNotificationSound(NotificationSound value)
         {
-            Windows.Storage.ApplicationData.Current.LocalSettings.Values[NOTIFICATION_SOUND_STORAGE] = value;
+            Windows.Storage.ApplicationData.Current.LocalSettings.Values[NOTIFICATION_SOUND_STORAGE] = (int)value;
         }
     }
 }

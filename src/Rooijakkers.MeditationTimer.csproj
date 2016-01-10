@@ -91,7 +91,7 @@
     <Compile Include="Data\MeditationDiaryRepository.cs" />
     <Compile Include="Data\Settings.cs" />
     <Compile Include="Messages\DisplayNotificationSoundPickerMessage.cs" />
-    <Compile Include="Model\ChantSound.cs" />
+    <Compile Include="Model\NotificationSound.cs" />
     <Compile Include="Model\Notification.cs" />
     <Compile Include="Utilities\EnumAttribute.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />

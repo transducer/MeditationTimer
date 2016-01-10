@@ -6,9 +6,8 @@ namespace Rooijakkers.MeditationTimer.Data.Contracts
     public interface ISettings
     {
         TimeSpan TimeToGetReady { get; set; }
-        bool RingBellFiveMinutesBeforeEnd { get; set; }
-        BellSound BeginSound { get; set; }
-        BellSound EndSound { get; set; }
+        bool NotificationBeforeEnd { get; set; }
+        BellSound BellSound { get; set; }
         NotificationSound NotificationSound { get; set; }
     }
 }
