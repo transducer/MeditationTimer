@@ -9,6 +9,7 @@ A no nonsense meditation timer. Version 1 contains the ability to ring a Burmese
 ![10 seconds to sit ready. Use them wisely.](https://github.com/erooijak/meditationtimer/blob/master/screenshots/timer.png)
 ![The splash screen while loading the stuff that makes sense.](https://github.com/erooijak/meditationtimer/blob/master/screenshots/splash.png)
 ![You can delete entries in the meditation history you are not happy with.](https://github.com/erooijak/meditationtimer/blob/master/screenshots/history.png)
+![Change some settings.](https://github.com/erooijak/meditationtimer/blob/master/screenshots/settings.png)
 
 ## Running the solution locally
 Install Windows 8+, Visual Studio and the Windows Phone SDK. Then clone the repository.
