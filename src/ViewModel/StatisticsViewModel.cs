@@ -86,17 +86,6 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             }
         }
 
-        private string GetMonthName(int monthNumber)
-        {
-            switch (monthNumber)
-            {
-                case 1: return "JAN";
-                case 2: return "FEB";
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(monthNumber));
-            }
-        }
-
         /// <summary>
         /// Updates the diary to the latest version.
         /// </summary>
