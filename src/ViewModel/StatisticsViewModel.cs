@@ -26,8 +26,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             }
             _repository = repository;
 
-            UpdateDiary();
-            UpdateStatistics();
+            UpdateDiaryAndStatistics();
 
             Messenger.Default.Register<UpdateDiaryMessage>(this, ReceiveUpdateDiaryMessage);
         }
@@ -40,34 +39,34 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             }
         }
 
-        private IEnumerable<HoursMeditatedPerWeek> _hoursMeditatedPerWeeks;
-        public IEnumerable<HoursMeditatedPerWeek> HoursMeditatedPerWeeks
+        private IEnumerable<HoursMeditatedPerWeekPerYear> _hoursMeditatedOverview;
+        public IEnumerable<HoursMeditatedPerWeekPerYear> HoursMeditatedOverview
         {
             get
             {
-                RaisePropertyChanged(nameof(HoursMeditatedPerWeeks));
-                return _hoursMeditatedPerWeeks ?? (_hoursMeditatedPerWeeks = new Collection<HoursMeditatedPerWeek>());
+                RaisePropertyChanged(nameof(HoursMeditatedOverview));
+                return _hoursMeditatedOverview ?? (_hoursMeditatedOverview = new Collection<HoursMeditatedPerWeekPerYear>());
             }
             set
             {
-                _hoursMeditatedPerWeeks = value;
-                RaisePropertyChanged(nameof(HoursMeditatedPerWeeks));
+                _hoursMeditatedOverview = value;
+                RaisePropertyChanged(nameof(HoursMeditatedOverview));
             }
         }
 
-        private IEnumerable<HoursMeditatedPerWeek> CalculateHoursMeditatedPerWeeks()
+        private IEnumerable<HoursMeditatedPerWeekPerYear> CalculateHoursMeditatedOverview()
         {
             const int MINUTES_PER_HOUR = 60;
 
-            // TODO: Sort by years. If the app is used for longer than a year this statistic fails.
-            Func<MeditationEntry, int> weekProjector = d =>
-                CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(d.StartTime, CalendarWeekRule.FirstDay, DayOfWeek.Monday);
+            Func<MeditationEntry, string> weekWithYearProjector = 
+                h => CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(h.StartTime, CalendarWeekRule.FirstDay, DayOfWeek.Monday) 
+                    + " (" + h.StartTime.ToString("MMM") + " " + h.StartTime.Year + ")";
 
             var hoursMeditatedPerWeeks = MeditationDiary
-                .GroupBy(weekProjector)
-                .Select(g => new HoursMeditatedPerWeek
+                .GroupBy(weekWithYearProjector)
+                .Select(g => new HoursMeditatedPerWeekPerYear
                 {
-                    WeekNumber = g.Key,
+                    WeekAndYear = g.Key,
                     HoursMeditated = g.ToList().Sum(m => m.TimeMeditated.Minutes) / MINUTES_PER_HOUR
                 });
 
@@ -87,17 +86,27 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             }
         }
 
+        private string GetMonthName(int monthNumber)
+        {
+            switch (monthNumber)
+            {
+                case 1: return "JAN";
+                case 2: return "FEB";
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(monthNumber));
+            }
+        }
+
         /// <summary>
         /// Updates the diary to the latest version.
         /// </summary>
         /// <param name="msg"></param>
         private void ReceiveUpdateDiaryMessage(UpdateDiaryMessage msg)
         {
-            UpdateDiary();
-            UpdateStatistics();
+            UpdateDiaryAndStatistics();
         }
 
-        private async void UpdateDiary()
+        private async void UpdateDiaryAndStatistics()
         {
             var latestDiary = await _repository.GetAsync();
 
@@ -108,12 +117,15 @@ namespace Rooijakkers.MeditationTimer.ViewModel
                 MeditationDiary.Add(entry);
             }
             SendDisplayDiaryMessage();
+
+            // Update statistics after diary is updated
+            UpdateStatistics();
         }
 
         private void UpdateStatistics()
         {
             // Recalculate hours meditated per week
-            HoursMeditatedPerWeeks = CalculateHoursMeditatedPerWeeks();
+            HoursMeditatedOverview = CalculateHoursMeditatedOverview();
         }
 
         private void SendDisplayDiaryMessage()

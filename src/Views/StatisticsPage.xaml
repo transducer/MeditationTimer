@@ -55,7 +55,7 @@
         <ListView 
             Name="StatisticsListView"
             Grid.Row="1"
-            ItemsSource="{Binding HoursMeditatedPerWeeks}" 
+            ItemsSource="{Binding HoursMeditatedOverview}" 
             FontFamily="Segoe WP" 
             Margin="0,45.5,0,0" 
             Grid.RowSpan="2" 
@@ -74,7 +74,7 @@
                             <ColumnDefinition Width="1*" />
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding WeekNumber}" 
+                        <TextBlock Text="{Binding WeekAndYear}" 
                                    FontSize="16" 
                                    Grid.Column="0" 
                                    Margin="0,0,0,-0.333" 

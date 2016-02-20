@@ -1,8 +1,8 @@
 ﻿namespace Rooijakkers.MeditationTimer.Model
 {
-    public class HoursMeditatedPerWeek
+    public class HoursMeditatedPerWeekPerYear
     {
-        public int WeekNumber { get; set; }
+        public string WeekAndYear { get; set; }
         public double HoursMeditated { get; set; }
     }
 }
