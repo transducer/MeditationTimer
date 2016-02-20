@@ -126,7 +126,7 @@
             Name="ChantHariKrishnaMediaElement"
             Height="10"
             Width="10"
-            Source="/Assets/Sounds/chant-hari-krishna-jagadamba.mp3"
+            Source="/Assets/Sounds/chant-hare-krishna-jagadamba.mp3"
             AutoPlay="False" />
         <MediaElement 
             Name="ChantOahuMediaElement"
