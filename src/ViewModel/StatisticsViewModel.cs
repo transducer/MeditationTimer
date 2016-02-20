@@ -107,6 +107,12 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             {
                 MeditationDiary.Add(entry);
             }
+            SendDisplayDiaryMessage();
+        }
+
+        private void SendDisplayDiaryMessage()
+        {
+            Messenger.Default.Send(new DisplayDiaryMessage(display: MeditationDiary.Count > 0));
         }
     }
 }

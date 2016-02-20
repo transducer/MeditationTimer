@@ -1,7 +1,8 @@
-﻿using Rooijakkers.MeditationTimer.ViewModel;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Rooijakkers.MeditationTimer.Messages;
+using Rooijakkers.MeditationTimer.ViewModel;
 
 using System;
-using System.Threading.Tasks;
 
 using Windows.Foundation;
 using Windows.UI.Core;
@@ -26,9 +27,27 @@ namespace Rooijakkers.MeditationTimer.Views
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
+            Messenger.Default.Register<DisplayDiaryMessage>(this, ReceiveDisplayDiaryMessage);
+
             SwipingSurface.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;
             SwipingSurface.ManipulationStarted += SetInitialPosition;
             SwipingSurface.ManipulationCompleted += ToDiaryIfSwipedRight;
+        }
+
+        private void ReceiveDisplayDiaryMessage(DisplayDiaryMessage msg)
+        {
+            if (msg.Display)
+            {
+                ListViewNoItems.Visibility = Visibility.Collapsed;
+                StatisticsListView.Visibility = Visibility.Visible;
+                StatisticsListViewHeaders.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ListViewNoItems.Visibility = Visibility.Visible;
+                StatisticsListView.Visibility = Visibility.Collapsed;
+                StatisticsListViewHeaders.Visibility = Visibility.Collapsed;
+            }
         }
 
         public void SetInitialPosition(object sender, ManipulationStartedRoutedEventArgs e)
@@ -52,30 +71,6 @@ namespace Rooijakkers.MeditationTimer.Views
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            // Display friendly message to user when diary is empty (check on view model because of asynchronous loading)
-            var emptyDiary = ViewModel.MeditationDiary.Count == 0;
-
-            // If diary is empty, wait for a while and recheck
-            // (It takes some time to load the diary and on first view the entries are always empty)
-            // This is a quick bug fix
-            if (emptyDiary)
-            {
-                Task.Delay(400);
-                emptyDiary = ViewModel.MeditationDiary.Count == 0;
-            }
-
-            if (emptyDiary)
-            {
-                ListViewNoItems.Visibility = Visibility.Visible;
-                StatisticsListView.Visibility = Visibility.Collapsed;
-                StatisticsListViewHeaders.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                ListViewNoItems.Visibility = Visibility.Collapsed;
-                StatisticsListView.Visibility = Visibility.Visible;
-                StatisticsListViewHeaders.Visibility = Visibility.Visible;
-            }
         }
 
         /* NOTE: The code below is duplicated on all pages. I do not know how to extract it to separate page. */
@@ -117,14 +112,6 @@ namespace Rooijakkers.MeditationTimer.Views
         private async void NavigateToSettings()
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Frame.Navigate(typeof(SettingsPage)));
-        }
-
-        public StatisticsViewModel ViewModel
-        {
-            get
-            {
-                return this.DataContext as StatisticsViewModel;
-            }
         }
     }
 }

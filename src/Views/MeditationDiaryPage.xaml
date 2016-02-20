@@ -26,7 +26,8 @@
                    FontSize="80" />
         <Grid Name="MeditationDiaryListViewHeaders"
               Width="400"
-              Grid.Row="1">
+              Grid.Row="1"
+              Visibility="Collapsed">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
@@ -51,7 +52,8 @@
             Grid.RowSpan="2" 
             d:LayoutOverrides="TopPosition, BottomPosition" 
             ManipulationMode="None" 
-            ShowsScrollingPlaceholders="False">
+            ShowsScrollingPlaceholders="False"
+            Visibility="Collapsed">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Width="400">
@@ -100,7 +102,7 @@
             FontSize="16" 
             FontWeight="Normal"
             d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition"
-            Visibility="Collapsed"/>  
+            Visibility="Visible"/>  
     </Grid>
     
     <!-- Below code is duplicated. Haven't found a way yet to extract it.-->

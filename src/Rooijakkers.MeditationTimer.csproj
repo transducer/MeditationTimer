@@ -92,6 +92,7 @@
     <Compile Include="Data\Settings.cs" />
     <Compile Include="Messages\DisplayNotificationSoundPickerMessage.cs" />
     <Compile Include="Messages\PlayNotificationMessage.cs" />
+    <Compile Include="Messages\DisplayDiaryMessage.cs" />
     <Compile Include="Model\HoursMeditatedPerWeek.cs" />
     <Compile Include="Model\NotificationSound.cs" />
     <Compile Include="Model\Notification.cs" />
