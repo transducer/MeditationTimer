@@ -44,18 +44,18 @@
                 FontFamily="Segoe WP" 
                 Grid.RowSpan="2" />
             <TextBlock 
-                Text="Hours"
+                Text="Time"
                 TextWrapping="WrapWholeWords"
                 FontSize="30" 
                 FontFamily="Segoe WP" 
                 Grid.ColumnSpan="2" 
-                Margin="165,0,0,0" 
+                Margin="198,0,0,0" 
                 Grid.RowSpan="2" />
         </Grid>
         <ListView 
             Name="StatisticsListView"
             Grid.Row="1"
-            ItemsSource="{Binding HoursMeditatedOverview}" 
+            ItemsSource="{Binding TimeMeditatedOverview}" 
             FontFamily="Segoe WP" 
             Margin="0,45.5,0,0" 
             Grid.RowSpan="2" 
@@ -79,7 +79,7 @@
                                    Grid.Column="0" 
                                    Margin="0,0,0,-0.333" 
                                    Grid.RowSpan="2" />
-                        <TextBlock Text="{Binding HoursMeditated}"
+                        <TextBlock Text="{Binding TimeMeditated}"
                                    Grid.Column="1" 
                                    FontSize="16" 
                                    Margin="0,0,0,-0.333" 

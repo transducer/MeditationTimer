@@ -122,7 +122,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             }
         }
 
-        // Ensure TimeMedidated is not a negative value if there is meditated for less than the
+        // Ensure TimeMeditated is not a negative value if there is meditated for less than the
         // time to sit ready
         public TimeSpan TimeMeditated => CountdownTimerValue < InitialMeditationTime
             ? InitialMeditationTime.Subtract(CountdownTimerValue)
