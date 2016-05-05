@@ -54,20 +54,19 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             }
         }
 
-        private IEnumerable<TimeMeditatedPerWeekPerYear> CalculateTimeMeditatedOverview()
+        private IEnumerable<TimeMeditatedPerWeekPerYear> CalculateTimeMeditatedOverview(MeditationDiary diary)
         {
             const int MINUTES_PER_HOUR = 60;
-            const DayOfWeek START_OF_WEEK = DayOfWeek.Monday;
 
             Func<MeditationEntry, string> weekWithYearProjector = 
-                h => CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(h.StartTime, CalendarWeekRule.FirstDay, START_OF_WEEK) 
+                h => CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(h.StartTime, CalendarWeekRule.FirstDay, DayOfWeek.Sunday) 
                     /* Since we are grouping by the week, month and year we have to get the month belonging to the day where the week started */
-                    + " (" + CalculateMonthWhereinWeekStarted(h.StartTime, START_OF_WEEK) + " " + h.StartTime.Year + ")";
+                    + " (" + CalculateMonthWhereinWeekStarted(h.StartTime) + " " + h.StartTime.Year + ")";
 
-            var hoursMeditatedPerWeeks = MeditationDiary
+            var hoursMeditatedPerWeeks = diary
                 .GroupBy(weekWithYearProjector)
                 .Select(g => {
-                    var minutesMeditated = g.ToList().Sum(m => m.TimeMeditated.Minutes);
+                    var minutesMeditated = g.ToList().Sum(m => (int)m.TimeMeditated.TotalMinutes);
                     return new TimeMeditatedPerWeekPerYear
                     {
                         WeekAndYear = g.Key,
@@ -78,11 +77,10 @@ namespace Rooijakkers.MeditationTimer.ViewModel
             return hoursMeditatedPerWeeks;
         }
 
-        private string CalculateMonthWhereinWeekStarted(DateTime dateTime, DayOfWeek startOfWeek)
+        private string CalculateMonthWhereinWeekStarted(DateTime dateTime)
         {
             var dayOfWeek = (int)dateTime.DayOfWeek;
-            var startDayOffset = (int)startOfWeek;
-            var dateTimeWhereWeekStarted = dateTime.AddDays(-dayOfWeek + startDayOffset);
+            var dateTimeWhereWeekStarted = dateTime.AddDays(-dayOfWeek);
 
             return dateTimeWhereWeekStarted.ToString("MMM");
         }
@@ -128,7 +126,7 @@ namespace Rooijakkers.MeditationTimer.ViewModel
         private void UpdateStatistics()
         {
             // Recalculate hours meditated per week
-            TimeMeditatedOverview = CalculateTimeMeditatedOverview();
+            TimeMeditatedOverview = CalculateTimeMeditatedOverview(MeditationDiary);
         }
 
         private void SendDisplayDiaryMessage()

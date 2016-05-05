@@ -33,6 +33,7 @@ namespace Rooijakkers.MeditationTimer.Views
             SwipingSurface.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;
             SwipingSurface.ManipulationStarted += SetInitialPosition;
             SwipingSurface.ManipulationCompleted += ToDiaryIfSwipedRight;
+            SwipingSurface.ManipulationCompleted += ToStatisticsIfSwipedLeft;
         }
 
         private void ReceiveDisplayDiaryMessage(DisplayDiaryMessage msg)
@@ -62,6 +63,15 @@ namespace Rooijakkers.MeditationTimer.Views
             if (currentPoint.X - _initialPoint.X >= Constants.SWIPING_TRESHOLD)
             {
                 NavigateToMain();
+            }
+        }
+
+        public void ToStatisticsIfSwipedLeft(object sender, ManipulationCompletedRoutedEventArgs e)
+        {
+            var currentPoint = e.Position;
+            if (_initialPoint.X - currentPoint.X >= Constants.SWIPING_TRESHOLD)
+            {
+                NavigateToStatistics();
             }
         }
 
